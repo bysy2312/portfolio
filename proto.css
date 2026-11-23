@@ -1,0 +1,125 @@
+/* ===== 피그마 프로토타입 재생기 (proto.js) ===== */
+.proto { --ps: 0.7; position: relative; display: grid; justify-items: center; gap: 20px; }
+.proto__device { /* 휴대폰 몸체 */
+  padding: 10px; border-radius: 52px; background: #121212;
+  box-shadow: 0 0 0 2px #2b2b2b inset, 0 30px 60px rgba(10, 0, 60, 0.35);
+}
+.proto__clip { /* 화면: 375×812를 배율(--ps)로 줄인 크기 */
+  position: relative; overflow: hidden; border-radius: 42px; background: #fff;
+  width: calc(var(--pw, 375) * var(--ps) * 1px); height: calc(var(--ph, 812) * var(--ps) * 1px);
+}
+.proto__vp { position: absolute; left: 0; top: 0; width: calc(var(--pw, 375) * 1px); height: calc(var(--ph, 812) * 1px); transform: scale(var(--ps)); transform-origin: 0 0; }
+.proto__stage { position: absolute; inset: 0; overflow: hidden; }
+.proto__layer { position: absolute; inset: 0; background: #fff; backface-visibility: hidden; }
+.proto__stage.is-moving .proto__layer { will-change: transform, opacity; }
+.proto__stage.is-moving .proto__hs { pointer-events: none; } /* 넘어가는 동안 두 번 눌림 방지 */
+.proto__scroll { position: absolute; inset: 0; overflow-x: hidden; overflow-y: auto; scrollbar-width: none; overscroll-behavior: contain; }
+.proto__scroll::-webkit-scrollbar { display: none; }
+.proto__page, .proto__ovp { position: relative; width: calc(var(--pw, 375) * 1px); }
+.proto__img { display: block; width: 100%; height: auto; user-select: none; pointer-events: none; }
+
+/* 누를 수 있는 곳: 평소엔 안 보이고, 빈 곳을 누르면 잠깐 파랗게 표시 */
+.proto__hs { position: absolute; padding: 0; border: 0; background: transparent; border-radius: 8px; cursor: pointer; }
+.proto__hs:focus-visible { outline: 2px solid #350aff; outline-offset: 2px; }
+.proto__vp.is-hint .proto__hs { animation: proto-hint 0.7s ease-out; }
+@keyframes proto-hint { 0%, 40% { background: rgba(53, 10, 255, 0.28); box-shadow: 0 0 0 2px rgba(53, 10, 255, 0.6); } 100% { background: transparent; box-shadow: none; } }
+
+/* 켜기/끄기 버튼: 다른 상태 그림의 같은 자리 */
+.proto__flip { position: absolute; background-repeat: no-repeat; opacity: 0; transition: opacity 0.12s ease; pointer-events: none; }
+.proto__flip.is-on { opacity: 1; }
+
+/* 스크롤해도 붙어 있는 위·아래 바 */
+.proto__fix { position: absolute; left: 0; width: calc(var(--pw, 375) * 1px); display: none; }
+/* 조각 그림(마우스 올림·자동 넘김·눌러 바꾸기·고정 버튼) */
+.proto__piece { position: absolute; display: block; max-width: none; pointer-events: none; user-select: none; transition: opacity 0.25s ease; }
+.proto__piece--hover, img.proto__piece[data-tg] { opacity: 0; }
+.proto__piece--hover.is-on, img.proto__piece[data-tg].is-on { opacity: 1; }
+.proto__fix--top { top: 0; }
+.proto__fix--bot { bottom: 0; }
+
+/* 아래 메뉴 + 펼침 */
+.proto__gnb { position: absolute; inset: 0; display: none; }
+.proto__gnb.is-open { display: block; animation: proto-fade 0.18s ease; }
+
+/* 겹쳐 뜨는 화면 (아래에서 올라오는 시트 / 가운데 팝업) */
+.proto__ovl { position: absolute; inset: 0; display: none; }
+.proto__ovl.is-open { display: flex; background: rgba(0, 0, 0, 0.4); }
+.proto__ovl.no-dim { background: transparent; }
+.proto__ovl.pos-bottom { align-items: flex-end; justify-content: center; }
+.proto__ovl.pos-center { align-items: center; justify-content: center; }
+.proto__ovl.pos-center .proto__ovp { border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25); }
+.proto__ovl.pos-bottom .proto__ovp { border-radius: 20px 20px 0 0; overflow: hidden; }
+
+/* 화면 전환은 proto.js가 피그마 설정(종류·방향·시간·이징)대로 직접 움직임 */
+@keyframes proto-fade { from { opacity: 0; } }
+
+/* 조작줄: 뒤로 + 흐름 바로가기 */
+.proto__bar { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 520px; }
+.proto__chip {
+  padding: 8px 14px; border: 1px solid rgba(240, 240, 240, 0.5); border-radius: 999px; background: transparent;
+  font-family: var(--font-pixel); font-size: 12px; line-height: 1; color: var(--on-blue, #f0f0f0); cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.proto__chip:hover { background: #f0f0f0; color: #350aff; }
+.proto__chip--back { border-color: transparent; background: rgba(240, 240, 240, 0.14); }
+@media (prefers-reduced-motion: reduce) { .proto__gnb.is-open { animation: none; } .proto__vp.is-hint .proto__hs { animation-duration: 0.01s; } }
+
+/* 웹(데스크톱): 브라우저 창 모양 */
+.proto--desktop .proto__device { padding: 30px 0 0; border-radius: 14px; background: #ececf1; position: relative; box-shadow: 0 30px 60px rgba(10, 0, 60, 0.35); }
+.proto--desktop .proto__device::before { /* 창 위쪽 동그라미 3개 */
+  content: ""; position: absolute; left: 14px; top: 10px; width: 10px; height: 10px; border-radius: 50%;
+  background: #ff5f57; box-shadow: 16px 0 0 #febc2e, 32px 0 0 #28c840;
+}
+.proto--desktop .proto__clip { border-radius: 0 0 12px 12px; }
+
+/* ===== 웹(베베드피노) 장면 요소 (2026-11-23) ===== */
+.proto__marquee { position: absolute; overflow: hidden; pointer-events: none; }
+.proto__marquee-strip { position: absolute; left: 0; top: 0; max-width: none; animation: proto-marquee 34s linear infinite; will-change: transform; }
+@keyframes proto-marquee { to { transform: translateX(var(--period)); } }
+.proto__sticky { position: absolute; pointer-events: none; }
+.proto__sticky-img { position: sticky; display: block; max-width: none; }
+.proto__clip-box { position: absolute; overflow: hidden; pointer-events: none; }
+.proto__piece--slide { opacity: 1 !important; transform: var(--from); transition-property: transform; }
+.proto__piece--slide.is-on { transform: translate(0, 0); }
+.proto__rig { position: absolute; pointer-events: none; }
+.proto__rig-in { position: absolute; left: 0; top: 0; transform-origin: 0 0; }
+.proto__rig-part { position: absolute; left: 0; top: 0; max-width: none; transform-origin: 0 0; user-select: none; }
+.proto__fix--top { transition: transform 0.25s cubic-bezier(0, 0, 0.58, 1); }
+.proto__fix--top.is-shifted { transform: translateY(var(--shift)); }
+/* 토끼: 안 보이다가 오른쪽에서 왼쪽으로 폴짝폴짝 뛰어 들어옴 */
+.proto__enter--hop { opacity: 0; }
+.proto__enter--hop.is-in { opacity: 1; animation: proto-hop 1.5s cubic-bezier(0.3, 0.6, 0.4, 1) both; }
+@keyframes proto-hop {
+  0% { transform: translate(720px, 0); }
+  14% { transform: translate(600px, -110px) rotate(-6deg); }
+  28% { transform: translate(470px, 0) rotate(0); }
+  42% { transform: translate(350px, -90px) rotate(-5deg); }
+  56% { transform: translate(230px, 0) rotate(0); }
+  70% { transform: translate(120px, -60px) rotate(-4deg); }
+  84% { transform: translate(0, 0) scale(1.04, 0.94); }
+  92% { transform: translate(0, -12px) scale(0.98, 1.03); }
+  100% { transform: translate(0, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .proto__marquee-strip { animation: none; } .proto__enter--hop.is-in { animation: none; } }
+.proto__fade { transition-property: opacity; transition-timing-function: cubic-bezier(0, 0, 0.58, 1); }
+.proto__slide-strip { position: absolute; left: 0; top: 0; will-change: transform; }
+.proto__slide-img { position: absolute; max-width: none; user-select: none; }
+.proto__video { position: absolute; object-fit: cover; pointer-events: none; background: #000; }
+.proto__car-slide { position: absolute; inset: 0; }
+.proto__stack { position: absolute; }
+.proto__stack-card { position: sticky; overflow: hidden; }
+/* 열나요 기록 메뉴 (보던 화면은 그대로, 위에만 막과 카드) */
+.proto__gnb.proto__gnb--parts.is-open { animation: none; }
+.proto__gnb-dim { position: absolute; background: #000; opacity: 0; transition: opacity 0.3s cubic-bezier(0, 0, 0.58, 1); }
+.proto__gnb-cards { position: absolute; max-width: none; opacity: 0; transform: translateY(28px); transition: opacity 0.3s cubic-bezier(0, 0, 0.58, 1), transform 0.3s cubic-bezier(0, 0, 0.58, 1); pointer-events: none; }
+.proto__gnb-patch { position: absolute; background: #fff; }
+.proto__gnb-btn { position: absolute; max-width: none; transition: transform 0.3s cubic-bezier(0, 0, 0.58, 1); pointer-events: none; }
+.proto__gnb.is-on .proto__gnb-dim { opacity: 0.5; }
+.proto__gnb.is-on .proto__gnb-cards { opacity: 1; transform: none; }
+.proto__gnb.is-on .proto__gnb-btn { transform: rotate(45deg); }
+.proto__hscroll { position: absolute; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; overscroll-behavior-x: contain; cursor: grab; }
+.proto__hscroll::-webkit-scrollbar { display: none; }
+.proto__hscroll-in { position: relative; }
+.proto__vscroll { position: absolute; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; overscroll-behavior: contain; }
+.proto__vscroll::-webkit-scrollbar { display: none; }
+.proto__vscroll-in { position: relative; width: 100%; }

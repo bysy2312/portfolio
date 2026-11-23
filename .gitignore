@@ -1,0 +1,5 @@
+backup/
+images/source/
+*.tmp
+.vscode/
+Thumbs.db

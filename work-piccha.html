@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Piccha — 가챠 플랫폼 앱 · UX/UI 포트폴리오</title>
+
+  <!-- 글꼴: Pretendard(본문) + Galmuri(픽셀 라벨/제목) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="work.css" />
+  <link rel="stylesheet" href="work-fx.css" />
+  <link rel="stylesheet" href="work-piccha.css" />
+  <link rel="stylesheet" href="work-cover.css" />
+  <link rel="stylesheet" href="proto.css" />
+  <script src="work-fx.js"></script>
+</head>
+<body class="page-detail page-work">
+
+  <!-- 픽셀 마우스 커서 (모양은 script.js에서 그림) -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <svg class="cursor__arrow" id="cursorArrow"></svg>
+    <span class="cursor__label" id="cursorLabel"></span>
+  </div>
+
+  <!-- GNB: 떠 있는 메뉴 바 (레퍼런스 two-step 방식: 가로로 넓어진 뒤 아래로 펼쳐짐) -->
+  <header class="gnb" id="gnb">
+    <div class="gnb__dim" id="gnbDim"></div><!-- 메뉴가 열리면 뒤 화면을 어둡게 -->
+
+    <div class="gnb__bar" id="gnbBar">
+      <div class="gnb__top">
+        <a href="index.html#top" class="gnb__logo" data-gnb-link>
+          <svg class="mark mark--blue" viewBox="0 0 7 7" aria-hidden="true">
+            <rect x="3" y="0" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/>
+            <rect x="2" y="2" width="3" height="3"/><rect x="0" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/>
+            <rect x="1" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/>
+          </svg>
+          Read, Fix, Save.
+        </a>
+        <div class="gnb__actions">
+        <!-- 효과음 켜기/끄기 (sfx.js) -->
+        <button type="button" class="sfx-toggle" id="sfxToggle" aria-pressed="false" aria-label="효과음 켜기">
+          <svg viewBox="0 0 9 9" aria-hidden="true">
+            <rect x="1" y="3" width="2" height="3"/><rect x="3" y="2" width="1" height="5"/><rect x="4" y="1" width="1" height="7"/>
+            <g class="w"><rect x="6" y="3" width="1" height="3"/><rect x="7" y="1" width="1" height="1"/><rect x="8" y="2" width="1" height="5"/><rect x="7" y="7" width="1" height="1"/></g>
+            <g class="x"><rect x="6" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="7" y="4" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/></g>
+          </svg>
+        </button>
+        <button class="gnb__toggle" id="gnbToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="gnbPanel">
+          <span class="gnb__toggle-bar"></span>
+          <span class="gnb__toggle-bar"></span>
+        </button>
+        </div>
+        <span class="gnb__line" id="gnbLine"></span><!-- 열렸을 때 위·아래 구분선 -->
+      </div>
+
+      <div class="gnb__panel" id="gnbPanel">
+        <div class="gnb__panel-inner">
+          <div class="gnb__col">
+            <nav aria-label="주요 메뉴">
+              <ul class="gnb__menu">
+                <li><a href="index.html#top" class="gnb__link" data-gnb-link>홈</a></li>
+                <li><a href="about.html" class="gnb__link">소개</a></li>
+                <li><a href="index.html#works" class="gnb__link" data-gnb-link>작업</a></li>
+                <li><a href="index.html#contact" class="gnb__link" data-gnb-link>연락하기</a></li>
+              </ul>
+            </nav>
+            <ul class="gnb__social">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">LinkedIn</a></li>
+              <li><a href="#">Behance</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-page">
+    <div class="w-cover-wrap"><!-- 커버가 멈춰 있고 다음 섹션이 위로 덮으며 올라옴 -->
+    <!-- 상단 커버 (2026-11-22): 열나요와 같은 구성 — 파란 구름 바탕 / 넓은 픽셀 제목 / 피그마 프로토타입을 눌러 볼 수 있는 휴대폰 / Details·Role·Credits -->
+    <header class="w-cover" id="top">
+      <div class="w-cover__bg" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="w-cover__dim" aria-hidden="true"></div>
+      <a class="w-back w-cover__back" href="index.html#works">← 작업 목록</a>
+      <div class="w-cover__stage">
+        <!-- 피그마 APP › #7 화면디자인 프로토타입 (proto.js + proto-piccha.js) -->
+        <div class="w-cover__obj proto" id="coverObj" data-proto="piccha" role="region" aria-label="Piccha 앱 프로토타입: 화면을 눌러 직접 써 보세요"></div>
+        <h1 class="w-cover__title" id="coverTitle">Piccha</h1>
+      </div>
+      <div class="w-cover__info">
+        <div class="w-cover__col w-cover__col--details">
+          <p class="w-cover__label">Details</p>
+          <p>Piccha는 가챠 매장 찾기부터 중고 거래·교환, 구매까지 한곳에 모은 가챠 플랫폼 앱이에요.</p>
+          <p>흩어져 있던 매장 정보와 거래 채널을 하나의 흐름으로 묶어, 원하는 가챠를 찾고 바꾸는 과정을 짧게 만들었어요.</p>
+        </div>
+        <div class="w-cover__col">
+          <p class="w-cover__label">Role</p>
+          <ul><li>UX Research</li><li>UI Design</li><li>Prototype</li></ul>
+        </div>
+        <div class="w-cover__col">
+          <p class="w-cover__label">Credits</p>
+          <ul><li>Client: Personal work</li><li>Duration: 2026</li><li>Category: Mobile App</li><li>Contribution: 100%</li></ul>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- 본문: 피그마 프레임을 한 장씩 HTML/CSS로 구현 (글자·박스·선·그라데이션은 코드, 사진·일러스트·목업만 이미지) -->
+    <!-- 01 piccha_page_01_overview_haeyo -->
+    <section class="fx p01" aria-label="Piccha 01">
+      <div class="fx__in">
+        <p class="intro-desc">급성장하는 시장 이면의 정보 파편화와 신뢰 부재를 리서치로 진단하고, 
+지도 기반 탐색부터 안전한 교환까지
+전체 사용자 여정을 새롭게 설계했어요.
+단순한 뽑기 소비를 지속되는 취미 경험으로 확장하기 까지, 그 기획 과정을 소개해요.</p>
+        <p class="hero-title-line1">Piccha connects</p>
+        <p class="hero-title-line2">every gacha moment,</p>
+        <div class="hero-keyword-section">
+          <div class="brand-mark">
+            <h2 class="bracket-open">(</h2>
+            <img class="brand-mark-img" src="images/piccha/parts/p01-0334094e34.webp" alt="" loading="lazy" decoding="async" />
+            <p class="bracket-close">)</p>
+          </div>
+          <div class="keyword-list">
+            <p class="keyword-discover">Discover</p>
+            <p class="keyword-trade">Trade</p>
+            <p class="keyword-trust">Trust</p>
+          </div>
+        </div>
+        <div class="page-label">
+          <p class="page-label-project">Piccha</p>
+          <p class="page-label-divider">-</p>
+          <p class="page-label-section">Overview</p>
+        </div>
+      </div>
+    </section>
+    </div>
+    <!-- 02 piccha_page_02_background_haeyo -->
+    <section class="fx p02" aria-label="Piccha 02">
+      <div class="fx__in">
+        <div class="cards-row">
+          <div class="card-market">
+            <p class="source-note">한국콘텐츠진흥원의 ‘콘텐츠 산업전망보고서’ 참고</p>
+            <div class="growth-chart">
+              <div class="baseline"></div>
+              <img class="area" src="images/piccha/parts/p02-ba1b53bdd6.webp" alt="" loading="lazy" decoding="async" />
+              <div class="growth-badge">
+                <p class="label">▲ 약 22배</p>
+              </div>
+              <img class="chart-line" src="images/piccha/parts/p02-f622663aa3.webp" alt="" loading="lazy" decoding="async" />
+              <img class="chart-datapoints" src="images/piccha/parts/p02-cbd0a20ca7.webp" alt="" loading="lazy" decoding="async" />
+            </div>
+            <div class="suv-title">
+              <p class="tag">01 — 시장 근거</p>
+              <p class="title">흩어진 가챠 정보를 지도 기반으로 통합 제공</p>
+              <p class="caption">2014년 대비 · 2027년 예측</p>
+            </div>
+          </div>
+          <div class="card-size">
+            <div class="pie-chart">
+              <img class="slice-aware-used-67-3" src="images/piccha/parts/p02-183f916e36.webp" alt="" loading="lazy" decoding="async" />
+              <img class="slice-aware-name-29-1" src="images/piccha/parts/p02-a33e068eaa.webp" alt="" loading="lazy" decoding="async" />
+              <img class="slice-unaware-3-7" src="images/piccha/parts/p02-6d5690105b.webp" alt="" loading="lazy" decoding="async" />
+              <img class="leader-aware" src="images/piccha/parts/p02-bf6c13cbf4.webp" alt="" loading="lazy" decoding="async" />
+              <div class="badge-total-aware">
+                <p class="label-2">인지 96.4%</p>
+              </div>
+              <div class="callout-aware-used">
+                <p class="description">알고 있고,
+이용해 봤다.</p>
+                <p class="percentage">67.3%</p>
+              </div>
+              <div class="callout-aware-name">
+                <p class="description-2">이름만
+들어봤다.</p>
+                <p class="percentage-2">29.1%</p>
+              </div>
+              <div class="callout-unaware">
+                <p class="description-3">전혀 모른다.</p>
+                <p class="percentage-3">3.7%</p>
+              </div>
+              <img class="connector" src="images/piccha/parts/p02-de94b439e4.webp" alt="" loading="lazy" decoding="async" />
+            </div>
+            <div class="card-size-title-wrap">
+              <div class="suv-title-2">
+                <p class="tag-2">02 — 트렌드 인지</p>
+                <p class="title-2">&lt;인형뽑기&gt;, &lt;가챠&gt; 등의 ‘뽑기’ 트렌드 인지</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-trend">
+            <div class="bar-chart">
+              <div class="chart-body">
+                <div class="legend">
+                  <div class="legend-item-gacha">
+                    <div class="legend-swatch"></div>
+                    <p class="legend-label">가챠</p>
+                  </div>
+                  <div class="legend-item-claw">
+                    <div class="legend-swatch-2"></div>
+                    <p class="legend-label-2">인형뽑기</p>
+                  </div>
+                </div>
+                <div class="bar-groups">
+                  <div class="group-total">
+                    <div class="bars">
+                      <div class="bar-gacha">
+                        <p class="value">57.6</p>
+                        <img class="bar-fill" src="images/piccha/parts/p02-a8d2b351cd.webp" alt="" loading="lazy" decoding="async" />
+                      </div>
+                      <div class="bar-claw">
+                        <p class="value-2">96.7</p>
+                        <img class="bar-fill-2" src="images/piccha/parts/p02-e0c1919593.webp" alt="" loading="lazy" decoding="async" />
+                      </div>
+                    </div>
+                    <div class="label-2027">
+                      <p class="value-2027">전체</p>
+                      <p class="x-2027">(807)</p>
+                    </div>
+                  </div>
+                  <div class="group-age-10-20">
+                    <div class="bars-2">
+                      <div class="bar-gacha-2">
+                        <p class="value-3">74.8</p>
+                        <img class="bar-fill-3" src="images/piccha/parts/p02-dcdaf215e8.webp" alt="" loading="lazy" decoding="async" />
+                      </div>
+                      <div class="bar-claw-2">
+                        <p class="value-4">96.9</p>
+                        <img class="bar-fill-4" src="images/piccha/parts/p02-f63d9d27cd.webp" alt="" loading="lazy" decoding="async" />
+                      </div>
+                    </div>
+                    <div class="label-2027-2">
+                      <p class="value-2027-2">10~20대</p>
+                      <p class="x-2027-2">(361)</p>
+                    </div>
+                  </div>
+                  <div class="group-age-30-40">
+                    <div class="bars-3">
+                      <div class="bar-gacha-3">
+                        <p class="value-5">53.9</p>
+                        <img class="bar-fill-5" src="images/piccha/parts/p02-c098529396.webp" alt="" loading="lazy" decoding="async" />
+                      </div>
+                      <div class="bar-claw-3">
+                        <p class="value-6">96.9</p>
+                        <img class="bar-fill-6" src="images/piccha/parts/p02-f63d9d27cd.webp" alt="" loading="lazy" decoding="async" />
+                      </div>
+                    </div>
+                    <div class="label-2027-3">
+                      <p class="value-2027-3">30~40대</p>
+                      <p class="x-2027-3">(293)</p>
+                    </div>
+                  </div>
+                  <div class="group-age-50-60">
+                    <div class="bars-4">
+                      <div class="bar-gacha-4">
+                        <p class="value-7">24.2</p>
+                        <img class="bar-fill-7" src="images/piccha/parts/p02-d02d4c0f6a.webp" alt="" loading="lazy" decoding="async" />
+                      </div>
+                      <div class="bar-claw-4">
+                        <p class="value-8">95.4</p>
+                        <img class="bar-fill-8" src="images/piccha/parts/p02-bdedcb78bf.webp" alt="" loading="lazy" decoding="async" />
+                      </div>
+                    </div>
+                    <div class="label-2027-4">
+                      <p class="value-2027-4">50~60대</p>
+                      <p class="x-2027-4">(153)</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="suv-title-3">
+              <p class="tag-3">03 — 뽑기 경험</p>
+              <p class="title-3">연령대별 뽑기 경험</p>
+            </div>
+          </div>
+          <div class="card-requirements">
+            <div class="title-wrap">
+              <p class="title-4">Piccha가 풀어야 할 과제 (Requirements)</p>
+            </div>
+            <div class="bullets-wrap">
+              <p class="bullet-1">흩어진 가챠 정보를 통합 제공</p>
+              <p class="bullet-2">방문 전 매장별 입고·상품 정보를 사전 확인</p>
+              <p class="bullet-3">중복 아이템을 안전하게 교환하는 신뢰 구조 구축</p>
+            </div>
+          </div>
+        </div>
+        <div class="title-5">
+          <p class="section-label">Background</p>
+          <p class="headline">시장은 커지는데, 소비 경험은 여전히 <span style="color:#f32e7c">&#x27;운&#x27;</span>에 맡겨져 있어요</p>
+          <h2 class="big-title">Left to Luck</h2>
+        </div>
+        <img class="onboarding-exclusive-gacha-machine" src="images/piccha/parts/p02-37bd45524a.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-01" src="images/piccha/parts/p02-1703675bf9.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-02" src="images/piccha/parts/p02-5811b0213a.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-03" src="images/piccha/parts/p02-e38abca9a6.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 03 piccha_page_03_journey_haeyo -->
+    <section class="fx p03" aria-label="Piccha 03">
+      <div class="fx__in">
+        <div class="bg-glow"></div>
+        <img class="dividers" src="images/piccha/parts/p03-c0363acdb9.webp" alt="" loading="lazy" decoding="async" />
+        <p class="phase-1">가챠 매장 방문 전</p>
+        <p class="phase-2">가챠 매장 방문 중</p>
+        <p class="phase-3">실행 및 관리 단계</p>
+        <div class="title">
+          <p class="section-label">Initial Diagnosis</p>
+          <h2 class="heading">소비자 구매 여정 곳곳에 숨어 있는
+<span style="color:#f32e7c">보이지 않는 비효율</span>의 정체를 밝혔어요</h2>
+          <p class="description">프로젝트의 출발점은 &#x27;가챠를 뽑기까지 사용자가 실제로 무엇을 겪는가&#x27;였어요. 시장 규모와 성장세라는 표면 수치만으로는
+설명되지 않는 지점인 소비자가 매장에 도착하기까지의 과정을 심층 인터뷰와 사용자 관찰을 통해 단계별로 진단했어요.
+그 결과, 가챠 소비의 여정 전반에 반복되는 비효율이 누적되고 있음을 확인했어요.</p>
+        </div>
+        <img class="journey-curve" src="images/piccha/parts/p03-79bfbb5274.webp" alt="" loading="lazy" decoding="async" />
+        <div class="node-search">
+          <img class="icon" src="images/piccha/parts/p03-c85a854eb9.webp" alt="" loading="lazy" decoding="async" />
+          <div class="text-wrap">
+            <p class="title-2">정보탐색 비효율성</p>
+            <p class="desc">가챠샵 위치 및 상품 정보가
+여러 플랫폼에 분산</p>
+          </div>
+        </div>
+        <div class="node-location">
+          <img class="icon-2" src="images/piccha/parts/p03-c85a854eb9.webp" alt="" loading="lazy" decoding="async" />
+          <div class="text-wrap-2">
+            <p class="title-3">매장 위치 확인</p>
+            <p class="desc-2">매장 위치를 찾으려면 지도 앱을
+깔고 직접 검색 필요</p>
+          </div>
+        </div>
+        <div class="node-duplicate">
+          <img class="icon-3" src="images/piccha/parts/p03-c85a854eb9.webp" alt="" loading="lazy" decoding="async" />
+          <div class="text-wrap-3">
+            <p class="title-4">중복 제품
+구매 경험</p>
+            <p class="desc-3">원하는 상품을 위해
+중복 제품을 다수 구매</p>
+          </div>
+        </div>
+        <div class="node-rigging">
+          <img class="icon-4" src="images/piccha/parts/p03-c85a854eb9.webp" alt="" loading="lazy" decoding="async" />
+          <div class="text-wrap-4">
+            <p class="title-5">확률 조작으로
+인한 불만족</p>
+            <p class="desc-4">인기 상품을 빼돌려 웃돈에 되파는
+일부 매장으로 인해 불이익 발생</p>
+          </div>
+        </div>
+        <div class="node-disposal">
+          <img class="icon-5" src="images/piccha/parts/p03-c85a854eb9.webp" alt="" loading="lazy" decoding="async" />
+          <div class="text-wrap-5">
+            <p class="title-6">중복 제품 처리문제</p>
+            <p class="desc-5">불필요한 중복 상품 처리에
+대한 문제 발생</p>
+          </div>
+        </div>
+        <div class="node-exchange">
+          <img class="icon-6" src="images/piccha/parts/p03-c85a854eb9.webp" alt="" loading="lazy" decoding="async" />
+          <div class="text-wrap-6">
+            <p class="title-7">교환 과정의 비효율성</p>
+            <p class="desc-6">커뮤니티 기반 수동 탐색
+→ 시간과 노력 과다 소모</p>
+          </div>
+        </div>
+        <img class="arrow-1" src="images/piccha/parts/p03-4eb24119cf.webp" alt="" loading="lazy" decoding="async" />
+        <img class="arrow-2" src="images/piccha/parts/p03-b9b144c2c0.webp" alt="" loading="lazy" decoding="async" />
+        <img class="arrow-3" src="images/piccha/parts/p03-e28df85b81.webp" alt="" loading="lazy" decoding="async" />
+        <img class="arrow-4" src="images/piccha/parts/p03-4191098f8b.webp" alt="" loading="lazy" decoding="async" />
+        <img class="arrow-5" src="images/piccha/parts/p03-dbc3746e6a.webp" alt="" loading="lazy" decoding="async" />
+        <img class="icon-search" src="images/piccha/parts/p03-6414d66d56.webp" alt="" loading="lazy" decoding="async" />
+        <img class="icon-location" src="images/piccha/parts/p03-eb8d010fd2.webp" alt="" loading="lazy" decoding="async" />
+        <img class="icon-duplicate" src="images/piccha/parts/p03-9f270413e8.webp" alt="" loading="lazy" decoding="async" />
+        <img class="icon-rigging" src="images/piccha/parts/p03-820f1e3e51.webp" alt="" loading="lazy" decoding="async" />
+        <img class="icon-disposal" src="images/piccha/parts/p03-164cd01442.webp" alt="" loading="lazy" decoding="async" />
+        <img class="icon-exchange" src="images/piccha/parts/p03-1a370d476c.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 04 piccha_page_04_survey_haeyo -->
+    <section class="fx p04" aria-label="Piccha 04">
+      <div class="fx__in">
+        <img class="survey-card-grid" src="images/piccha/parts/p04-143c3a3764.webp" alt="" loading="lazy" decoding="async" />
+        <img class="fade-bottom" src="images/piccha/parts/p04-f35d434918.webp" alt="" loading="lazy" decoding="async" />
+        <div class="title">
+          <p class="section-label">Survey · 일반 소비자 100명</p>
+          <h2 class="heading">여정에서 찾은 불편을 <span style="color:#f32e7c">100명의 응답</span>으로 확인했어요</h2>
+          <p class="description">인터뷰와 관찰에서 발견한 비효율이 몇몇의 이야기가 아닌지
+확인하고 싶어, 가챠를 즐기는 일반 소비자 100명에게 물었어요.
+정보 탐색의 장벽, 중복 가챠와 교환, 컬렉션 관리,
+새로운 기능에 대한 기대까지 다섯 갈래로 나누어 살펴봤고,
+숫자로 드러난 마음은 다음 장에서 인터뷰와 함께 다시 들여다봤어요.</p>
+        </div>
+      </div>
+    </section>
+    <!-- 05 piccha_page_05_analysis_haeyo -->
+    <section class="fx p05" aria-label="Piccha 05">
+      <div class="fx__in">
+        <div class="title">
+          <p class="section-label">What users said vs. what they needed</p>
+          <p class="heading">필요하다는 응답과 실제 사용 의향은 달랐어요</p>
+          <p class="description">설문에서 82%가 교환 매칭이 필요하다고 답했지만, 헤비 유저 인터뷰에서는 AI가 상대를 정해주는 방식 자체를 부담스러워했어요.
+그래서 교환은 남기고, 자동 매칭 대신 평가와 안전결제를 보고 사용자가 직접 상대를 고르는 구조로 바꿨어요.
+수집 관리는 네 항목 중 불편 응답이 가장 낮아 갤러리를 빼기로 했어요.</p>
+        </div>
+        <div class="survey-col">
+          <div class="col-header">
+            <p class="axis-label">설문조사</p>
+            <p class="axis-label-2">일반 소비자 100명</p>
+          </div>
+          <div class="stat-list">
+            <div class="stat-search">
+              <div class="axis-stat-head">
+                <p class="axis-label-3">정보탐색 비효율성</p>
+                <h2 class="axis-label-4">64%</h2>
+              </div>
+              <p class="axis-label-5">어떤 가챠가
+있는지 모름</p>
+            </div>
+            <div class="stat-duplicate">
+              <div class="axis-stat-head-2">
+                <p class="axis-label-6">중복처리의 불편함</p>
+                <p class="axis-label-7">73%</p>
+              </div>
+              <p class="axis-label-8">중복제품에
+대한 불편함 느낌</p>
+            </div>
+            <div class="stat-ai-match">
+              <div class="axis-stat-head-3">
+                <p class="axis-label-9">AI 자동 교환 매칭 필요성</p>
+                <p class="axis-label-10">82%</p>
+              </div>
+              <p class="axis-label-11">자동 교환 매칭에
+대한 필요성을 느낌</p>
+            </div>
+            <div class="stat-collection">
+              <div class="axis-stat-head-4">
+                <p class="axis-label-12">수집 관리의 불편함</p>
+                <p class="axis-label-13">45%</p>
+              </div>
+              <p class="axis-label-14">수집 관리에 대한
+불편성을 느낌</p>
+            </div>
+          </div>
+        </div>
+        <div class="interview-col">
+          <div class="col-header-2">
+            <p class="axis-label-15">심층 인터뷰</p>
+            <p class="axis-label-16">헤비 유저 2명</p>
+          </div>
+          <div class="quote-list">
+            <div class="quote-search">
+              <p class="quote-1"><span style="font-weight:400">매장별 </span>신상 입고 안내<span style="font-weight:400">가 없어요</span></p>
+              <p class="quote-2">신상 매장은 <span style="font-weight:600">위치 확인</span>이 어려워요</p>
+              <p class="quote-3">SNS 정보는 <span style="font-weight:600">빨리 흘러가</span> 놓쳐요</p>
+              <p class="quote-4">매장 방문 시 <span style="font-weight:600">품절</span>된 경우가 많아요</p>
+            </div>
+            <div class="quote-duplicate">
+              <p class="quote-1-2"><span style="font-weight:400">팔려 해도 </span>사는 사람이 없어요</p>
+              <p class="quote-2-2"><span style="font-weight:600">창고에 쌓아둬</span>서 돈 아까워요</p>
+              <p class="quote-3-2">쌓인 중복은 <span style="font-weight:600">결국 버려져요</span></p>
+            </div>
+            <div class="quote-ai-match">
+              <p class="quote-1-3">AI매칭은 오히려 부담스러워요</p>
+              <p class="quote-2-3">AI에 대한 <span style="font-weight:600">신뢰</span>가 없어요</p>
+            </div>
+            <div class="quote-collection">
+              <p class="quote-1-4">눈앞에 있으니
+기록할 필요가 없어요</p>
+              <p class="quote-2-4">자기만족용 가챠가 많아서
+필요성을 느끼지 못해요.</p>
+            </div>
+          </div>
+        </div>
+        <img class="stat-line-1" src="images/piccha/parts/p05-5508b3e707.webp" alt="" loading="lazy" decoding="async" />
+        <img class="stat-line-2" src="images/piccha/parts/p05-5508b3e707.webp" alt="" loading="lazy" decoding="async" />
+        <img class="stat-line-3" src="images/piccha/parts/p05-5508b3e707.webp" alt="" loading="lazy" decoding="async" />
+        <img class="stat-line-4" src="images/piccha/parts/p05-b8afab0d64.webp" alt="" loading="lazy" decoding="async" />
+        <img class="link-line-10" src="images/piccha/parts/p05-b06ad2a756.webp" alt="" loading="lazy" decoding="async" />
+        <img class="link-line-8" src="images/piccha/parts/p05-1fd6d34eac.webp" alt="" loading="lazy" decoding="async" />
+        <img class="link-line-6" src="images/piccha/parts/p05-1707e84fb5.webp" alt="" loading="lazy" decoding="async" />
+        <img class="link-line-3" src="images/piccha/parts/p05-502b410e7e.webp" alt="" loading="lazy" decoding="async" />
+        <img class="link-line-2" src="images/piccha/parts/p05-8779bb55b1.webp" alt="" loading="lazy" decoding="async" />
+        <img class="link-line-5" src="images/piccha/parts/p05-066e287eaf.webp" alt="" loading="lazy" decoding="async" />
+        <img class="link-line-11" src="images/piccha/parts/p05-0306eaed99.webp" alt="" loading="lazy" decoding="async" />
+        <img class="link-line-9" src="images/piccha/parts/p05-f9860e7903.webp" alt="" loading="lazy" decoding="async" />
+        <img class="link-line-7" src="images/piccha/parts/p05-d369114342.webp" alt="" loading="lazy" decoding="async" />
+        <img class="link-line-4" src="images/piccha/parts/p05-6de9372480.webp" alt="" loading="lazy" decoding="async" />
+        <img class="link-line-1" src="images/piccha/parts/p05-63a84276dc.webp" alt="" loading="lazy" decoding="async" />
+        <div class="insight-panel">
+          <div class="insight-head">
+            <p class="insight-label">INSIGHT</p>
+            <p class="insight-title">설문조사는 ‘무엇’이 불편한지 알려줬다면,
+인터뷰는 ‘왜’ 그런지 들려줬어요.</p>
+            <p class="insight-desc">교환 니즈는 같았으나, 원하는 방식이 달랐어요.</p>
+          </div>
+          <div class="divider"></div>
+          <div class="takeaway-list">
+            <div class="takeaway-store">
+              <p class="summary-2">✓</p>
+              <div class="summary-text">
+                <div class="summary-title-row">
+                  <p class="summary-2-2">필요한 건</p>
+                  <p class="summary-2-3">‘매장 단위 최신 정보’</p>
+                </div>
+                <p class="summary-2-4">→ 매장별 입고·품절 정보 제공</p>
+              </div>
+            </div>
+            <div class="takeaway-trade">
+              <p class="summary-2-5">✓</p>
+              <div class="summary-text-2">
+                <div class="summary-title-row-2">
+                  <p class="summary-2-6">원한 건 매칭이 아닌</p>
+                  <p class="summary-2-7">‘덜 피곤한 거래’</p>
+                </div>
+                <p class="summary-2-8">→평가·안전결제 기반 교환</p>
+              </div>
+            </div>
+            <div class="takeaway-duplicate">
+              <p class="summary-2-9">✓</p>
+              <div class="summary-text-3">
+                <div class="summary-title-row-3">
+                  <p class="summary-2-10">중복은</p>
+                  <p class="summary-2-11">‘쌓이고 버려지는 비용’</p>
+                </div>
+                <p class="summary-2-12">→ 교환·판매로 이어지는 순환 구조</p>
+              </div>
+            </div>
+            <div class="takeaway-collection">
+              <p class="summary-2-13">✓</p>
+              <div class="summary-text-4">
+                <div class="summary-title-row-4">
+                  <p class="summary-2-14">수집 관리 니즈는</p>
+                  <p class="summary-2-15">약함</p>
+                </div>
+                <p class="summary-2-16">→ 수집품 갤러리 제외</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img class="new-char-3d-holding-gacha" src="images/piccha/parts/p05-b136efd50c.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 06 piccha_page_06_user_voice_haeyo -->
+    <section class="fx p06" aria-label="Piccha 06">
+      <div class="fx__in">
+        <img class="spotlight" src="images/piccha/parts/p06-273056d0d7.webp" alt="" loading="lazy" decoding="async" />
+        <div class="text-block">
+          <h2 class="heading">더하기 보다, 덜어내서 <span style="color:#f32e7c">최소한의 기능</span>에 집중했어요</h2>
+          <p class="body">두 기능을 덜어냄으로써 Piccha는 &#x27;많은 기능을 담은 앱&#x27;이 아니라,
+<span style="color:#ffffff">사용자가 실제로 필요로 하는 것에 집중한 앱</span>이 되었어요. 
+기능을 더하는 것만큼, 덜어내는 결정에도 근거가 필요하다고 판단했어요.</p>
+        </div>
+        <div class="product-list-row">
+          <div class="product-card-01">
+            <div class="exchange-product-body">
+              <img class="exchange-product-image" src="images/piccha/parts/p06-508e35c4b5.webp" alt="" loading="lazy" decoding="async" />
+              <div class="product-info">
+                <p class="product-title">구치파치, 마메치 원해요!</p>
+                <p class="product-name">다마고치 샤캬샤캬 매력 컬렉션 가챠퐁 ㅣ 플라워치</p>
+                <div class="product-meta">
+                  <p class="posted-time">2시간 전</p>
+                  <div class="bookmark-count">
+                    <img class="product-bookmark-heart-icon" src="images/piccha/parts/p06-966f740d97.webp" alt="" loading="lazy" decoding="async" />
+                    <p class="bookmark-count-2">5</p>
+                  </div>
+                </div>
+              </div>
+              <div class="keyword-inner">
+                <div class="keyword">
+                  <p class="keyword-label">무료배송</p>
+                </div>
+                <div class="keyword-2">
+                  <p class="keyword-label-2">직거래</p>
+                </div>
+                <div class="keyword-3">
+                  <p class="keyword-label-3">미개봉</p>
+                </div>
+              </div>
+            </div>
+            <div class="btn-add-keyword-button">
+              <p class="btn-label">교환 신청하기</p>
+            </div>
+          </div>
+          <div class="product-card-02">
+            <div class="exchange-product-body-2">
+              <img class="exchange-product-image-2" src="images/piccha/parts/p06-34347a39da.webp" alt="" loading="lazy" decoding="async" />
+              <div class="product-info-2">
+                <p class="product-title-2">케로로하고 메이리 파를러하고 바꿔주세요!</p>
+                <p class="product-name-2">개구리 중사 케로로 마치보우케 2탄 ㅣ 케로로</p>
+                <div class="product-meta-2">
+                  <p class="posted-time-2">7시간 전</p>
+                  <div class="bookmark-count-3">
+                    <img class="product-bookmark-heart-icon-2" src="images/piccha/parts/p06-966f740d97.webp" alt="" loading="lazy" decoding="async" />
+                    <p class="bookmark-count-4">12</p>
+                  </div>
+                </div>
+              </div>
+              <div class="keyword-inner-2">
+                <div class="keyword-4">
+                  <p class="keyword-label-4">무료배송</p>
+                </div>
+                <div class="keyword-5">
+                  <p class="keyword-label-5">직거래</p>
+                </div>
+                <div class="keyword-6">
+                  <p class="keyword-label-6">미개봉</p>
+                </div>
+              </div>
+            </div>
+            <div class="btn-add-keyword-button-2">
+              <p class="btn-label-2">교환 신청하기</p>
+            </div>
+          </div>
+          <div class="product-card-03">
+            <div class="exchange-product-body-3">
+              <img class="exchange-product-image-3" src="images/piccha/parts/p06-26cb39862d.webp" alt="" loading="lazy" decoding="async" />
+              <div class="product-info-3">
+                <p class="product-title-3">구치파치, 마메치 원해요!</p>
+                <p class="product-name-3">다마고치 샤캬샤캬 매력 컬렉션 가챠퐁 ㅣ 플라워치</p>
+                <div class="product-meta-3">
+                  <p class="posted-time-3">2시간 전</p>
+                  <div class="bookmark-count-5">
+                    <img class="product-bookmark-heart-icon-3" src="images/piccha/parts/p06-966f740d97.webp" alt="" loading="lazy" decoding="async" />
+                    <p class="bookmark-count-6">5</p>
+                  </div>
+                </div>
+              </div>
+              <div class="keyword-inner-3">
+                <div class="keyword-7">
+                  <p class="keyword-label-7">무료배송</p>
+                </div>
+                <div class="keyword-8">
+                  <p class="keyword-label-8">직거래</p>
+                </div>
+                <div class="keyword-9">
+                  <p class="keyword-label-9">미개봉</p>
+                </div>
+              </div>
+            </div>
+            <div class="btn-add-keyword-button-3">
+              <p class="btn-label-3">교환 신청하기</p>
+            </div>
+          </div>
+          <div class="product-card-04">
+            <div class="exchange-product-body-4">
+              <img class="exchange-product-image-4" src="images/piccha/parts/p06-34347a39da.webp" alt="" loading="lazy" decoding="async" />
+              <div class="product-info-4">
+                <p class="product-title-4">케로로하고 메이리 파를러하고 바꿔주세요!</p>
+                <p class="product-name-4">개구리 중사 케로로 마치보우케 2탄 ㅣ 케로로</p>
+                <div class="product-meta-4">
+                  <p class="posted-time-4">7시간 전</p>
+                  <div class="bookmark-count-7">
+                    <img class="product-bookmark-heart-icon-4" src="images/piccha/parts/p06-966f740d97.webp" alt="" loading="lazy" decoding="async" />
+                    <p class="bookmark-count-8">12</p>
+                  </div>
+                </div>
+              </div>
+              <div class="keyword-inner-4">
+                <div class="keyword-10">
+                  <p class="keyword-label-10">무료배송</p>
+                </div>
+                <div class="keyword-11">
+                  <p class="keyword-label-11">직거래</p>
+                </div>
+                <div class="keyword-12">
+                  <p class="keyword-label-12">미개봉</p>
+                </div>
+              </div>
+            </div>
+            <div class="btn-add-keyword-button-4">
+              <p class="btn-label-4">교환 신청하기</p>
+            </div>
+          </div>
+          <div class="product-card-05">
+            <div class="exchange-product-body-5">
+              <img class="exchange-product-image-5" src="images/piccha/parts/p06-26cb39862d.webp" alt="" loading="lazy" decoding="async" />
+              <div class="product-info-5">
+                <p class="product-title-5">구치파치, 마메치 원해요!</p>
+                <p class="product-name-5">다마고치 샤캬샤캬 매력 컬렉션 가챠퐁 ㅣ 플라워치</p>
+                <div class="product-meta-5">
+                  <p class="posted-time-5">2시간 전</p>
+                  <div class="bookmark-count-9">
+                    <img class="product-bookmark-heart-icon-5" src="images/piccha/parts/p06-966f740d97.webp" alt="" loading="lazy" decoding="async" />
+                    <p class="bookmark-count-10">5</p>
+                  </div>
+                </div>
+              </div>
+              <div class="keyword-inner-5">
+                <div class="keyword-13">
+                  <p class="keyword-label-13">무료배송</p>
+                </div>
+                <div class="keyword-14">
+                  <p class="keyword-label-14">직거래</p>
+                </div>
+                <div class="keyword-15">
+                  <p class="keyword-label-15">미개봉</p>
+                </div>
+              </div>
+            </div>
+            <div class="btn-add-keyword-button-5">
+              <p class="btn-label-5">교환 신청하기</p>
+            </div>
+          </div>
+          <div class="product-card-06">
+            <div class="exchange-product-body-6">
+              <img class="exchange-product-image-6" src="images/piccha/parts/p06-06788766ec.webp" alt="" loading="lazy" decoding="async" />
+              <div class="product-info-6">
+                <p class="product-title-6">케로로하고 메이리 파를러하고 바꿔주세요!</p>
+                <p class="product-name-6">개구리 중사 케로로 마치보우케 2탄 ㅣ 케로로</p>
+                <div class="product-meta-6">
+                  <p class="posted-time-6">7시간 전</p>
+                  <div class="bookmark-count-11">
+                    <p class="bookmark-count-12">12</p>
+                  </div>
+                </div>
+              </div>
+              <div class="keyword-inner-6">
+                <div class="keyword-16">
+                  <p class="keyword-label-16">무료배송</p>
+                </div>
+                <div class="keyword-17">
+                  <p class="keyword-label-17">직거래</p>
+                </div>
+                <div class="keyword-18">
+                  <p class="keyword-label-18">미개봉</p>
+                </div>
+              </div>
+            </div>
+            <div class="btn-add-keyword-button-6">
+              <p class="btn-label-6">교환 신청하기</p>
+            </div>
+          </div>
+        </div>
+        <img class="phone-mockup-img" src="images/piccha/parts/p06-619865dd2a.webp" alt="" loading="lazy" decoding="async" />
+        <img class="fade-bottom-1" src="images/piccha/parts/p06-0d015f3233.webp" alt="" loading="lazy" decoding="async" />
+        <img class="fade-bottom-2" src="images/piccha/parts/p06-7d1d0be9ac.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 07 piccha_page_07_user_segmentation_haeyo -->
+    <section class="fx p07" aria-label="Piccha 07">
+      <div class="fx__in">
+        <img class="hero-light-right" src="images/piccha/parts/p07-6bac03f253.webp" alt="" loading="lazy" decoding="async" />
+        <div class="title">
+          <p class="section-label">User Segmentation</p>
+          <div class="title-text">
+            <h2 class="big-title">Hands &amp; Wishes</h2>
+            <p class="headline">구매 여정을 따라 사용자와 니즈를 읽었어요</p>
+          </div>
+        </div>
+        <div class="segment-diagram">
+          <div class="user-list">
+            <div class="user-card-main">
+              <div class="chip-tag">
+                <p class="problem-1-title">주 사용자</p>
+              </div>
+              <div class="problem-text">
+                <p class="problem-1-title-2">경험 중시형 사용자</p>
+                <p class="problem-1-desc">여러 IP를 넘나드는 MZ 펀슈머.
+재고를 사전에 알기 어려워(설문64%)
+탐색 비용을 발품으로 치러요.</p>
+              </div>
+            </div>
+            <div class="user-card-sub-collector">
+              <div class="chip-tag-2">
+                <p class="problem-1-title-3">서브 사용자</p>
+              </div>
+              <div class="problem-text-2">
+                <p class="problem-1-title-4">수집 중시형 사용자</p>
+                <p class="problem-1-desc-2">시리즈 완성을 좇는 키덜트 수집가.
+중복이 최대 불편이지만 (설문73%)
+쌓아 두거나 헐값에 넘겨요. (인터뷰  발언 참고)</p>
+              </div>
+            </div>
+            <div class="user-card-sub-trust">
+              <div class="chip-tag-3">
+                <p class="problem-1-title-5">서브 사용자</p>
+              </div>
+              <div class="problem-text-3">
+                <p class="problem-1-title-6">신뢰 중시 사용자</p>
+                <p class="problem-1-desc-3">의심이 먼저 작동하는 신중한 소비자.
+재포장 상품은 손대지 않아요. (인터뷰어 발언 참고)
+네고나 노슈가 잦은 개인 거래를 꺼려요.</p>
+              </div>
+            </div>
+          </div>
+          <div class="process-circles">
+            <div class="circle-target">
+              <p class="transform">Target</p>
+              <p class="opportunities-sub">행동 기반 사용자 분석</p>
+            </div>
+            <div class="circle-journey">
+              <p class="transform-2">Journey</p>
+              <p class="opportunities-sub-2">탐색 · 교환 · 신뢰</p>
+            </div>
+            <div class="circle-needs">
+              <p class="transform-3">Needs</p>
+              <p class="opportunities-sub-3">해결 과제</p>
+            </div>
+          </div>
+          <div class="needs-list">
+            <div class="needs-card-explore">
+              <div class="chip-tag-4">
+                <p class="problem-1-title-7">탐색</p>
+              </div>
+              <div class="problem-text-4">
+                <p class="problem-1-title-8">매장별 재고 가시성 확보</p>
+                <p class="problem-1-desc-4">판매 중인 가챠를 방문 전에 확인
+방문 전 알고 싶은 정보 1위 (설문 100%)</p>
+              </div>
+            </div>
+            <div class="needs-card-exchange">
+              <div class="chip-tag-5">
+                <p class="problem-1-title-9">교환</p>
+              </div>
+              <div class="problem-text-5">
+                <p class="problem-1-title-10">중복 아이템의 재유통</p>
+                <p class="problem-1-desc-5">쌓아 둔 중복을 교환과 판매를 통해 다시 순환.
+교환 경험 55%지만 연결 창구는 부재.</p>
+              </div>
+            </div>
+            <div class="needs-card-trust">
+              <div class="chip-tag-6">
+                <p class="problem-1-title-11">신뢰</p>
+              </div>
+              <div class="problem-text-6">
+                <p class="problem-1-title-12">평판 기반의 매장을 선택</p>
+                <p class="problem-1-desc-6">매장 후기와 상대의 거래 이력을 보고 결정
+네고 부담과 노쇼를 사전에 방지</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="connector-right"></div>
+        <div class="connector-left"></div>
+      </div>
+    </section>
+    <!-- 08 piccha_page_08_three_cs_haeyo -->
+    <section class="fx p08" aria-label="Piccha 08">
+      <div class="fx__in">
+        <div class="summary">
+          <h2 class="summary-title">Visibility + Circulation + Credibility :</h2>
+          <p class="summary-body">뽑는 순간만 운에 맡기고, 그 전과 후는 정보와 기록으로 채워요.</p>
+        </div>
+        <div class="card-col1"></div>
+        <div class="col1-content">
+          <img class="col1-diagram" src="images/piccha/parts/p08-abd2df1265.webp" alt="" loading="lazy" decoding="async" />
+          <p class="col1-heading">Store-level
+Inventory <span style="color:#16151a">Visibility</span></p>
+          <div class="col1-detail">
+            <div class="detail-body">
+              <div class="problem-row">
+                <div class="chip-problem">
+                  <p class="problem-1-title">problem</p>
+                </div>
+                <p class="col1-sub">방문 전엔 매장별 재고를 알 수 없어요.</p>
+              </div>
+              <div class="solution-block">
+                <div class="solution-head">
+                  <div class="chip-solution">
+                    <p class="problem-1-title-2">Solution</p>
+                  </div>
+                  <p class="col1-sub-2">등록과 제보로 재고 지도를 갱신해요</p>
+                </div>
+                <div class="feature-list">
+                  <div class="feature-row-01">
+                    <p class="col1-desc">매장 등록</p>
+                    <p class="col1-desc-2">매장이 보유 제품과 수량에 대한 소식을 직접 게시</p>
+                  </div>
+                  <div class="feature-row-02">
+                    <p class="col1-desc-3">사용자 제보</p>
+                    <p class="col1-desc-4">매장이 보유 제품과 수량에 대한 소식을 직접 게시</p>
+                  </div>
+                  <div class="feature-row-03">
+                    <p class="col1-desc-5">최신순 정렬</p>
+                    <p class="col1-desc-6">최근 갱신된 매장부터 노출해 낡은 정보를 거름</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <div class="rationale-row">
+              <p class="col1-sub-3">설계 근거</p>
+              <p class="col1-sub-4">매장 공지는 드물고(인터뷰), 제보만으로는 최신성을
+보장할 수 없어 두 경로를 겹치고 갱신 시점을 드러냈어요.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-col2"></div>
+        <div class="col2-content">
+          <p class="col2-heading"><span style="color:#16151a">Circulation
+</span>of Idle Duplicates</p>
+          <img class="col2-diagram" src="images/piccha/parts/p08-ce1c8ca5f7.webp" alt="" loading="lazy" decoding="async" />
+          <div class="col2-detail">
+            <div class="detail-body-2">
+              <div class="problem-row-2">
+                <div class="chip-problem-2">
+                  <p class="problem-1-title-3">problem</p>
+                </div>
+                <p class="col1-sub-5">쌓인 중복을 내보낼 창구가 없어요</p>
+              </div>
+              <div class="solution-block-2">
+                <div class="solution-head-2">
+                  <div class="chip-solution-2">
+                    <p class="problem-1-title-4">Solution</p>
+                  </div>
+                  <p class="col1-sub-6">키워드로 교환과 판매를 이어요</p>
+                </div>
+                <div class="feature-list-2">
+                  <div class="feature-row-01-2">
+                    <p class="col1-desc-7">처분 방식 선택</p>
+                    <p class="col1-desc-8">교환은 원하는 품목까지 적어 조건을 좁힘</p>
+                  </div>
+                  <div class="feature-row-02-2">
+                    <p class="col1-desc-9">키워드 알림</p>
+                    <p class="col1-desc-10">찾던 제품이 등록되면 알림으로 먼저 연결</p>
+                  </div>
+                  <div class="feature-row-03-2">
+                    <p class="col1-desc-11">나눔 포인트</p>
+                    <p class="col1-desc-12">나눔 등록 시 앱 내 포인트 지급</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="divider-2"></div>
+            <div class="rationale-row-2">
+              <p class="col1-sub-7">설계 근거</p>
+              <p class="col1-sub-8">중복을 버린다는 응답 27%(설문), 팔리지 않는 중복도
+폐기 대신 나눔으로 순환되도록 보상을 붙였어요.</p>
+            </div>
+          </div>
+        </div>
+        <div class="card-col3"></div>
+        <div class="col3-content">
+          <img class="col3-diagram" src="images/piccha/parts/p08-c695a4d97e.webp" alt="" loading="lazy" decoding="async" />
+          <p class="col3-heading"><span style="color:#16151a">Credibilty</span> Built
+on Trade History</p>
+          <div class="col3-detail">
+            <div class="detail-body-3">
+              <div class="problem-row-3">
+                <div class="chip-problem-3">
+                  <p class="problem-1-title-5">problem</p>
+                </div>
+                <p class="col1-sub-9">오프라인 매장과 거래 상대를 믿을 근거가 없어요</p>
+              </div>
+              <div class="solution-block-3">
+                <div class="solution-head-3">
+                  <div class="chip-solution-3">
+                    <p class="problem-1-title-6">Solution</p>
+                  </div>
+                  <p class="col1-sub-10">인증 후기와 거래 평가로 신뢰도를 쌓아요</p>
+                </div>
+                <div class="feature-list-3">
+                  <div class="feature-row-01-3">
+                    <p class="col1-desc-13">인증 후기</p>
+                    <p class="col1-desc-14">위치, 영수증 인증을 거친 방문 후기만 게시</p>
+                  </div>
+                  <div class="feature-row-02-3">
+                    <p class="col1-desc-15">매장 평가, 신고</p>
+                    <p class="col1-desc-16">재포장 매장은 표기하고 목록에서 제외 가능</p>
+                  </div>
+                  <div class="feature-row-03-3">
+                    <p class="col1-desc-17">거래 평가</p>
+                    <p class="col1-desc-18">거래 후 평가가 매장 프로필 신뢰도에 누적</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="divider-3"></div>
+            <div class="rationale-row-3">
+              <p class="col1-sub-11">설계 근거</p>
+              <p class="col1-sub-12">범용 매너온도로는 네고와 노쇼를 거르지 못 했어요.(인터뷰)
+그래서 가챠 거래만의 평가를 따로 썼어요.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 09 piccha_page_09_journey_integration_haeyo -->
+    <section class="fx p09" aria-label="Piccha 09">
+      <div class="fx__in">
+        <div class="workflow-board">
+          <div class="asis-column">
+            <div class="asis-header">
+              <p class="col-title">As-is</p>
+              <div class="source-tag">
+                <p class="label">페인포인트</p>
+              </div>
+            </div>
+            <div class="asis-card-list">
+              <div class="pain-card-01">
+                <div class="pain-card-main">
+                  <div class="pain-card-text">
+                    <div class="pain-card-head">
+                      <p class="meta">Pain 01 · 탐색</p>
+                      <p class="title">채널별 정보 분산</p>
+                    </div>
+                    <p class="body">지도앱 검색 → SNS 확인 → 현장에서 재고 확인
+플랫폼 이동이 불편했다는 응답 <span style="color:#1e1e1e">45%</span></p>
+                  </div>
+                  <div class="source-tag-2">
+                    <p class="label-2">설문</p>
+                  </div>
+                </div>
+                <p class="result">› 채널 간 반복 탐색</p>
+              </div>
+              <div class="pain-card-02">
+                <div class="pain-card-main-2">
+                  <div class="pain-card-text-2">
+                    <div class="pain-card-head-2">
+                      <p class="meta-2">Pain 02 · 이용</p>
+                      <p class="title-2">채널별 정보 분산</p>
+                    </div>
+                    <p class="body-2">매장 위치 확인 후 구매와 교환은 타 앱에서 진행
+통합 플랫폼이 필요하다는 응답 91%</p>
+                  </div>
+                  <div class="source-tag-3">
+                    <p class="label-3">설문</p>
+                  </div>
+                </div>
+                <p class="result-2">› 단골 매장이 생기면 앱 이탈</p>
+              </div>
+              <div class="pain-card-03">
+                <div class="pain-card-main-3">
+                  <div class="pain-card-text-3">
+                    <div class="pain-card-head-3">
+                      <p class="meta-3">Pain 03 · 교환</p>
+                      <p class="title-3">중복 처리의 어려움</p>
+                    </div>
+                    <p class="body-3">커뮤니티 글 등록 → 거래자 탐색 → 개별 협상
+안전장치 없는 개인 간 조건 조율</p>
+                  </div>
+                  <div class="source-tag-4">
+                    <p class="label-4">설문</p>
+                  </div>
+                </div>
+                <p class="result-3">› 채널 간 반복 탐색</p>
+              </div>
+              <div class="pain-card-04">
+                <div class="pain-card-main-4">
+                  <div class="pain-card-text-4">
+                    <div class="pain-card-head-4">
+                      <p class="meta-4">Pain 04 · 신뢰</p>
+                      <p class="title-4">매장 평판 검증 불가</p>
+                    </div>
+                    <p class="body-4">확률조작과 불량 관련 불신 후기는 SNS에 분산
+방문 전 매장을 검증할 수단 부재</p>
+                  </div>
+                  <div class="source-tag-5">
+                    <p class="label-5">설문</p>
+                  </div>
+                </div>
+                <p class="result-4">› 검증 없이 방문 후 거래</p>
+              </div>
+            </div>
+          </div>
+          <div class="transition-column">
+            <p class="label-6">전환 방향</p>
+            <div class="transition-arrow-list">
+              <div class="arrow-1">
+                <div class="arrow-wrap">
+                  <p class="label-7">매장 단위로 통합</p>
+                  <img class="arrow-line" src="images/piccha/parts/p09-f79f725173.webp" alt="" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="arrow-1-2">
+                <div class="arrow-wrap-2">
+                  <p class="label-8">구매, 재방문까지 확장</p>
+                  <img class="arrow-line-2" src="images/piccha/parts/p09-f79f725173.webp" alt="" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="arrow-1-3">
+                <div class="arrow-wrap-3">
+                  <p class="label-9">키워드로 상대 연결</p>
+                  <img class="arrow-line-3" src="images/piccha/parts/p09-f79f725173.webp" alt="" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="arrow-1-4">
+                <div class="arrow-wrap-4">
+                  <p class="label-10">기록으로 검증</p>
+                  <img class="arrow-line-4" src="images/piccha/parts/p09-f79f725173.webp" alt="" loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tobe-column">
+            <div class="tobe-header">
+              <p class="col-title-2">To-be</p>
+              <div class="source-tag-6">
+                <p class="label-11">Piccha 기능</p>
+              </div>
+            </div>
+            <div class="tobe-card-list">
+              <div class="feature-card-01">
+                <div class="feature-card-text">
+                  <div class="feature-card-head">
+                    <p class="meta-5">홈 · 스토어</p>
+                    <p class="title-5">위치 기반 가챠샵 지도</p>
+                  </div>
+                  <p class="body-5">지도 홈 → 매장 상세에서
+위치·보유 제품·수량·후기를 한 번에 확인</p>
+                </div>
+                <img class="app-screen-placeholder" src="images/piccha/parts/p09-35c9ed5dde.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="feature-card-02">
+                <div class="feature-card-text-2">
+                  <div class="feature-card-head-2">
+                    <p class="meta-6">스토어 · 마이페이지</p>
+                    <p class="title-6">탐색 이후를 잇는 이용 흐름</p>
+                  </div>
+                  <p class="body-6">매장 등록 제품 택배 구매
++ 즐겨찾기 매장 소식으로 재방문 유도</p>
+                </div>
+                <img class="app-screen-placeholder-2" src="images/piccha/parts/p09-35c9ed5dde.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="feature-card-03">
+                <div class="feature-card-text-3">
+                  <div class="feature-card-head-3">
+                    <p class="meta-7">트레이드 · 채팅</p>
+                    <p class="title-7">가챠 교환 시스템</p>
+                  </div>
+                  <p class="body-7">교환·판매·나눔 등록 → 키워드 알림
+→ 채팅·안전거래로 거래 완료</p>
+                </div>
+                <img class="app-screen-placeholder-3" src="images/piccha/parts/p09-35c9ed5dde.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="feature-card-04">
+                <div class="feature-card-text-4">
+                  <div class="feature-card-head-4">
+                    <p class="meta-8">스토어 · 트레이드</p>
+                    <p class="title-8">신뢰 기반 리뷰·신고</p>
+                  </div>
+                  <p class="body-8">인증 후기 + 매장 신고 + 거래 평가 누적
+→ 매장·상대 선택 기준으로 활용</p>
+                </div>
+                <img class="app-screen-placeholder-4" src="images/piccha/parts/p09-35c9ed5dde.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="title-9">
+          <p class="section-label">Journey Integration</p>
+          <div class="title-text">
+            <h2 class="heading">탐색 이후까지 책임지는
+<span style="color:#f32e7c">가챠 경험</span>을 설계했어요</h2>
+            <p class="description">무분별하게 분산되어 있는 가챠 매장 정보를 찾기 위해 지도앱, SNS, 중고마켓 등의 앱을 따로 이용해야 했어요.
+Piccha는 흩어진 정보를 매장과 거래 단위로 묶어, 앱 안에서 탐색부터 구매와 교환, 검증까지 이어지게 했어요.
+이를 통해 소비자의 탐색 피로를 줄이고, 앱의 역할을 ‘찾기’에서 ‘이용’까지 넓혔어요.</p>
+          </div>
+        </div>
+        <img class="tobe-end-marker" src="images/piccha/parts/p09-281bc94ec7.webp" alt="" loading="lazy" decoding="async" />
+        <img class="asis-end-marker" src="images/piccha/parts/p09-281bc94ec7.webp" alt="" loading="lazy" decoding="async" />
+        <img class="asis-end-line" src="images/piccha/parts/p09-f650fef164.webp" alt="" loading="lazy" decoding="async" />
+        <img class="tobe-end-line" src="images/piccha/parts/p09-f650fef164.webp" alt="" loading="lazy" decoding="async" />
+        <div class="to-be-01-map-popup">
+          <img class="phone-screen" src="images/piccha/parts/p09-c0cf8ca0a8.webp" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="to-be-02-store-flow">
+          <img class="phone-screen-2" src="images/piccha/parts/p09-95cf130d43.webp" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="to-be-03-trade-chat">
+          <img class="phone-screen-3" src="images/piccha/parts/p09-860e8de952.webp" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="to-be-04-review-report">
+          <img class="phone-screen-4" src="images/piccha/parts/p09-8fbdab6943.webp" alt="" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </section>
+    <!-- 10 piccha_page_10_vision_haeyo -->
+    <section class="fx p10" aria-label="Piccha 10">
+      <div class="fx__in">
+        <div class="text-block">
+          <h2 class="big-title">가챠 경험을 ‘소비’에서
+<span style="color:#f32e7c">‘지속되는 취미’</span>로 확장해요</h2>
+          <p class="body">단순 뽑기에서 끝나는 가챠 경험을 넘어 탐색, 수집, 관리, 교환, 공유까지
+연결하여 사용자가 자신의 취향을 더 깊이 즐길 수 있도록
+돕는 것이 이 프로젝트의 목표예요.</p>
+        </div>
+        <div class="accent-dot"></div>
+        <img class="orbit-arcs" src="images/piccha/parts/p10-fbc36afd25.webp" alt="" loading="lazy" decoding="async" />
+        <div class="accent-circle"></div>
+        <img class="character-basket-img" src="images/piccha/parts/p10-4db282ecb9.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 11 piccha_page_11_information_architecture_haeyo -->
+    <section class="fx p11" aria-label="Piccha 11">
+      <div class="fx__in">
+        <div class="tab-label-02-trade">
+          <p class="tab-header-01">Tab 02</p>
+          <p class="tab-header-01-2">트레이드</p>
+        </div>
+        <div class="tab-label-03-store">
+          <p class="tab-header-01-3">Tab 03</p>
+          <p class="tab-header-01-4">스토어</p>
+        </div>
+        <div class="tab-label-04-chat">
+          <p class="tab-header-01-5">Tab 04</p>
+          <p class="tab-header-01-6">채팅</p>
+        </div>
+        <div class="tab-label-05-mypage">
+          <p class="tab-header-01-7">Tab 05</p>
+          <p class="tab-header-01-8">마이페이지</p>
+        </div>
+        <div class="tab02-highlight-bg"></div>
+        <img class="top-line" src="images/piccha/parts/p11-9d77c88bef.webp" alt="" loading="lazy" decoding="async" />
+        <img class="header-line" src="images/piccha/parts/p11-9d77c88bef.webp" alt="" loading="lazy" decoding="async" />
+        <img class="col-divider" src="images/piccha/parts/p11-a3c9cafd4b.webp" alt="" loading="lazy" decoding="async" />
+        <img class="col-divider-2" src="images/piccha/parts/p11-a3c9cafd4b.webp" alt="" loading="lazy" decoding="async" />
+        <img class="col-divider-3" src="images/piccha/parts/p11-a3c9cafd4b.webp" alt="" loading="lazy" decoding="async" />
+        <img class="col-divider-4" src="images/piccha/parts/p11-a3c9cafd4b.webp" alt="" loading="lazy" decoding="async" />
+        <div class="tab02">
+          <div class="explore">
+            <p class="group-explore">탐색</p>
+            <div class="explore-row">
+              <div class="box-new-items">
+                <p class="label">신규 등록 제품</p>
+              </div>
+              <div class="box-keyword-new-items">
+                <div class="box-category-variant-2">
+                  <p class="label-2">키워드 맞춤 신규 제품</p>
+                </div>
+                <p class="caption-nearby">내 알림 키워드와 일치한 등록</p>
+              </div>
+              <div class="badge-2">
+                <p class="num">2</p>
+              </div>
+            </div>
+          </div>
+          <div class="register">
+            <p class="group-register">등록</p>
+            <div class="register-body">
+              <div class="register-row">
+                <div class="box-register-exchange">
+                  <p class="label-3">교환 제품 등록</p>
+                </div>
+                <div class="register-options">
+                  <div class="box-register-sale">
+                    <p class="label-4">판매 등록</p>
+                  </div>
+                  <div class="box-register-share">
+                    <div class="box-category-default">
+                      <p class="label-5">나눔 등록</p>
+                    </div>
+                    <p class="caption-nearby-2">앱 포인트 지급</p>
+                  </div>
+                </div>
+                <div class="badge-1">
+                  <p class="num-2">1</p>
+                </div>
+              </div>
+              <img class="step-tree" src="images/piccha/parts/p11-8ade637ec4.webp" alt="" loading="lazy" decoding="async" />
+              <img class="tree-trunk" src="images/piccha/parts/p11-365b987121.webp" alt="" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+        <div class="tab03">
+          <div class="box-filter">
+            <div class="box-category-default-2">
+              <p class="label-6">필터</p>
+            </div>
+            <p class="caption-nearby-3">재포장 매장 제외 · 지역·인기순</p>
+          </div>
+          <div class="box-store-list">
+            <p class="label-7">매장 리스트</p>
+          </div>
+          <div class="box-store-detail">
+            <div class="box-category-variant-2-2">
+              <p class="label-8">매장 상세</p>
+            </div>
+            <p class="caption-nearby-4">보유 제품·수량 · 재포장 표기
+인증 방문 리뷰 · 매장 신고
+정보 수정 제안 · 택배 구매</p>
+          </div>
+          <div class="badge-3">
+            <p class="num-3">3</p>
+          </div>
+        </div>
+        <div class="tab04">
+          <div class="box-chat-list">
+            <p class="label-9">채팅 목록</p>
+          </div>
+          <div class="trade-flow">
+            <div class="box-trade-chat">
+              <p class="label-10">거래 채팅</p>
+            </div>
+            <div class="arrow-trade-done">
+              <img class="icon" src="images/piccha/parts/p11-dbf95e330c.webp" alt="" loading="lazy" decoding="async" />
+              <p class="label-trade-done">거래 완료 후</p>
+            </div>
+            <div class="box-trade-review">
+              <p class="label-11">거래 평가</p>
+            </div>
+          </div>
+        </div>
+        <div class="tab05">
+          <div class="menu-list">
+            <div class="box-profile">
+              <p class="label-12">프로필</p>
+            </div>
+            <div class="box-favorites">
+              <p class="label-13">즐겨찾기</p>
+            </div>
+            <div class="box-reported-stores">
+              <p class="label-14">내가 제보한 매장</p>
+            </div>
+            <div class="box-payment">
+              <p class="label-15">결제 관리</p>
+            </div>
+          </div>
+          <div class="linked-block">
+            <div class="linked-list">
+              <div class="box-keyword-alert-settings">
+                <p class="label-16">키워드 알림 관리</p>
+              </div>
+              <div class="box-item-management">
+                <p class="label-17">등록, 교환 제품 관리</p>
+              </div>
+              <div class="badge-2-2">
+                <p class="num-4">2</p>
+              </div>
+            </div>
+            <div class="box-trade-trust">
+              <div class="box-category-variant-2-3">
+                <p class="label-18">거래 신뢰도</p>
+              </div>
+              <p class="caption-nearby-5">평가 받은 내용이 프로필에 누적</p>
+            </div>
+          </div>
+        </div>
+        <div class="cross-tab-links">
+          <div class="link-keyword-alert">
+            <div class="label-row">
+              <p class="label-keyword-alert">키워드 일치 시 알림</p>
+            </div>
+            <img class="graphic" src="images/piccha/parts/p11-6b44b367f5.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <div class="link-trade-request">
+            <div class="label-row-2">
+              <p class="label-trade-request">교환 신청 · 거래 진행</p>
+            </div>
+            <img class="graphic-2" src="images/piccha/parts/p11-af2ca0264d.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <img class="arrow-manage-items" src="images/piccha/parts/p11-6b21531f9f.webp" alt="" loading="lazy" decoding="async" />
+          <img class="arrow-trust" src="images/piccha/parts/p11-6b21531f9f.webp" alt="" loading="lazy" decoding="async" />
+        </div>
+        <div class="title">
+          <p class="section-label">Information Architecture</p>
+          <div class="title-text">
+            <h2 class="heading"><span style="color:#f32e7c">여정 중심</span>으로 정보 구조를 설계했어요</h2>
+            <p class="description">화면을 나열하기 전에 사용자 여정을 먼저 분석하고, 5개의 하단 탭을 탐색·교환·매장·거래·기록 단계에 대응시키는 것을 상위 원칙으로 세웠어요.
+각 단계에서 입력한 정보는 다음 단계의 탭으로 이어지도록 연결해, 사용자가 메뉴를 되짚어 찾는 과정을 줄였어요.
+어느 탭에 있든 하나의 거래 맥락 안에서 다음 행동으로 넘어갈 수 있도록 하는 것이 이 구조의 기준이에요.</p>
+          </div>
+        </div>
+        <div class="tab-label-01-home">
+          <p class="tab-header-01-9">Tab 01</p>
+          <p class="tab-header-01-10">홈 · 지도맵</p>
+        </div>
+        <div class="tab01">
+          <div class="box-category">
+            <p class="label-19">카테고리</p>
+          </div>
+          <div class="box-nearby-stores">
+            <div class="box-category-default-3">
+              <p class="label-20">주변 매장</p>
+            </div>
+            <p class="caption-nearby-6">최근 업데이트순 · 거리순</p>
+          </div>
+          <div class="box-store-detail-2">
+            <div class="box-category-variant-2-4">
+              <p class="label-21">매장 상세</p>
+            </div>
+            <p class="caption-nearby-7">최근 업데이트순 · 거리순</p>
+          </div>
+          <div class="badge-3-2">
+            <p class="num-5">3</p>
+          </div>
+        </div>
+        <div class="legend">
+          <img class="legend-item-screen" src="images/piccha/parts/p11-82796a8cf6.webp" alt="" loading="lazy" decoding="async" />
+          <div class="legend-item-common">
+            <img class="swatch-screen" src="images/piccha/parts/p11-4b4c514bac.webp" alt="" loading="lazy" decoding="async" />
+            <p class="legend-screen">공통, 연결 화면</p>
+          </div>
+          <div class="legend-item-key-area">
+            <img class="swatch-screen-2" src="images/piccha/parts/p11-1bf7732bdc.webp" alt="" loading="lazy" decoding="async" />
+            <p class="legend-screen-2">차별적 설계 영역</p>
+          </div>
+          <div class="legend-item-link">
+            <img class="swatch-link" src="images/piccha/parts/p11-3833e2c99c.webp" alt="" loading="lazy" decoding="async" />
+            <p class="legend-screen-3">차별적 설계 영역</p>
+          </div>
+          <p class="legend-screen-4">검색, 알림은 상단 공통 영역</p>
+        </div>
+        <div class="design-notes">
+          <div class="design-note-01">
+            <div class="title-row">
+              <div class="badge">
+                <p class="num-6">1</p>
+              </div>
+              <p class="title-2">입력 순서까지 설계한 교환 등록</p>
+            </div>
+            <div class="body-row">
+              <p class="body">9개 입력 항목을 4단계로 묶고, 하자 사진과 희망 품목을
+등록 단계에서 받아 거래 전 확인 과정을 줄였어요.</p>
+            </div>
+          </div>
+          <div class="design-note-02">
+            <div class="title-row-2">
+              <div class="badge-2">
+                <p class="num-7">2</p>
+              </div>
+              <p class="title-3">매칭 대신, 키워드가 만나는 지점</p>
+            </div>
+            <div class="body-row-2">
+              <p class="body-2">판매자 키워드와 구매자 알림 키워드가 일치하면 연결돼요.
+자동 매칭에 대한 헤비 유저의 부담을 반영했어요(인터뷰).</p>
+            </div>
+          </div>
+          <div class="design-note-03">
+            <div class="title-row-3">
+              <div class="badge-3">
+                <p class="num-8">3</p>
+              </div>
+              <p class="title-4">두 탐색 경로, 하나의 매장 상세</p>
+            </div>
+            <div class="body-row-3">
+              <p class="body-3">지도(홈)와 목록(스토어) 어느 경로로 들어와도
+같은 매장 상세로 모여, 정보를 한 곳에서 관리해요.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 12 piccha_page_12_design_system_haeyo -->
+    <section class="fx p12" aria-label="Piccha 12">
+      <div class="fx__in">
+        <div class="style-guide-body">
+          <div class="typography-section">
+            <div class="section-title-typography">
+              <div class="bar-colors"></div>
+              <p class="label-colors">TYPOGRAPHY</p>
+            </div>
+            <div class="typography-body">
+              <div class="typeface-card">
+                <h2 class="aa">Aa</h2>
+                <div class="typeface-info">
+                  <p class="typeface-name">Pretendard</p>
+                  <p class="typeface-desc">시각적 명료성과 가독성을 높이기 위해
+프리텐다드 서체 사용</p>
+                </div>
+              </div>
+              <div class="divider-1"></div>
+              <img class="type-scale-table" src="images/piccha/parts/p12-e208203fcf.webp" alt="" loading="lazy" decoding="async" />
+            </div>
+          </div>
+          <div class="color-section">
+            <div class="section-title-colors">
+              <div class="bar-colors-2"></div>
+              <p class="label-colors-2">COLORS</p>
+            </div>
+            <div class="color-swatch-list">
+              <div class="swatch-primary">
+                <div class="swatch-chip">
+                  <div class="swatch-1"></div>
+                  <p class="hex-1">#F32E7C</p>
+                </div>
+              </div>
+              <div class="swatch-primary-light">
+                <div class="swatch-chip-2">
+                  <div class="swatch-1-2"></div>
+                  <p class="hex-1-2">#FF5197</p>
+                </div>
+              </div>
+              <div class="swatch-primary-tint">
+                <div class="swatch-chip-3">
+                  <div class="swatch-1-3"></div>
+                  <p class="hex-1-3">#FFF2F4</p>
+                </div>
+              </div>
+              <div class="swatch-gray-dark">
+                <div class="swatch-chip-4">
+                  <div class="swatch-1-4"></div>
+                  <p class="hex-1-4">#3C3F42</p>
+                </div>
+              </div>
+              <div class="swatch-gray-mid">
+                <div class="swatch-chip-5">
+                  <div class="swatch-1-5"></div>
+                  <p class="hex-1-5">#4B4D54</p>
+                </div>
+              </div>
+              <div class="swatch-gray-light">
+                <div class="swatch-chip-6">
+                  <div class="swatch-1-6"></div>
+                  <p class="hex-1-6">#E7EAF0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="typeface-desc-2">로고에 대한 설명 로고에 대한 설명 로고에 대한 설명
+로고에 대한 설명로고에 대한 설명로고에 대한 설명로고에 대한 설명
+로고에 대한 설명로고에 대한 설명로고에 대한 설명로고에 대한 설명</p>
+        <div class="section-title-typography-2">
+          <div class="bar-colors-3"></div>
+          <p class="label-colors-3">TYPOGRAPHY</p>
+        </div>
+        <div class="section-title-typography-3">
+          <div class="bar-colors-4"></div>
+          <p class="label-colors-4">TYPOGRAPHY</p>
+        </div>
+        <div class="banner">
+          <p class="banner-sub">Style Guide</p>
+          <div class="banner-content">
+            <p class="banner-title">Design System</p>
+            <p class="banner-desc">일관된 브랜드 경험을 제공하기 위해 컬러, 타이포그래피, UI 톤앤매너를 체계적으로 정리했어요.
+모든 페이지에서 동일한 시각 기준이 유지되도록 설계하여 브랜드 아이덴티티와 콘텐츠 가독성을 안정적으로 전달해요.</p>
+          </div>
+        </div>
+        <img class="logo" src="images/piccha/parts/p12-304479b84b.webp" alt="" loading="lazy" decoding="async" />
+        <img class="char-3d" src="images/piccha/parts/p12-8298c1b4db.webp" alt="" loading="lazy" decoding="async" />
+        <img class="character-3d-iphone-v2" src="images/piccha/parts/p12-f18264caea.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-01" src="images/piccha/parts/p12-f0d7d3f813.webp" alt="" loading="lazy" decoding="async" />
+        <img class="onboarding-concept-2-info-basket" src="images/piccha/parts/p12-a48b416225.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-02" src="images/piccha/parts/p12-a10f2ab14d.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-03" src="images/piccha/parts/p12-9317622b81.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-04" src="images/piccha/parts/p12-ec14a6aa7a.webp" alt="" loading="lazy" decoding="async" />
+        <img class="onboarding-exclusive-gacha-machine" src="images/piccha/parts/p12-12a20fb8a1.webp" alt="" loading="lazy" decoding="async" />
+        <img class="new-char-3d-holding-gacha" src="images/piccha/parts/p12-d808909888.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 13 piccha_page_13_components_haeyo -->
+    <section class="fx p13" aria-label="Piccha 13">
+      <div class="fx__in">
+        <div class="banner">
+          <p class="banner-sub">Style Guide</p>
+          <div class="banner-content">
+            <h2 class="banner-title">Components</h2>
+          </div>
+        </div>
+        <p class="eyebrow">Style Guide</p>
+        <div class="card-app-bar">
+          <p class="card-label">Top app bar</p>
+          <div class="card-content">
+            <div class="top-bar">
+              <div class="status-bar">
+                <img class="indicators" src="images/piccha/parts/p13-ab2aaaa43d.webp" alt="" loading="lazy" decoding="async" />
+                <div class="top-time">
+                  <img class="time" src="images/piccha/parts/p13-99928db0cd.webp" alt="" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="top-bar-2">
+                <p class="my-page">마이페이지</p>
+                <img class="representative-icon" src="images/piccha/parts/p13-1073eb8d12.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="top-bar-3">
+              <div class="status-bar-2">
+                <img class="indicators-2" src="images/piccha/parts/p13-ab2aaaa43d.webp" alt="" loading="lazy" decoding="async" />
+                <div class="top-time-2">
+                  <img class="time-2" src="images/piccha/parts/p13-99928db0cd.webp" alt="" loading="lazy" decoding="async" />
+                </div>
+              </div>
+              <div class="btn-bar">
+                <div class="tab-inner">
+                  <div class="tab-l-01">
+                    <p class="body">중고거래</p>
+                  </div>
+                  <div class="tab-l-02">
+                    <p class="body-2">교환</p>
+                  </div>
+                </div>
+                <img class="utility" src="images/piccha/parts/p13-3e3bd134fe.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-navigation">
+          <p class="card-label-2">Navigation bar</p>
+          <div class="card-content-2">
+            <div class="gnb">
+              <img class="gnb-icon" src="images/piccha/parts/p13-5a2a0cce91.webp" alt="" loading="lazy" decoding="async" />
+              <img class="gnb-icon-2" src="images/piccha/parts/p13-46793469e2.webp" alt="" loading="lazy" decoding="async" />
+              <img class="gnb-icon-3" src="images/piccha/parts/p13-ef880ee4e4.webp" alt="" loading="lazy" decoding="async" />
+              <img class="gnb-icon-4" src="images/piccha/parts/p13-1fc1260f2f.webp" alt="" loading="lazy" decoding="async" />
+              <img class="gnb-icon-5" src="images/piccha/parts/p13-47af345876.webp" alt="" loading="lazy" decoding="async" />
+            </div>
+            <div class="gnb-2">
+              <img class="gnb-icon-6" src="images/piccha/parts/p13-93038a7058.webp" alt="" loading="lazy" decoding="async" />
+              <img class="gnb-icon-7" src="images/piccha/parts/p13-46793469e2.webp" alt="" loading="lazy" decoding="async" />
+              <img class="gnb-icon-8" src="images/piccha/parts/p13-ef880ee4e4.webp" alt="" loading="lazy" decoding="async" />
+              <img class="gnb-icon-9" src="images/piccha/parts/p13-1fc1260f2f.webp" alt="" loading="lazy" decoding="async" />
+              <img class="gnb-icon-10" src="images/piccha/parts/p13-47af345876.webp" alt="" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+        <div class="card-search-tab">
+          <p class="card-label-3">Search · Tab</p>
+          <div class="card-content-3">
+            <div class="search">
+              <div class="utility-bar">
+                <div class="search-bar">
+                  <div class="search-input">
+                    <p class="body-3">상품 키워드 검색</p>
+                  </div>
+                  <img class="search-icon" src="images/piccha/parts/p13-55ba1979cc.webp" alt="" loading="lazy" decoding="async" />
+                </div>
+                <img class="representative-icon-2" src="images/piccha/parts/p13-8fab1910f2.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="tap-inner">
+              <div class="title-category">
+                <p class="body-4">키워드 알림 상품</p>
+                <img class="expand-right" src="images/piccha/parts/p13-5911384c53.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="keyword">
+                <div class="keyword-inner">
+                  <div class="keyword-2">
+                    <p class="caption">다마고치</p>
+                  </div>
+                </div>
+                <div class="keyword-inner-2">
+                  <div class="keyword-3">
+                    <p class="caption-2">케로로</p>
+                  </div>
+                </div>
+                <div class="keyword-inner-3">
+                  <div class="keyword-4">
+                    <p class="caption-3">포토홀더</p>
+                  </div>
+                </div>
+                <div class="keyword-inner-4">
+                  <div class="keyword-5">
+                    <p class="caption-4">방가방가햄토리</p>
+                  </div>
+                </div>
+                <div class="keyword-inner-5">
+                  <div class="keyword-6">
+                    <p class="caption-5">캔뱃지 케이스</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="cate">
+                <p class="body-5">중고거래</p>
+              </div>
+              <div class="cate-2">
+                <p class="body-6">중고거래</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-card">
+          <p class="card-label-4">Card</p>
+          <div class="card-content-4">
+            <div class="includes-product-photos-inner">
+              <img class="photo-wrap" src="images/piccha/parts/p13-5190473191.webp" alt="" loading="lazy" decoding="async" />
+              <div class="product-description">
+                <p class="caption-6">2시간 전</p>
+                <div class="price-included">
+                  <div class="product-name">
+                    <p class="label-01">마인 참 라이트 키캡내용내용내용</p>
+                    <p class="label-02">3,200원</p>
+                  </div>
+                  <div class="price-row">
+                    <div class="feature-keyword-01">
+                      <p class="caption-7">미개봉</p>
+                    </div>
+                    <div class="feature-keyword-02">
+                      <p class="caption-8">미개봉</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="bookmark-count">
+                  <img class="heart-icon" src="images/piccha/parts/p13-f9ab7a2359.webp" alt="" loading="lazy" decoding="async" />
+                  <p class="value">5</p>
+                </div>
+              </div>
+            </div>
+            <div class="product-details-01">
+              <div class="top-type">
+                <p class="body-7">A상</p>
+              </div>
+              <img class="img" src="images/piccha/parts/p13-8acdb517e8.webp" alt="" loading="lazy" decoding="async" />
+              <div class="col">
+                <div class="product-name-2">
+                  <p class="body-01">제품명
+제품명</p>
+                  <p class="body-02">(발송방법)</p>
+                </div>
+                <p class="caption-9">잔여량(2/7)</p>
+              </div>
+            </div>
+            <div class="product-details-02">
+              <div class="top-type-2">
+                <p class="body-8">A상</p>
+              </div>
+              <img class="sold-out-img" src="images/piccha/parts/p13-2fe1e0ad23.webp" alt="" loading="lazy" decoding="async" />
+              <div class="col-2">
+                <div class="product-name-3">
+                  <p class="body-01-2">제품명
+제품명</p>
+                  <p class="body-02-2">(발송방법)</p>
+                </div>
+                <p class="caption-10">잔여량(2/7)</p>
+              </div>
+            </div>
+            <div class="store-list">
+              <img class="store-thumb" src="images/piccha/parts/p13-db6fcbb08c.webp" alt="" loading="lazy" decoding="async" />
+              <div class="store-text">
+                <div class="store-name-included">
+                  <p class="label">갓챠겟챠 송리단길점</p>
+                  <div class="location">
+                    <img class="location-icon" src="images/piccha/parts/p13-4e3a60914d.webp" alt="" loading="lazy" decoding="async" />
+                    <p class="caption-11">서울 용산구</p>
+                  </div>
+                </div>
+                <p class="caption-12">가챠/쿠지/피규어</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-list">
+          <p class="card-label-5">List</p>
+          <div class="card-content-5">
+            <div class="store-list-information-content">
+              <div class="store-list-information">
+                <img class="img-2" src="images/piccha/parts/p13-a3bc200677.webp" alt="" loading="lazy" decoding="async" />
+                <div class="body-content">
+                  <div class="col-3">
+                    <p class="label-2">팝마트 수원 AK점</p>
+                    <div class="location-2">
+                      <img class="location-icon-2" src="images/piccha/parts/p13-9649cc5c08.webp" alt="" loading="lazy" decoding="async" />
+                      <div class="location-text">
+                        <p class="caption-01">현재 위치에서</p>
+                        <p class="caption-02">1km 이내</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="keyword-inner-6">
+                    <div class="keyword-7">
+                      <p class="caption-13">최근 업데이트</p>
+                    </div>
+                    <div class="keyword-8">
+                      <p class="caption-14">가챠</p>
+                    </div>
+                    <div class="keyword-9">
+                      <p class="caption-15">쿠지</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <img class="icon" src="images/piccha/parts/p13-11b02fbedd.webp" alt="" loading="lazy" decoding="async" />
+            </div>
+            <div class="chat-list">
+              <div class="store-list-information-2">
+                <img class="img-3" src="images/piccha/parts/p13-a96ac2e550.webp" alt="" loading="lazy" decoding="async" />
+                <div class="body-content-2">
+                  <div class="col-4">
+                    <div class="title-row">
+                      <p class="label-3">닉네임</p>
+                      <p class="caption-16">2시간 전</p>
+                    </div>
+                    <div class="message-wrap">
+                      <p class="caption-01-2">안녕하세요! 아직 판매중입니다ㅎㅎ</p>
+                      <p class="caption-02-2">제품 시리즈 ㅣ 제품명</p>
+                    </div>
+                    <div class="safe-payment">
+                      <img class="child-check" src="images/piccha/parts/p13-8821d4608d.webp" alt="" loading="lazy" decoding="async" />
+                      <p class="caption-17">안전결제</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="store-thumb-2"></div>
+                <img class="user-alt-fill" src="images/piccha/parts/p13-9e7ff678c3.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="chat-list-2">
+              <div class="store-list-information-3">
+                <img class="img-4" src="images/piccha/parts/p13-a96ac2e550.webp" alt="" loading="lazy" decoding="async" />
+                <div class="body-content-3">
+                  <div class="col-5">
+                    <div class="title-row-2">
+                      <p class="label-4">닉네임</p>
+                      <p class="caption-18">2시간 전</p>
+                    </div>
+                    <div class="message-wrap-2">
+                      <p class="caption-01-3">안녕하세요! 아직 판매중입니다ㅎㅎ</p>
+                      <p class="caption-02-3">제품 시리즈 ㅣ 제품명</p>
+                      <div class="new-notification">
+                        <p class="value-2">1</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="store-thumb-3"></div>
+                <img class="user-alt-fill-2" src="images/piccha/parts/p13-9e7ff678c3.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-chip-button">
+          <p class="card-label-6">Chip · Button</p>
+          <div class="card-content-6">
+            <div class="row-2">
+              <div class="keyword-inner-7">
+                <div class="keyword-10">
+                  <p class="caption-19">최근 업데이트</p>
+                </div>
+              </div>
+              <div class="keyword-inner-8">
+                <div class="keyword-11">
+                  <p class="caption-20">최근 업데이트</p>
+                </div>
+              </div>
+            </div>
+            <div class="row-3">
+              <div class="category-keyword-1-01">
+                <p class="caption-21">NEW🌟</p>
+              </div>
+              <div class="category-keyword-1-02">
+                <p class="caption-22">HOT🔥</p>
+              </div>
+              <div class="category-keyword-1-03">
+                <p class="caption-23">라스트원상</p>
+              </div>
+            </div>
+            <div class="row-4">
+              <div class="coogee-keyword-01">
+                <p class="caption-24">전체</p>
+              </div>
+              <div class="coogee-keyword-02">
+                <p class="caption-25">전체</p>
+              </div>
+              <div class="category-keyword-1-01-2">
+                <p class="caption-26">Home</p>
+              </div>
+              <div class="category-keyword-1-02-2">
+                <p class="caption-27">Home</p>
+              </div>
+            </div>
+            <div class="row-5">
+              <div class="tab-l-01-2">
+                <p class="body-9">주변 장소</p>
+              </div>
+              <div class="tab-l-02-2">
+                <p class="body-10">주변 장소</p>
+              </div>
+            </div>
+            <div class="btn-see-more">
+              <p class="body-11">상세정보 더보기</p>
+              <img class="expand-down" src="images/piccha/parts/p13-ffa0155e03.webp" alt="" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 14 piccha_page_13_brand_logo_character_a_editorial_ribbon_haeyo -->
+    <section class="fx p14" aria-label="Piccha 14">
+      <div class="fx__in">
+        <h2 class="title-line-1">PICK YOUR <span style="font-style:italic">GACHA</span></h2>
+        <p class="title-serif-in">(all in)</p>
+        <p class="title-line-2">ONE <span style="font-style:italic">APP</span></p>
+        <p class="body-intro-draft">가챠 매장 찾기부터 교환, 구매까지.
+흩어져 있던 가챠 경험을 하나로 모은 가챠 플랫폼, 픽챠</p>
+        <img class="ribbon-back" src="images/piccha/parts/p14-fd6a0156ea.webp" alt="" loading="lazy" decoding="async" />
+        <img class="phone-upright-home" src="images/piccha/parts/p14-616da9356e.webp" alt="" loading="lazy" decoding="async" />
+        <img class="ribbon-front" src="images/piccha/parts/p14-fc4d7045f0.webp" alt="" loading="lazy" decoding="async" />
+        <img class="phone-tilted-store" src="images/piccha/parts/p14-255b74166a.webp" alt="" loading="lazy" decoding="async" />
+        <div class="value-list">
+          <div class="value-row-map">
+            <div class="row-main">
+              <p class="row-label">Map</p>
+              <p class="row-value">Discover</p>
+            </div>
+            <p class="row-desc">내 주변 매장의 재고와 입고 소식을
+지도에서 한눈에 확인해요</p>
+          </div>
+          <div class="value-row-trade">
+            <div class="row-main-2">
+              <p class="row-label-2">Trade</p>
+              <p class="row-value-2">Exchange</p>
+            </div>
+            <p class="row-desc-2">중복으로 뽑은 상품은 다른 유저와
+교환하거나 중고로 거래해요</p>
+          </div>
+          <div class="value-row-store">
+            <div class="row-main-3">
+              <p class="row-label-3">Store</p>
+              <p class="row-value-3">Collect</p>
+            </div>
+            <p class="row-desc-3">매장에 가지 않아도 쿠지·가챠를
+앱에서 바로 뽑을 수 있어요</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 15 piccha_page_16_splash_onboarding_title_haeyo -->
+    <section class="fx p15" aria-label="Piccha 15">
+      <div class="fx__in">
+        <img class="screen-group" src="images/piccha/parts/p15-6f0d33a45d.webp" alt="" loading="lazy" decoding="async" />
+        <div class="title">
+          <p class="section-label">Splash &amp; Onboarding</p>
+          <h2 class="heading">첫 실행부터 픽챠의 핵심 경험을 전해요</h2>
+          <p class="description">온보딩 네 장에서 매장 탐색 · 재고 확인 · 교환 · 앱 전용 구매를 캐릭터의 동작과 함께 소개하고,
+카카오·네이버 간편 로그인과 둘러보기로 첫 진입의 부담을 줄였어요.</p>
+        </div>
+      </div>
+    </section>
+    <!-- 16 piccha_page_17_home_haeyo -->
+    <section class="fx p16" aria-label="Piccha 16">
+      <div class="fx__in">
+        <img class="bg-map" src="images/piccha/parts/p16-8bf9cbee3a.webp" alt="" loading="lazy" decoding="async" />
+        <div class="title">
+          <p class="section-label">Home</p>
+          <h2 class="heading">찾아다니던 매장을 지도 한 장에서 확인해요</h2>
+          <p class="description">지도앱·SNS·현장을 오가던 탐색을 홈 화면 하나로 모았어요.
+위치·보유 상품·최신 정보를 함께 보여 주어, 방문 전에 갈 매장을 정할 수 있게 했어요.</p>
+        </div>
+        <img class="phone-home-map" src="images/piccha/parts/p16-036d0e334a.webp" alt="" loading="lazy" decoding="async" />
+        <div class="wrap">
+          <img class="screen-home-img" src="images/piccha/parts/p16-eed4066e50.webp" alt="" loading="lazy" decoding="async" />
+          <div class="chip-list">
+            <div class="category-keyword-1">
+              <img class="food-drink-coffee-streamline-pixel" src="images/piccha/parts/p16-7e918907a2.webp" alt="" loading="lazy" decoding="async" />
+              <p class="label">카페</p>
+            </div>
+          </div>
+          <div class="tab-surve">
+            <div class="category-keyword-1-01">
+              <p class="caption">리뷰많은 순</p>
+            </div>
+            <div class="category-keyword-1-02">
+              <p class="caption-2">Home</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 17 piccha_page_18_home_report_haeyo -->
+    <section class="fx p17" aria-label="Piccha 17">
+      <div class="fx__in">
+        <div class="circle"></div>
+        <img class="character-phone-img" src="images/piccha/parts/p17-4063f19c65.webp" alt="" loading="lazy" decoding="async" />
+        <img class="location-pin-img" src="images/piccha/parts/p17-3f10d86fd0.webp" alt="" loading="lazy" decoding="async" />
+        <div class="title">
+          <p class="section-label">Home · 장소 제보</p>
+          <h2 class="heading">지도에 없는 매장은, <span style="color:#f32e7c">사용자가 채워요</span></h2>
+          <p class="description">매장 공지는 드물어, 최신 정보를 매장에만 맡길 수 없었어요.
+홈 지도에서 바로 제보를 시작해 위치 지정과 정보 입력, 두 단계로 매장을 등록해요.</p>
+        </div>
+        <div class="column-home-map">
+          <img class="phone-home-map" src="images/piccha/parts/p17-e24b0c66e0.webp" alt="" loading="lazy" decoding="async" />
+          <p class="caption">제보 시작</p>
+        </div>
+        <div class="column-report-location">
+          <img class="phone-report-location" src="images/piccha/parts/p17-3c0cb9fc87.webp" alt="" loading="lazy" decoding="async" />
+          <p class="caption-2">위치 지정</p>
+        </div>
+        <div class="column-report-form">
+          <img class="phone-report-form" src="images/piccha/parts/p17-b999b68886.webp" alt="" loading="lazy" decoding="async" />
+          <p class="caption-3">정보 입력</p>
+        </div>
+        <div class="connector-report">
+          <img class="line-left" src="images/piccha/parts/p17-3384347a42.webp" alt="" loading="lazy" decoding="async" />
+          <div class="label-report">
+            <p class="label-text">제보</p>
+          </div>
+          <div class="line-right"></div>
+          <img class="arrow-head" src="images/piccha/parts/p17-ce8f4a95fb.webp" alt="" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </section>
+    <!-- 18 piccha_page_19_store_detail_type_haeyo -->
+    <section class="fx p18" aria-label="Piccha 18">
+      <div class="fx__in">
+        <div class="circle"></div>
+        <div class="title">
+          <p class="section-label">Store · 매장 상세</p>
+          <h2 class="heading">방문 전에, <span style="color:#f32e7c">매장의 모든 것</span>을 한 페이지에서 확인해요</h2>
+          <p class="description">신규 소식과 가챠 종류, 자체쿠지·재포장 가챠·무인매장 유무와 위치·운영시간,
+그리고 유저가 남긴 방문 리뷰까지 매장 상세 한 페이지에 담았어요.</p>
+        </div>
+        <div class="tile-grid">
+          <div class="tile-01-store-info">
+            <div class="tile-text">
+              <p class="tile-num">01</p>
+              <p class="tile-title">매장 상세</p>
+              <p class="tile-desc">자체쿠지·재포장 가챠·무인매장 유무를 태그로 표시하고,
+위치·운영시간 같은 기본 정보를 한 화면에 모았어요.</p>
+            </div>
+            <img class="screen-store-info" src="images/piccha/parts/p18-74618633eb.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <div class="tile-col-right">
+            <div class="tile-row-top">
+              <div class="tile-02-store-news">
+                <div class="tile-text-2">
+                  <p class="tile-num-2">02</p>
+                  <p class="tile-title-2">매장 소식</p>
+                  <p class="tile-desc-2">사장님이 신상 소식을 올리면 유저에게 알림이 가고,
+‘최근 업데이트’ 표시가 붙어요.</p>
+                </div>
+                <img class="screen-store-news" src="images/piccha/parts/p18-90391da544.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="tile-03-gacha-type">
+                <div class="tile-text-3">
+                  <p class="tile-num-3">03</p>
+                  <p class="tile-title-3">가챠 종류 · 보기 전환</p>
+                  <p class="tile-desc-3">우측 상단 아이콘으로 바둑판과 리스트 보기를 오가요.</p>
+                </div>
+                <img class="screen-row" src="images/piccha/parts/p18-0035cb499e.webp" alt="" loading="lazy" decoding="async" />
+                <img class="cursor-pointer" src="images/piccha/parts/p18-48b3215ed5.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="tile-04-gacha-detail">
+              <div class="tile-text-4">
+                <p class="tile-num-4">04</p>
+                <p class="tile-title-4">가챠 상세</p>
+                <p class="tile-desc-4">구성품 목록과 가격·크기·재질 같은 상품 정보를 확인해요.
+어떤 캐릭터가 나오는지 방문 전에 알 수 있어요.</p>
+              </div>
+              <img class="screen-row-2" src="images/piccha/parts/p18-8457a72e96.webp" alt="" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 19 piccha_page_20_trade_exchange_haeyo -->
+    <section class="fx p19" aria-label="Piccha 19">
+      <div class="fx__in">
+        <img class="trade-used-exchange-main-png" src="images/piccha/parts/p19-6c0503fe1b.webp" alt="" loading="lazy" decoding="async" />
+        <img class="trade-used-exchange-main-png-2" src="images/piccha/parts/p19-50878a3428.webp" alt="" loading="lazy" decoding="async" />
+        <img class="trade-used-exchange-main-png-3" src="images/piccha/parts/p19-58f1bb8a3d.webp" alt="" loading="lazy" decoding="async" />
+        <img class="trade-used-exchange-main-png-4" src="images/piccha/parts/p19-fa4d818c23.webp" alt="" loading="lazy" decoding="async" />
+        <div class="title">
+          <p class="section-label">Trade · 교환</p>
+          <h2 class="heading">중복 가챠의 새로운 쓸모를 <span style="color:#f32e7c">교환</span>에서 찾았어요</h2>
+          <p class="description">같은 가챠가 또 나오면 중고 앱에 하나씩 올리거나, 아쉽지만 버리곤 했어요.
+이제는 갖고 싶던 상품과 바꿀 수 있어요. 내 중복이 누군가에게는 최애가 돼요.</p>
+        </div>
+      </div>
+    </section>
+    <!-- 20 piccha_page_21_trade_used_list_haeyo -->
+    <section class="fx p20" aria-label="Piccha 20">
+      <div class="fx__in">
+        <img class="trade-used-trade-main-png-01" src="images/piccha/parts/p20-2c07d33559.webp" alt="" loading="lazy" decoding="async" />
+        <div class="title">
+          <p class="section-label">Trade · 중고거래</p>
+          <h2 class="heading"><span style="color:#f32e7c">픽챠 안에서</span> 가챠 중고거래까지 이어져요</h2>
+          <p class="description">많이 본 상품과 키워드 알림, 인기 키워드로 찾던 가챠를 놓치지 않고 만날 수 있어요.
+마음에 드는 상품을 누르면 상태와 판매자 정보까지 바로 이어서 확인할 수 있어요.</p>
+        </div>
+        <img class="trade-used-trade-main-png-02" src="images/piccha/parts/p20-f6f2f79855.webp" alt="" loading="lazy" decoding="async" />
+        <img class="trade-used-trade-main-png-03" src="images/piccha/parts/p20-b44c365494.webp" alt="" loading="lazy" decoding="async" />
+        <img class="path" src="images/piccha/parts/p20-87357a7b1b.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 21 piccha_page_22_trade_used_detail_haeyo -->
+    <section class="fx p21" aria-label="Piccha 21">
+      <div class="fx__in">
+        <div class="title">
+          <p class="section-label">Trade · 중고거래 상세</p>
+          <h2 class="heading">상품 상태부터 판매자까지, <span style="color:#f32e7c">믿을 수 있는 거래</span>를 만들어요</h2>
+          <p class="description">상품을 고르면 판매자가 남긴 설명과 태그로 상태를 먼저 살펴볼 수 있어요.
+평점과 응답률, 거래 횟수까지 함께 보여 주어 처음 만나는 상대와도 안심하고 거래해요.</p>
+        </div>
+        <div class="detail-tile-list">
+          <div class="detail-tile-01">
+            <div class="tile-badge">
+              <p class="badge-num">1</p>
+            </div>
+            <img class="tile-bg" src="images/piccha/parts/p21-e2bbac9df5.webp" alt="" loading="lazy" decoding="async" />
+            <p class="tile-caption">상품 사진과 가격, 거래 방식을
+한 화면에서 확인해요.</p>
+          </div>
+          <div class="detail-tile-02">
+            <div class="tile-badge-2">
+              <p class="badge-num-2">2</p>
+            </div>
+            <img class="tile-bg-2" src="images/piccha/parts/p21-493dc988a6.webp" alt="" loading="lazy" decoding="async" />
+            <p class="tile-caption-2">판매자가 남긴 설명과 태그로 상품 상태를 파악하고,
+평점·응답률·거래 횟수로 판매자 신뢰도를 확인해요.</p>
+          </div>
+          <div class="detail-tile-03">
+            <div class="tile-badge-3">
+              <p class="badge-num-3">3</p>
+            </div>
+            <img class="tile-bg-3" src="images/piccha/parts/p21-a2b53e96a3.webp" alt="" loading="lazy" decoding="async" />
+            <p class="tile-caption-3">판매자의 다른 물품과 거래 후기까지 이어서 살펴봐요.</p>
+          </div>
+        </div>
+        <img class="path" src="images/piccha/parts/p21-592a84bd74.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 22 piccha_page_23_kuji_gacha_purchase_haeyo -->
+    <section class="fx p22" aria-label="Piccha 22">
+      <div class="fx__in">
+        <img class="img-01" src="images/piccha/parts/p22-c96082013e.webp" alt="" loading="lazy" decoding="async" />
+        <img class="connector-curve" src="images/piccha/parts/p22-36c33109c9.webp" alt="" loading="lazy" decoding="async" />
+        <div class="title">
+          <p class="section-label">Store · 쿠지·가챠 구매</p>
+          <h2 class="heading"><span style="color:#f32e7c">앱에서 바로</span> 쿠지·가챠를 만나고 구매해요</h2>
+          <p class="description">보고 싶던 쿠지와 가챠를 찾아 매장을 돌던 수고를 덜고, 앱에서 바로 뽑을 수 있게 했어요.
+쿠지와 가챠 탭을 오가며 신상과 입고 예정 상품을 살펴보고, 마음에 들면 바로 구매해요.</p>
+        </div>
+        <div class="tab-label-kuji">
+          <p class="body">쿠지</p>
+        </div>
+        <img class="connector-line" src="images/piccha/parts/p22-bb55edfa7c.webp" alt="" loading="lazy" decoding="async" />
+        <div class="tab-label-gacha">
+          <p class="body-2">가챠</p>
+        </div>
+        <img class="surve-gacha-png" src="images/piccha/parts/p22-719e5de269.webp" alt="" loading="lazy" decoding="async" />
+        <img class="surve-gacha-png-2" src="images/piccha/parts/p22-e53a5884af.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-02" src="images/piccha/parts/p22-2c8d20ba98.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 23 piccha_page_24_kuji_gacha_detail_haeyo -->
+    <section class="fx p23" aria-label="Piccha 23">
+      <div class="fx__in">
+        <div class="bg-panel-pink"></div>
+        <img class="img-01" src="images/piccha/parts/p23-b5201a3cbc.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-02" src="images/piccha/parts/p23-78590c9892.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-03" src="images/piccha/parts/p23-3f973fe2c6.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-04" src="images/piccha/parts/p23-cf3d150984.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-05" src="images/piccha/parts/p23-6ad1d1759b.webp" alt="" loading="lazy" decoding="async" />
+        <p class="description">보고 싶던 쿠지와 가챠를 찾아 매장을 돌던 수고를 덜고,
+앱에서 바로 뽑을 수 있게 했어요.
+무엇이 나올지 모르는 쿠지의 특성을 토대로, 라인업과 남은 수량,
+구매 절차와 교환·환불 규정까지 상세하게 안내했어요.</p>
+      </div>
+    </section>
+
+    <nav class="w-end" aria-label="다음 이동">
+      <a href="index.html#works">← 작업 목록으로</a>
+      <a href="#top" data-gnb-link>맨 위로 ↑</a>
+    </nav>
+    <div class="footer-wrap" id="contact"><!-- 푸터가 아래에서 드러나도록 감싸는 틀 -->
+    <footer class="footer">
+      <!-- 큰 제목 + 끌고 다닐 수 있는 스티커 (마우스를 올리면 선택 상자, 잡아서 옮기기) -->
+      <div class="footer__stage" id="footerStage">
+        <h2 class="footer__title" data-tilt>Shall we<br />work together?</h2>
+
+        <div class="sticker window" data-sticker style="top: 6%; left: 3%;">
+          <div class="window__bar"><span>SNS</span><span>[+]</span></div>
+          <ul class="window__list">
+            <li><a href="#">[인스타그램]</a></li>
+            <li><a href="#">[링크드인]</a></li>
+            <li><a href="#">[비핸스]</a></li>
+          </ul>
+        </div>
+
+        <div class="sticker window" data-sticker style="top: 60%; right: 4%;">
+          <div class="window__bar"><span>WEBSITE</span><span>[+]</span></div>
+          <ul class="window__list">
+            <li><a href="index.html">[홈]</a></li>
+            <li><a href="index.html#works">[작업]</a></li>
+            <li><a href="about.html">[소개]</a></li>
+            <li><a href="#contact" data-gnb-link>[연락하기]</a></li>
+          </ul>
+        </div>
+
+        <div class="sticker card card--lime" data-sticker style="bottom: 8%; left: 10%;">
+          <svg class="mark mark--dark" viewBox="0 0 7 7" aria-hidden="true">
+            <rect x="3" y="0" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/>
+            <rect x="2" y="2" width="3" height="3"/><rect x="0" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/>
+            <rect x="1" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/>
+          </svg>
+        </div>
+        <a class="footer__mail" href="mailto:bysy2312@gmail.com">bysy2312@gmail.com</a>
+      </div>
+      <div class="footer__bottom">
+        <ul class="footer__links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+        </ul>
+        <p>© 2026</p>
+      </div>
+    </footer>
+    </div>
+  </main>
+
+  <!-- 애니메이션 라이브러리 (무료, 설치 없이 불러오기) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.17/dist/lenis.min.js"></script>
+  <script src="sfx.js"></script>
+  <script src="script.js"></script>
+  <script src="proto-piccha.js"></script>
+  <script src="proto.js"></script>
+  <script src="work-cover.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-21T04:13:30.020Z",
+        "reason": "user confirmed: explicitly requested the infinite scrolling text band in the footer, copied from reference thedesignsociety.fr (2026-11-21)"
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-21T04:13:30.145Z",
+        "reason": "intentional: [bracketed] pixel labels above/below hero title replicate the reference thedesignsociety.fr hero the user asked to follow"
+      },
+      {
+        "rule": "marquee",
+        "value": "*",
+        "files": [
+          "work-yeolnayo.html"
+        ],
+        "createdAt": "2026-11-21T05:42:53.826Z",
+        "reason": "false positive: work-yeolnayo.html has no marquee element; detector picks up the shared style.css marquee keyframes used only by index.html footer (user-requested)"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "work-yeolnayo-v2.html"
+        ],
+        "createdAt": "2026-11-21T05:56:15.001Z",
+        "reason": "sanctioned exception: remaining hits are white text on solid #FF554A (pills, active step, UI hub); user decided text on coral stays white and rejected dark text despite better ratio (feedback_no_dark_text_on_coral). Real misses (coral 13px on white, gray on gray bars) were fixed."
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "work-yeolnayo-v2.html"
+        ],
+        "createdAt": "2026-11-21T05:56:15.185Z",
+        "reason": "intentional: section pills (Key Insight, 01 Empathize · Desk Research) and UX/UI Redesign chip come straight from the user's Figma yeolnayo pages; reference teamevople uses the same pill-above-heading pattern"
+      },
+      {
+        "rule": "hero-eyebrow-chip",
+        "value": "*",
+        "files": [
+          "work-yeolnayo.html"
+        ],
+        "createdAt": "2026-11-21T05:56:15.383Z",
+        "reason": "false positive: the only small text above the h1 is the [ ← 작업 목록 ] back link, i.e. a navigation breadcrumb, which the rule itself allows"
+      },
+      {
+        "rule": "overused-font",
+        "value": "geist pixel",
+        "createdAt": "2026-11-21T14:56:24.131Z",
+        "reason": "User asked for the reference site (odama.io) font direction; Geist Pixel is that exact free font, pixel variant not plain Geist"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "backup/disk_before_edge_1122/about.html"
+        ],
+        "createdAt": "2026-11-22T04:43:21.162Z",
+        "reason": "Claude: backup copy for rollback, not a served page; live about.html is the one to judge"
+      }
+    ]
+  }
+}

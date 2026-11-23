@@ -1,0 +1,513 @@
+/* 픽셀 글꼴: 영문·숫자 = Geist Pixel (Vercel, SIL OFL 무료, 레퍼런스 odama.io와 같은 글꼴)
+   한글은 Geist Pixel에 없어서 자동으로 Galmuri11로 이어짐 */
+@font-face {
+  font-family: "Geist Pixel";
+  src: url("https://cdn.jsdelivr.net/npm/geist@1.9.2/dist/fonts/geist-pixel/GeistPixel-Square.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+/* ===== 색상 (레퍼런스와 동일) ===== */
+:root {
+  --blue: #350aff;
+  --lime: #bcf015;
+  --bg: #ebedf5;
+  --bg-subtle: #f7f7f7;
+  --content: #1e1e1e;
+  --content-subtle: #666666; /* #f7f7f7·#ebedf5 위에서 대비 4.5:1 이상 */
+  --on-blue: #f0f0f0;
+  --border: #1d1d1d26;
+
+  /* 프로젝트 디스크 색 = 히어로 3D 디스크 라벨과 같은 값 (이 사이트만의 표시) */
+  --disk-yeolnayo: #ff554a;
+  --disk-piccha: #f32e7c;
+  --disk-bebedepino: #350aff;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1); /* 사이트 전체 한 가지 감속 곡선 */
+
+  --font-body: "Pretendard", system-ui, sans-serif;
+  --font-pixel: "Geist Pixel", "Galmuri11", "Galmuri9", monospace;
+}
+
+/*
+  픽셀 글꼴(Galmuri11) 크기 규칙: 반드시 12의 배수(12·24·36·48·60·72·84 …), Galmuri9는 10의 배수
+  Galmuri11은 12px 칸에 맞춰 그린 글꼴이라, 30px·80.64px처럼 어중간한 크기에선
+  픽셀이 반 칸씩 걸쳐 획 굵기가 들쭉날쭉해짐. 그래서 vw로 늘리지 않고 화면 너비별 단계로 바꿈.
+*/
+:root { --px-hero: 24px; --px-work: 24px; --px-footer: 60px; }
+@media (min-width: 600px)  { :root { --px-hero: 36px; --px-work: 36px; --px-footer: 84px; } }
+@media (min-width: 1024px) { :root { --px-hero: 60px; --px-work: 36px; --px-footer: 108px; } }
+@media (min-width: 1280px) { :root { --px-hero: 72px; --px-work: 48px; --px-footer: 132px; } }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--content);
+  background: var(--bg);
+  overflow-x: hidden;
+}
+body.is-loading { overflow: hidden; }
+
+/* ===== 공통 ===== */
+.label, .mono {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+}
+/* 키보드로 다니는 사람을 위한 포커스 표시 */
+:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+.intro :focus-visible, .footer :focus-visible { outline-color: var(--on-blue); }
+
+/* 7x7 픽셀 마크 */
+.mark { width: 28px; height: 28px; fill: #fff; shape-rendering: crispEdges; }
+.mark--blue { fill: var(--blue); width: 20px; height: 20px; }
+.mark--dark { fill: var(--content); width: 72px; height: 72px; }
+
+/* ===== GNB: 떠 있는 메뉴 바 ===== */
+/* 열고 닫는 움직임(너비·높이·X 아이콘)은 script.js의 gnb()에서 GSAP으로 처리 */
+.gnb { position: fixed; inset: 0; z-index: 50; pointer-events: none; }
+
+.gnb__dim { /* 메뉴가 열리면 뒤 화면을 30% 어둡게 (레퍼런스 값) */
+  position: absolute; inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: 0; visibility: hidden; /* 숨겨져 있을 땐 클릭도 통과 */
+  pointer-events: auto;
+}
+
+.gnb__bar {
+  position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+  width: 348px; /* 닫힘 너비. 열리면 640px (레퍼런스 350 → 637) */
+  max-width: calc(100% - 32px);
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  pointer-events: auto;
+}
+/* 스크롤한 뒤: 본문 폭만큼 넓어지고 반투명(10%)(뒤 화면이 흐리게 비침). 메뉴를 열면 다시 불투명 */
+.gnb__bar {
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s, border-color 0.3s;
+}
+.gnb__bar.is-scrolled {
+  width: calc(100% - 2 * var(--page-x)); /* 본문 폭(좌우 여백 안쪽)만큼 */
+  background: rgba(247, 247, 247, 0.1);
+  border-color: rgba(255, 255, 255, 0.35);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+}
+.gnb__bar.is-menu { transition: background-color 0.3s, border-color 0.3s; background: var(--bg-subtle); border-color: var(--border); }
+
+.gnb__top {
+  position: relative;
+  display: flex; justify-content: space-between; align-items: center;
+  height: 56px; padding: 0 12px 0 20px;
+}
+.gnb__logo {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-pixel); font-size: 16px;
+  color: var(--content); text-decoration: none; white-space: nowrap;
+}
+.gnb__line { /* 열렸을 때만 보이는 구분선 */
+  position: absolute; left: 8px; right: 8px; bottom: 0; height: 1px;
+  background: rgba(0, 0, 0, 0.1); opacity: 0;
+}
+
+/* 햄버거 → X 아이콘 */
+.gnb__toggle {
+  position: relative; width: 40px; height: 40px;
+  background: none; border: 0; padding: 0;
+  display: grid; place-items: center;
+}
+.gnb__toggle-bar {
+  position: absolute; width: 28px; height: 2px;
+  background: var(--content);
+}
+.gnb__toggle-bar:first-child { transform: translateY(-4px); }
+.gnb__toggle-bar:last-child { transform: translateY(4px); }
+
+/* 아래로 펼쳐지는 패널 (닫힘 = 높이 0) */
+.gnb__panel { height: 0; overflow: hidden; }
+.gnb__panel-inner {
+  padding: 24px 20px 20px;
+}
+.gnb__col { display: flex; flex-direction: column; justify-content: space-between; gap: 48px; }
+.gnb__menu { list-style: none; display: grid; gap: 4px; }
+.gnb__link {
+  display: inline-block;
+  font-family: var(--font-pixel); font-size: 24px; line-height: 1.4;
+  color: var(--content); text-decoration: none;
+  transition: color 0.15s var(--ease);
+}
+.gnb__link:hover, .gnb__link:focus-visible { color: var(--blue); }
+.gnb__social { list-style: none; display: flex; gap: 16px; }
+.gnb__social a {
+  font-family: var(--font-pixel); font-size: 12px;
+  color: var(--content-subtle); text-decoration: none;
+  transition: color 0.15s var(--ease);
+}
+.gnb__social a:hover { color: var(--content); }
+@media (max-width: 768px) {
+  .gnb__col { gap: 32px; }
+}
+
+/* ===== 1. 히어로: 아래 "새 히어로" 블록 참고 ===== */
+
+/* ===== 2. 파란 소개 섹션 (2026-11-22 원래대로 복원) ===== */
+:root {
+  --rgb-split: -1.5px 0 rgba(255, 40, 90, 0.55), 1.5px 0 rgba(0, 220, 255, 0.55);
+  --glow: 0 0 10px rgba(240, 240, 240, 0.35);
+}
+/* 파란 배경 위 글자: 색 번짐 + 빛 번짐 */
+.intro__text, .intro .mono { text-shadow: var(--rgb-split), var(--glow); }
+.intro .mono { letter-spacing: 0.08em; text-transform: uppercase; }
+.small { font-size: 12px; color: inherit; opacity: 0.7; }
+.intro .small { opacity: 1; } /* 파란 배경 위에선 반투명 금지 (대비 부족) */
+.intro { background: var(--blue); color: var(--on-blue); }
+.intro__pin { position: relative; height: 100vh; padding: 140px 24px 24px; overflow: hidden; }
+.intro__text {
+  font-size: clamp(24px, 3vw, 44px);
+  line-height: 1.3;
+  max-width: 1100px;
+  word-break: keep-all;
+}
+.intro__text .word { display: inline-block; will-change: transform; }
+
+.intro__corner { position: absolute; bottom: 24px; }
+.intro__corner--left { left: var(--page-x); }
+.intro__corner--right { right: var(--page-x); display: flex; align-items: flex-end; gap: 16px; }
+.intro__meta { text-align: right; margin-right: 0; }
+.card { width: 148px; height: 148px; border-radius: 2px; display: grid; place-items: center; }
+.card--lime { background: var(--lime); }
+.card--photo {
+  background:
+    linear-gradient(rgba(53, 10, 255, 0.15), rgba(53, 10, 255, 0.15)),
+    url("https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=60") center / cover;
+  filter: contrast(1.1) saturate(0.9);
+}
+
+/* ===== 3. 프로젝트 목록 ===== */
+/* 레퍼런스(studiobumps) 인덱스 표: PROJECT / TYPE / ROLE / YEAR, 줄 사이 얇은 선 */
+.works { padding: 128px 80px; }
+.works__title { font-family: var(--font-pixel); font-weight: 400; font-size: 24px; line-height: 1.2; }
+.works__index { margin-top: 48px; }
+.works__head, .work {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px 220px 64px; /* 레퍼런스 비율 */
+  gap: 16px; align-items: center;
+}
+.works__head {
+  padding-bottom: 12px; border-bottom: 1px solid var(--content);
+  font-family: var(--font-pixel); font-size: 12px; color: var(--content-subtle);
+}
+.works__head span:last-child, .work__year { text-align: right; }
+.work {
+  padding: 16px 0; border-bottom: 1px solid var(--border);
+  color: var(--content); text-decoration: none;
+  transition: color 0.15s var(--ease);
+}
+.work__title {
+  font-family: var(--font-pixel); font-size: 24px; line-height: 1.4; /* 레퍼런스처럼 표 글자 크기 */
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+/* 프로젝트 디스크 표시: 히어로의 플로피디스크를 줄인 모양 (본체 색 + 위쪽 금속 덮개) */
+.work__title { display: flex; align-items: center; gap: 16px; }
+.disk {
+  position: relative; flex: none; width: 16px; height: 16px; border-radius: 2px;
+  background: var(--disk);
+}
+.disk::before { /* 금속 덮개 */
+  content: ""; position: absolute; left: 4px; top: 0; width: 8px; height: 6px;
+  background: #c9ccd6;
+}
+.work__meta {
+  font-family: var(--font-pixel); font-size: 12px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+a.work:hover, a.work:focus-visible { color: var(--blue); }
+.work.is-soon { color: var(--content-subtle); }
+
+/* 마우스를 따라다니는 미리보기 (440×247) */
+.work-peek {
+  position: fixed; top: 0; left: 0; z-index: 40;
+  width: 440px; aspect-ratio: 16 / 9;
+  pointer-events: none; overflow: hidden; border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: translate(-50%, calc(-50% + 8px));
+  transition: opacity 0.2s var(--ease), transform 0.3s var(--ease);
+}
+.work-peek.is-on { opacity: 1; transform: translate(-50%, -50%); }
+.work-peek img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 900px) {
+  .works__head, .work { grid-template-columns: minmax(0, 1fr) 64px; }
+  .works__head span:nth-child(2), .works__head span:nth-child(3),
+  .work .work__meta:not(.work__year) { display: none; }
+  .work-peek { display: none; } /* 터치 화면에선 미리보기 없음 */
+}
+
+/* ===== 푸터 ===== */
+.footer-wrap { background: var(--blue); padding-left: 20px; padding-right: 20px; } /* 좌우 여백 20px은 바깥 틀에서, 나머지는 안쪽에서 (합계 = --page-x) */
+.footer { background: var(--blue); color: var(--on-blue); }
+.footer__stage {
+  display: grid; justify-items: center; gap: 32px;
+  padding: 96px 0 176px; text-align: center; /* 아래쪽에 스티커가 놓일 자리 */
+}
+.footer__title {
+  font-family: var(--font-pixel); font-weight: 400;
+  font-size: var(--px-footer); line-height: 0.95;
+  user-select: none;
+}
+.footer__title .word { display: inline-block; }
+.footer__title .char { display: inline-block; will-change: transform; cursor: pointer; }
+.footer__mail {
+  font-family: var(--font-pixel); font-size: 24px;
+  color: var(--on-blue); text-decoration: underline; text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  transition: opacity 0.15s var(--ease);
+}
+.footer__mail:hover { opacity: 0.8; }
+.footer__bottom {
+  display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  padding: 20px calc(var(--page-x) - 20px); border-top: 1px solid rgba(240, 240, 240, 0.2);
+  font-family: var(--font-pixel); font-size: 12px;
+}
+.footer__links { list-style: none; display: flex; gap: 24px; }
+.footer__links a { color: var(--on-blue); text-decoration: none; transition: opacity 0.15s var(--ease); }
+.footer__links a:hover { opacity: 0.8; }
+
+/* ===== 모바일 ===== */
+@media (max-width: 768px) {
+  .works { padding: 96px var(--page-x); }
+  .intro__meta { display: none; }
+  .footer__stage { padding: 72px 0 64px; }
+  .footer__mail { font-size: 16px; }
+}
+
+/* 움직임 줄이기 설정을 켠 사용자 배려 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
+}
+
+/* ===== 상세 페이지 (work-*.html) ===== */
+.detail__head {
+  padding: 160px 80px 80px;
+  display: grid; gap: 16px; justify-items: start;
+}
+.detail__back { color: var(--content); text-decoration: none; margin-bottom: 40px; }
+.detail__back:hover { color: var(--blue); }
+.detail__title {
+  font-family: var(--font-pixel); font-weight: 400;
+  font-size: var(--px-hero); line-height: 1.1;
+}
+.detail__lead { font-size: 20px; color: var(--content); }
+.detail__meta {
+  display: flex; gap: 48px; margin-top: 24px;
+  padding-top: 16px; border-top: 1px solid var(--content); width: 100%;
+}
+.detail__meta dd { margin-top: 8px; font-family: var(--font-pixel); font-size: 12px; }
+
+/* 피그마 페이지 이미지: 1920 기준, 화면 너비에 맞춰 줄어듦. 페이지 사이 틈 없이 이어 붙임 */
+.detail__pages { display: flex; flex-direction: column; align-items: center; }
+.detail__pages img { display: block; width: 100%; max-width: 1920px; height: auto; }
+
+.detail__end {
+  display: flex; justify-content: space-between;
+  padding: 80px; border-top: 1px solid var(--border);
+}
+.detail__end-link {
+  font-family: var(--font-pixel); font-size: 24px;
+  color: var(--content); text-decoration: none;
+}
+.detail__end-link:hover { color: var(--blue); }
+
+@media (max-width: 768px) {
+  .detail__head { padding: 120px 20px 48px; }
+  .detail__meta { gap: 24px; flex-wrap: wrap; }
+  .detail__end { padding: 48px 20px; flex-direction: column; gap: 16px; }
+}
+
+/* ===== 페이지 좌우 여백 통일 =====
+   모든 섹션의 글·표·그림 시작선을 하나로: 화면 폭의 4.1667% (1920에서 80px, 1440에서 60px, 좁으면 최소 20px)
+   = 상세페이지 피그마 이미지 속 80px 여백과 같은 비율이라, 이미지 안 내용과도 같은 선에 맞음 */
+:root {
+  --page-x: clamp(20px, 4.1667vw, 80px);  /* 좌우 여백: 1920에서 80, 1440에서 60, 좁으면 20 */
+  --gutter: clamp(16px, 1.6667vw, 32px);  /* 칸 사이: 1920에서 32, 1440에서 24, 좁으면 16 */
+}
+/* 사이트 공통 12칸 그리드 가이드 (소개 페이지 등 새 레이아웃은 이 틀에 맞춤) */
+.grid12 {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter);
+  padding-left: var(--page-x); padding-right: var(--page-x);
+}
+.works { padding-left: var(--page-x); padding-right: var(--page-x); }
+.intro__pin { padding-left: var(--page-x); padding-right: var(--page-x); }
+.footer__stage { padding-left: var(--page-x); padding-right: var(--page-x); }
+
+
+
+/* ===== 효과음 켜기/끄기 버튼 (메뉴 바) ===== */
+.gnb__actions { display: flex; align-items: center; gap: 4px; }
+.sfx-toggle {
+  width: 40px; height: 40px; padding: 0; border: 0; background: none;
+  display: grid; place-items: center; color: var(--content);
+}
+.sfx-toggle svg { width: 20px; height: 20px; fill: currentColor; shape-rendering: crispEdges; }
+.sfx-toggle .x { display: none; }
+.sfx-toggle[aria-pressed="false"] .w { display: none; }
+.sfx-toggle[aria-pressed="false"] .x { display: inline; }
+.sfx-toggle { transition: color 0.15s var(--ease); }
+.sfx-toggle:hover, .sfx-toggle:focus-visible { color: var(--blue); }
+
+
+/* ===== 새 히어로 (레퍼런스: odama.io) =====
+   한 화면에 고정(sticky)된 무대 위에서 스크롤로 진행:
+   ① 왼쪽 아래 문장이 아래로 내려가며 사라짐 ② 양옆 단어가 뒤섞이며 바뀜
+   ③ 3D 컴퓨터가 한 바퀴 돌며 카메라가 화면으로 다가가 모니터가 화면을 꽉 채움 (hero-pc.js)
+   ④ 모니터 색 = 다음 섹션 파랑 → 파란 막이 덮이며 소개 섹션으로 그대로 이어짐 */
+.hero { position: relative; height: 320vh; }
+.hero__stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.hero__pc { position: absolute; inset: 0; }
+.hero__pc canvas { display: block; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s var(--ease); touch-action: pan-y; }
+.hero__pc.is-ready canvas { opacity: 1; }
+.hero__pc.is-fallback { display: none; }
+/* 키보드·스크린리더용 버튼: 평소엔 숨기고, Tab으로 들어오면 아래 가운데에 보임 */
+.hero__pc-keys button {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+.hero__pc-keys button:focus-visible {
+  width: auto; height: auto; clip-path: none; left: 50%; bottom: 24px; transform: translateX(-50%);
+  padding: 8px 12px; border-radius: 8px; background: var(--content); color: var(--bg);
+  font-family: var(--font-pixel); font-size: 12px; z-index: 3;
+}
+/* 양옆 가운데 작은 단어 */
+.hero__side {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 1;
+  font-family: var(--font-pixel); font-size: 16px; line-height: 1; pointer-events: none;
+}
+.hero__side--left { left: var(--page-x); }
+.hero__side--right { right: var(--page-x); }
+/* 왼쪽 아래 큰 문장 */
+.hero__statement {
+  position: absolute; left: var(--page-x); bottom: clamp(24px, 4vh, 48px); z-index: 1;
+  font-family: var(--font-pixel); font-weight: 400;
+  font-size: clamp(28px, 3.1vw, 56px); line-height: 1.12; letter-spacing: -0.01em;
+  pointer-events: none;
+}
+.hero__statement span { display: block; }
+/* 마지막에 덮이는 파란 막 (다음 섹션과 같은 색) */
+.hero__fill { position: absolute; inset: 0; z-index: 2; background: var(--blue); opacity: 0; pointer-events: none; }
+@media (max-width: 768px) {
+  .hero { height: 260vh; }
+  .hero__side { top: 18%; font-size: 14px; }
+  /* hero-pc.js가 계산한 자리: 단어 · 컴퓨터 · 문장을 한 덩어리로 가운데 */
+  .hero__stage.is-stacked .hero__side { top: var(--side-top); transform: none; }
+  .hero__stage.is-stacked .hero__statement { top: var(--st-top); bottom: auto; }
+  .hero__statement { font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero { height: auto; }
+  .hero__stage { position: relative; }
+}
+
+/* ===== 픽셀 커서 · 푸터 끌기 스티커 (사용자가 레퍼런스 보고 넣은 장치, 2026-11-22 복원) ===== */
+/* ===== 픽셀 마우스 커서 ===== */
+/* JS가 정상 작동하고 마우스를 쓰는 기기일 때만 기본 화살표를 숨김 */
+html.has-cursor, html.has-cursor * { cursor: none !important; }
+
+.cursor {
+  position: fixed; top: 0; left: 0; z-index: 200;
+  pointer-events: none;
+  opacity: 0; transition: opacity 0.2s;
+}
+html.has-cursor .cursor.is-visible { opacity: 1; }
+
+.cursor__arrow {
+  display: block; width: 24px; height: 36px;
+  shape-rendering: crispEdges; overflow: visible;
+  transform-origin: 0 0;
+  /* 레퍼런스처럼 통통 튀는 움직임 */
+  transition: transform 0.45s cubic-bezier(0.3, 1.9, 0.5, 1);
+}
+.cursor__arrow .f { fill: var(--lime); }
+.cursor__arrow .b { fill: var(--content); }
+
+/* 링크·버튼 위: 기울고 커짐 */
+.cursor.is-link .cursor__arrow { transform: rotate(-18deg) scale(1.25); }
+/* 큰 글자 위: 반대로 기울어짐 */
+.cursor.is-tilt .cursor__arrow { transform: rotate(14deg) scale(1.15); }
+/* 누르는 순간: 꾹 눌림 */
+.cursor.is-down .cursor__arrow { transform: scale(0.8); }
+
+/* 스티커 위에서 뜨는 작은 말풍선 */
+.cursor__label {
+  position: absolute; top: 30px; left: 20px;
+  padding: 8px 12px; white-space: nowrap;
+  background: var(--lime); color: var(--content);
+  border: 1px solid var(--content);
+  font-family: var(--font-pixel); font-size: 12px; letter-spacing: 0.06em;
+  opacity: 0; transform: scale(0.6) rotate(-6deg); transform-origin: 0 0;
+  transition: opacity 0.2s, transform 0.45s cubic-bezier(0.3, 1.9, 0.5, 1);
+}
+.cursor.has-label .cursor__label { opacity: 1; transform: scale(1) rotate(-6deg); }
+
+/* 스티커: 끌고 다닐 수 있는 카드 */
+.sticker { position: absolute; z-index: 2; cursor: grab; touch-action: none; }
+.sticker:active { cursor: grabbing; }
+
+/* 선택됐을 때: 라임 테두리 + 네 모서리 핸들 (피그마 선택 상자 느낌) */
+.sticker::after {
+  content: ""; position: absolute; inset: -4px; pointer-events: none;
+  border: 1px solid var(--lime);
+  background:
+    linear-gradient(var(--lime) 0 0) top left / 8px 8px,
+    linear-gradient(var(--lime) 0 0) top right / 8px 8px,
+    linear-gradient(var(--lime) 0 0) bottom left / 8px 8px,
+    linear-gradient(var(--lime) 0 0) bottom right / 8px 8px;
+  background-repeat: no-repeat;
+  opacity: 0; transform: scale(1.04);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.sticker.is-selected::after { opacity: 1; transform: scale(1); }
+
+/* 메뉴 창 모양 스티커 */
+.window {
+  width: 232px; padding: 12px 16px 16px;
+  background: var(--bg-subtle); color: var(--content);
+  border: 1px solid var(--border); border-radius: 2px;
+  font-family: var(--font-pixel); font-size: 12px;
+}
+.window__bar {
+  display: flex; justify-content: space-between;
+  padding-bottom: 16px; font-weight: 700; letter-spacing: 0.06em;
+}
+.window__list { list-style: none; display: grid; gap: 4px; }
+.window__list a { color: inherit; text-decoration: none; }
+.window__list a:hover { color: var(--blue); }
+
+/* 라임 네모 스티커 + 픽셀 마크 */
+.card { width: 148px; height: 148px; border-radius: 2px; display: grid; place-items: center; }
+.card--lime { background: var(--lime); }
+.mark--dark { fill: var(--content); width: 72px; height: 72px; }
+/* 스티커가 놓이는 푸터 무대: 기준 위치 + 높이 확보 */
+.footer__stage { position: relative; min-height: 440px; }
+@media (max-width: 768px) {
+  .card { width: 88px; height: 88px; }
+  .mark--dark { width: 44px; height: 44px; }
+}
+.footer__stage .window { text-align: left; } /* 가운데 정렬 푸터 안에서도 창 목록은 원래대로 왼쪽 */
+
+/* 2번째 섹션 → 소개 페이지로 가는 통로 버튼 */
+.intro__more {
+  display: inline-flex; align-items: center; height: 40px; padding: 0 16px; margin-bottom: 16px;
+  border: 1px solid var(--on-blue); border-radius: 8px;
+  font-family: var(--font-pixel); font-size: 12px; color: var(--on-blue); text-decoration: none;
+  transition: background-color 0.15s var(--ease), color 0.15s var(--ease);
+}
+.intro__more:hover, .intro__more:focus-visible { background: var(--on-blue); color: var(--blue); }
+
+
+/* 2026-11-22: 검사기 '여백 좁음' 정리 — 파란 소개 섹션 좌우 20px은 섹션에서, 나머지는 안쪽에서 (합계 = --page-x) */
+.intro { padding-left: 20px; padding-right: 20px; }
+.intro__pin { padding-left: calc(var(--page-x) - 20px); padding-right: calc(var(--page-x) - 20px); }
+.intro__corner--left { left: calc(var(--page-x) - 20px); }
+.intro__corner--right { right: calc(var(--page-x) - 20px); }

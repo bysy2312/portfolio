@@ -1,0 +1,645 @@
+/* 베베드피노 상세 — 피그마 프레임(1920×1080)을 HTML/CSS로 옮긴 것.
+   수치는 피그마 px 그대로, .fx__in 전체를 zoom(--fz)으로 화면 폭에 맞춤 (work-fx.css / work-fx.js) */
+.b01 .overview-hero { left: 0; top: 0; width: 1920px; height: 1266px; }
+.b01 .background-cloud-03 { left: 1320px; top: 165px; width: 144.51px; height: 50px; }
+.b01 .background-cloud-04 { left: 1744px; top: 119px; width: 175.56px; height: 77px; }
+.b01 .background-cloud-02 { left: 447px; top: 136px; width: 187.24px; height: 62px; }
+.b01 .background-cloud-01 { left: 0; top: 60px; width: 177.46px; height: 73px; }
+.b01 .background-white-mountain { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b01 .background-movables { left: 0; top: 340px; width: 1920px; height: 740px; }
+.b01 .shape { left: 551px; top: 463px; width: 98.23px; height: 104.58px; }
+.b01 .overview-intro { left: 251px; top: 312px; width: 706px; height: 455.49px; }
+.b01 .logo-lockup { left: 0; top: 0; width: 699px; height: 65.49px; }
+.b01 .intro-copy { left: 0; top: 117.49px; width: 706px; height: 180px; }
+.b01 .intro-tagline-en { left: 0.52px; top: -0.76px; width: 550.75px; height: 21.61px; }
+.b01 .intro-body-kr { left: 0; top: 51px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #1e1e1e; text-box: trim-both cap alphabetic; }
+.b01 .btn-scroll-down { left: 0; top: 349.49px; width: 106px; height: 106px; }
+.b01 .illust-bear-duo { left: 1086px; top: 277px; width: 620px; height: 663px; }
+.b01 { background: #e5f0e8; }
+.b02 .02-industry-trends-bg { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b02 .trends-body { left: 66px; top: 357px; width: 1788px; height: 618px; }
+.b02 .trend-list { left: 0; top: 0; width: 1064px; height: 618px; }
+.b02 .trend-card-01 { left: 0; top: 0; width: 1064px; height: 196px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b02 .badge-num { left: 37.5px; top: 31.5px; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b02 .badge-num-text { left: 18px; top: 15px; width: 10px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b02 .card-body { left: 111.5px; top: 31.5px; width: 788px; height: 106px; }
+.b02 .card-title { left: 0; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b02 .card-desc { left: 0; top: 48px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b02 .trend-card-02 { left: 0; top: 211px; width: 1064px; height: 196px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #3d3d3d;outline-offset:-1.5px; }
+.b02 .badge-num-2 { left: 37.5px; top: 31.5px; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b02 .badge-num-text-2 { left: 16.5px; top: 15px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b02 .card-body-2 { left: 111.5px; top: 31.5px; width: 772px; height: 135px; }
+.b02 .card-title-2 { left: 0; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b02 .card-desc-2 { left: 0; top: 48px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b02 .trend-card-03 { left: 0; top: 422px; width: 1064px; height: 196px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #3d3d3d;outline-offset:-1.5px; }
+.b02 .badge-num-3 { left: 37.5px; top: 31.5px; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b02 .badge-num-text-3 { left: 16.5px; top: 15px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b02 .card-body-3 { left: 111.5px; top: 31.5px; width: 860px; height: 135px; }
+.b02 .card-title-3 { left: 0; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b02 .card-desc-3 { left: 0; top: 48px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b02 .market-card { left: 1085px; top: 0; width: 703px; height: 618px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #3d3d3d;outline-offset:-1.5px; }
+.b02 .market-card-content { left: 45.5px; top: 45px; width: 612px; height: 528px; }
+.b02 .market-card-header { left: 0; top: 0; width: 612px; height: 105px; }
+.b02 .badge-num-4 { left: 0; top: 0; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b02 .badge-num-text-4 { left: 15.5px; top: 15px; width: 15px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b02 .card-body-4 { left: 74px; top: 0; width: 538px; height: 105px; }
+.b02 .card-title-4 { left: 0; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b02 .card-desc-4 { left: 0; top: 48px; width: 538px; white-space: pre-wrap; height: 57px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b02 .market-chart { left: 10px; top: 158px; width: 592px; height: 370px; }
+.b02 .chart-plot { left: 3.97px; top: 2.59px; width: 419.05px; height: 364.83px; }
+.b02 .chart-bars { left: 0; top: 0; width: 419.05px; height: 364.83px; }
+.b02 .bar-02 { left: 135.45px; top: 114.83px; width: 98px; height: 250px; background:#ede7e0;border-radius:14px; }
+.b02 .bar-01 { left: 0; top: 181.83px; width: 97px; height: 183px; background:#ede7e0;border-radius:14px; }
+.b02 .bar-03-active { left: 277.05px; top: 49.61px; width: 122px; height: 315px; background:#f22202;border-radius:14px; }
+.b02 .chart-value { left: 256.05px; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 800; font-size: 32px; line-height: 38px; letter-spacing: -1.28px; color: #000000; }
+.b02 .chart-trendline { left: 15.99px; top: 84.85px; width: 342px; height: 118.8px; }
+.b02 .chart-stats { left: 451.03px; top: 96px; width: 137px; height: 178px; }
+.b02 .stat-market-size { left: 0; top: 0; width: 137px; height: 78px; }
+.b02 .stat-label { left: 0; top: 0; width: 137px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 38px; letter-spacing: -0.72px; color: #000000; }
+.b02 .stat-value { left: 0; top: 30px; width: 137px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 800; font-size: 32px; line-height: 48px; letter-spacing: -1.28px; color: #000000; }
+.b02 .stat-population { left: 0; top: 100px; width: 137px; height: 78px; }
+.b02 .stat-label-2 { left: 0; top: 0; width: 137px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 38px; letter-spacing: -0.72px; color: #000000; }
+.b02 .stat-value-2 { left: 0; top: 30px; width: 137px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 800; font-size: 32px; line-height: 48px; letter-spacing: -1.28px; color: #000000; }
+.b02 .section-header { left: 543px; top: 100px; width: 835px; height: 167.22px; }
+.b02 .title { left: 291px; top: 0; width: 253px; height: 40.22px; }
+.b02 .circle { left: 0.02px; top: 5.89px; width: 252.86px; height: 28.74px; }
+.b02 .subtitle { left: 26.4px; top: 7.2px; width: 201.52px; height: 23.35px; }
+.b02 .title-01 { left: 233.5px; top: 54.22px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 36px; line-height: normal; color: #6b6b6b; }
+.b02 .subtitle-2 { left: 0; top: 111.22px; white-space: pre; width: 835px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #1f1f1f; text-align: center; }
+.b02 { background: #6cb455; }
+.b03 .03-desk-research-bg { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b03 .col { left: 66px; top: 332px; width: 1788px; height: 702px; }
+.b03 .row { left: 0; top: 0; width: 1788px; height: 553px; }
+.b03 .compare-card { left: 0; top: 0; width: 996px; height: 553px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b03 .compare-table { left: 43.5px; top: 41.38px; width: 909px; height: 470.25px; }
+.b03 .table-head { left: 185px; top: -0.5px; width: 708px; height: 29px; }
+.b03 .table-body { left: 29px; top: 61.25px; width: 852px; height: 409px; }
+.b03 .row-labels { left: 0; top: 0; width: 88px; height: 457px; }
+.b03 .row-label-position { left: 0; top: 10px; width: 88px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 800; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #131313; }
+.b03 .row-label-content-pro { left: 0; top: 99px; width: 88px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 800; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #131313; }
+.b03 .row-label-content-con { left: 0; top: 188px; width: 88px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 800; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #131313; }
+.b03 .row-label-design-pro { left: 0; top: 277px; width: 88px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 800; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #131313; }
+.b03 .row-label-design-con { left: 0; top: 366px; width: 88px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 800; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #131313; }
+.b03 .col-ettoi { left: 181px; top: 0; width: 98px; height: 401px; }
+.b03 .premium-baby-01 { left: 0; top: 0; width: 98px; height: 37px; }
+.b03 .premium-baby { left: 0; top: -7px; white-space: pre; width: 98px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-02 { left: 0; top: 91px; width: 98px; height: 37px; }
+.b03 .premium-baby-2 { left: -25px; top: -7px; white-space: pre; width: 148px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-03 { left: 0; top: 182px; width: 98px; height: 37px; }
+.b03 .premium-baby-3 { left: -17px; top: -7px; white-space: pre; width: 132px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-04 { left: 0; top: 273px; width: 98px; height: 37px; }
+.b03 .premium-baby-4 { left: 29px; top: 7px; white-space: pre; width: 41px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-05 { left: 0; top: 364px; width: 98px; height: 37px; }
+.b03 .premium-baby-5 { left: -7px; top: -7px; white-space: pre; width: 112px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .col-apricot { left: 372px; top: 0; width: 98px; height: 401px; }
+.b03 .premium-baby-01-2 { left: 0; top: 0; width: 98px; height: 37px; }
+.b03 .premium-baby-6 { left: 5px; top: -7px; white-space: pre; width: 89px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-02-2 { left: 0; top: 91px; width: 98px; height: 37px; }
+.b03 .premium-baby-7 { left: -4px; top: -7px; white-space: pre; width: 106px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-03-2 { left: 0; top: 182px; width: 98px; height: 37px; }
+.b03 .premium-baby-8 { left: -17px; top: -7px; white-space: pre; width: 133px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-04-2 { left: 0; top: 273px; width: 98px; height: 37px; }
+.b03 .premium-baby-9 { left: -17px; top: -7px; white-space: pre; width: 133px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-05-2 { left: 0; top: 364px; width: 98px; height: 37px; }
+.b03 .premium-baby-10 { left: -37px; top: -7px; white-space: pre; width: 173px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .col-agabang { left: 563px; top: 0; width: 98px; height: 401px; }
+.b03 .premium-baby-01-3 { left: 0; top: 0; width: 98px; height: 37px; }
+.b03 .premium-baby-11 { left: 5px; top: -7px; white-space: pre; width: 89px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-02-3 { left: 0; top: 91px; width: 98px; height: 37px; }
+.b03 .premium-baby-12 { left: -10px; top: -7px; white-space: pre; width: 119px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-03-3 { left: 0; top: 182px; width: 98px; height: 37px; }
+.b03 .premium-baby-13 { left: -54px; top: -7px; white-space: pre; width: 207px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-04-3 { left: 0; top: 273px; width: 98px; height: 37px; }
+.b03 .premium-baby-14 { left: -14px; top: -7px; white-space: pre; width: 127px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-05-3 { left: 0; top: 364px; width: 98px; height: 37px; }
+.b03 .premium-baby-15 { left: -10px; top: -7px; white-space: pre; width: 119px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .col-looxlooe { left: 754px; top: 0; width: 98px; height: 401px; }
+.b03 .premium-baby-01-4 { left: 0; top: 0; width: 98px; height: 37px; }
+.b03 .premium-baby-16 { left: -9px; top: -7px; white-space: pre; width: 116px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-02-4 { left: 0; top: 91px; width: 98px; height: 37px; }
+.b03 .premium-baby-17 { left: -4px; top: -7px; white-space: pre; width: 106px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-03-4 { left: 0; top: 182px; width: 98px; height: 37px; }
+.b03 .premium-baby-18 { left: -2px; top: -7px; white-space: pre; width: 102px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-04-4 { left: 0; top: 273px; width: 98px; height: 37px; }
+.b03 .premium-baby-19 { left: -2px; top: -7px; white-space: pre; width: 102px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .premium-baby-05-4 { left: 0; top: 364px; width: 98px; height: 37px; }
+.b03 .premium-baby-20 { left: -17px; top: -7px; white-space: pre; width: 133px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 22.4px; letter-spacing: -0.4px; color: #3d3d3d; text-align: center; }
+.b03 .table-dividers { left: 0; top: 122.25px; width: 909px; height: 271px; }
+.b03 .map-card { left: 1028px; top: 1px; width: 760px; height: 552px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b03 .positioning-map { left: 109.92px; top: 32.82px; width: 540.15px; height: 486.37px; }
+.b03 .map-logo-looxlooe { left: 0; top: 255.31px; width: 92.74px; height: 24.4px; }
+.b03 .map-logo-agabang { left: 80.58px; top: 340.13px; width: 90.48px; height: 24.4px; }
+.b03 .map-logo-apricot { left: 312.14px; top: 255.31px; width: 122.31px; height: 16.21px; }
+.b03 .map-logo-ettoi { left: 157.77px; top: 172.19px; width: 72.73px; height: 16.16px; }
+.b03 .map-axis { left: 30.54px; top: 0; width: 509.62px; height: 486.37px; }
+.b03 .axis-label-right { left: 438.62px; top: 233.26px; white-space: pre; width: 71px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 600; font-size: 16px; line-height: normal; letter-spacing: -0.48px; color: #000000; text-align: center; }
+.b03 .axis-lines { left: -0.5px; top: 29.19px; width: 425.11px; height: 425.11px; }
+.b03 .axis-label-top { left: 170.43px; top: 0; white-space: pre; width: 85px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 600; font-size: 16px; line-height: normal; letter-spacing: -0.48px; color: #000000; text-align: center; }
+.b03 .axis-label-bottom { left: 170.43px; top: 467.37px; white-space: pre; width: 85px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 600; font-size: 16px; line-height: normal; letter-spacing: -0.48px; color: #5c5c5c; text-align: center; }
+.b03 .map-highlight { left: 197.77px; top: -44.82px; width: 322.99px; height: 333.17px; }
+.b03 .map-logo-bebedepino { left: 277.42px; top: 79.73px; width: 167px; height: 83px; }
+.b03 .axis-label-left { left: 52px; top: 266px; white-space: pre; width: 71px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 600; font-size: 16px; line-height: normal; letter-spacing: -0.48px; color: #5c5c5c; text-align: center; }
+.b03 .insight-banner { left: 0; top: 585px; width: 1788px; height: 117px; background:#fcdb00;border-radius:16px;outline:1.5px solid #3d3d3d;outline-offset:-1.5px; }
+.b03 .insight-text { left: 277px; top: 33px; white-space: pre; width: 1234px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 20px; line-height: 32px; letter-spacing: -0.8px; color: #1f1f1f; text-align: center; text-box: trim-both cap alphabetic; }
+.b03 .section-header { left: 538px; top: 100px; width: 845px; height: 167.22px; }
+.b03 .title { left: 296px; top: 0; width: 253px; height: 40.22px; }
+.b03 .circle { left: 0.02px; top: 5.89px; width: 252.86px; height: 28.74px; }
+.b03 .subtitle { left: 43.62px; top: 7.47px; width: 165.34px; height: 22.83px; }
+.b03 .title-01 { left: 0; top: 54.22px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 36px; line-height: normal; color: #6b6b6b; }
+.b03 .subtitle-2 { left: 32.5px; top: 111.22px; white-space: pre; width: 780px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #1f1f1f; text-align: center; }
+.b03 { background: #68b053; }
+.b04 .04-desk-research-bg { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b04 .background { left: 0; top: 26px; width: 1920px; height: 1054px; }
+.b04 .diagram-capsule { left: 319.25px; top: 453.25px; width: 1281.5px; height: 291.5px; }
+.b04 .trust-ring { left: 833.25px; top: 472.25px; width: 253.5px; height: 253.5px; }
+.b04 .trust-circle { left: 848px; top: 487px; width: 224px; height: 224px; }
+.b04 .trust-label { left: 922px; top: 578px; white-space: pre; width: 77px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 800; font-size: 30px; line-height: normal; color: #ffffff; text-align: center; }
+.b04 .section-header { left: 704px; top: 104px; width: 512px; height: 167.22px; }
+.b04 .title { left: 129.5px; top: 0; width: 253px; height: 40.22px; }
+.b04 .circle { left: 0.02px; top: 5.89px; width: 252.86px; height: 28.74px; }
+.b04 .subtitle { left: 38.76px; top: 7.18px; width: 175.01px; height: 23.36px; }
+.b04 .title-01 { left: 1px; top: 54.22px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 36px; line-height: normal; color: #1f1f1f; }
+.b04 .subtitle-2 { left: 0; top: 111.22px; white-space: pre; width: 512px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #1f1f1f; text-align: center; }
+.b04 .ui-circles { left: 338px; top: 470px; width: 458px; height: 254px; }
+.b04 .circle-identity { left: 0; top: 0; width: 260px; height: 254px; background:#ece3d3;border-radius:1e+07px;outline:1px solid #282828;outline-offset:-1px; }
+.b04 .subtitle-3 { left: 79px; top: 109px; white-space: pre; width: 102px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 30px; line-height: normal; color: #000000; text-align: center; }
+.b04 .circle-consistency { left: 198px; top: 0; width: 260px; height: 254px; background:#ece3d3;border-radius:1e+07px;outline:1px solid #282828;outline-offset:-1px; }
+.b04 .subtitle-4 { left: 47px; top: 109px; white-space: pre; width: 166px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 30px; line-height: normal; color: #000000; text-align: center; }
+.b04 .ux-circles { left: 1124px; top: 470px; width: 458px; height: 254px; }
+.b04 .circle-simple { left: 0; top: 0; width: 260px; height: 254px; background:#ece3d3;border-radius:1e+07px;outline:1.5px solid #3d3d3d;outline-offset:-1.5px; }
+.b04 .subtitle-5 { left: 84.5px; top: 109px; white-space: pre; width: 91px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 30px; line-height: normal; color: #1f1f1f; text-align: center; }
+.b04 .circle-guide { left: 198px; top: 0; width: 260px; height: 254px; background:#ece3d3;border-radius:1e+07px;outline:1.5px solid #3d3d3d;outline-offset:-1.5px; }
+.b04 .subtitle-6 { left: 90.5px; top: 109px; white-space: pre; width: 79px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 30px; line-height: normal; color: #1f1f1f; text-align: center; }
+.b04 .ui-caption { left: 397px; top: 816px; width: 342px; height: 147px; }
+.b04 .row { left: 0; top: 0; width: 342px; height: 29px; }
+.b04 .graphic-01 { left: -0.5px; top: 0; width: 134.5px; height: 14.5px; }
+.b04 .subtitle-7 { left: 159px; top: 0; white-space: pre; width: 24px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 24px; line-height: normal; color: #3d3d3d; text-align: center; }
+.b04 .graphic-02 { left: 208px; top: 0; width: 134.5px; height: 14.5px; }
+.b04 .col { left: 27px; top: 56px; width: 288px; height: 91px; }
+.b04 .subtitle-8 { left: 0; top: 0; width: 288px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: normal; color: #3d3d3d; text-align: center; }
+.b04 .body { left: 0; top: 33px; width: 288px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; color: #3d3d3d; text-align: center; }
+.b04 .ux-caption { left: 1177px; top: 816px; width: 352px; height: 147px; }
+.b04 .row-2 { left: 0; top: 0; width: 352px; height: 29px; }
+.b04 .graphic-01-2 { left: -0.5px; top: 0; width: 134.5px; height: 14.5px; }
+.b04 .subtitle-9 { left: 159px; top: 0; white-space: pre; width: 34px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 24px; line-height: normal; color: #3d3d3d; text-align: center; }
+.b04 .graphic-02-2 { left: 218px; top: 0; width: 134.5px; height: 14.5px; }
+.b04 .col-2 { left: 22px; top: 56px; width: 308px; height: 91px; }
+.b04 .subtitle-10 { left: 0; top: 0; width: 308px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: normal; color: #3d3d3d; text-align: center; }
+.b04 .body-2 { left: 0; top: 33px; white-space: pre; width: 308px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; color: #3d3d3d; text-align: center; }
+.b04 { background: #fdf3e8; }
+.b05 .section-header { left: 536.5px; top: 90px; width: 847px; height: 195.22px; }
+.b05 .title { left: 297px; top: 0; width: 253px; height: 40.22px; }
+.b05 .circle { left: 0.02px; top: 5.9px; width: 252.86px; height: 28.75px; }
+.b05 .subtitle { left: 94px; top: 7.45px; width: 65.45px; height: 23.01px; }
+.b05 .title-01 { left: 0; top: 54.22px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 36px; line-height: normal; color: #1f1f1f; }
+.b05 .subtitle-2 { left: 62px; top: 111.22px; white-space: pre; width: 723px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #1f1f1f; text-align: center; }
+.b05 .swot-card-strengths { left: 61px; top: 474px; width: 433px; height: 504px; }
+.b05 .text-wrap-01 { left: 0; top: 0; width: 433px; height: 77px; background:#65ad49;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .subtitle-3 { left: 169.5px; top: 21px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 35px; color: #4f500a; }
+.b05 .text-wrap-02 { left: 0; top: 87px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body { left: 97px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-03 { left: 0; top: 201px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-2 { left: 109px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-04 { left: 0; top: 315px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-3 { left: 99px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-05 { left: 0; top: 429px; width: 433px; height: 75px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-4 { left: 104.5px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .swot-card-weaknesses { left: 516px; top: 474px; width: 433px; height: 504px; }
+.b05 .text-wrap-01-2 { left: 0; top: 0; width: 433px; height: 77px; background:#65ad49;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .subtitle-4 { left: 156.5px; top: 21px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 35px; color: #4f500a; }
+.b05 .text-wrap-02-2 { left: 0; top: 87px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-5 { left: 97px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-03-2 { left: 0; top: 201px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-6 { left: 109px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-04-2 { left: 0; top: 315px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-7 { left: 99px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-05-2 { left: 0; top: 429px; width: 433px; height: 75px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-8 { left: 104.5px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .swot-card-opportunities { left: 971px; top: 474px; width: 433px; height: 504px; }
+.b05 .text-wrap-01-3 { left: 0; top: 0; width: 433px; height: 77px; background:#65ad49;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .subtitle-5 { left: 151px; top: 21px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 35px; color: #4f500a; }
+.b05 .text-wrap-02-3 { left: 0; top: 87px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-9 { left: 97px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-03-3 { left: 0; top: 201px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-10 { left: 109px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-04-3 { left: 0; top: 315px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-11 { left: 99px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-05-3 { left: 0; top: 429px; width: 433px; height: 75px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-12 { left: 104.5px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .swot-card-threats { left: 1426px; top: 474px; width: 433px; height: 504px; }
+.b05 .text-wrap-01-4 { left: 0; top: 0; width: 433px; height: 77px; background:#65ad49;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .subtitle-6 { left: 180px; top: 21px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 35px; color: #4f500a; }
+.b05 .text-wrap-02-4 { left: 0; top: 87px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-13 { left: 97px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-03-4 { left: 0; top: 201px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-14 { left: 109px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-04-4 { left: 0; top: 315px; width: 433px; height: 104px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-15 { left: 99px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 .text-wrap-05-4 { left: 0; top: 429px; width: 433px; height: 75px; background:#ece3d3;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b05 .body-16 { left: 104.5px; top: 23px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b05 { background: #fdf3e8; }
+.b06 .hero-image-model { left: 960px; top: 0; width: 848px; height: 1080px; }
+.b06 .item-set { left: 118px; top: 274px; width: 368px; height: 385px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b06 .col { left: 29.5px; top: 27.5px; width: 309px; height: 330px; }
+.b06 .row { left: 0; top: 0; width: 234px; height: 48px; }
+.b06 .chip { left: 0; top: 0; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b06 .value { left: 18px; top: 15px; width: 10px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b06 .subtitle { left: 56px; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b06 .body { left: 0; top: 156px; width: 309px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b06 .item-set-2 { left: 118px; top: 645px; width: 368px; height: 385px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b06 .col-2 { left: 29.5px; top: 27.5px; width: 309px; height: 330px; }
+.b06 .row-2 { left: 0; top: 0; width: 235px; height: 48px; }
+.b06 .chip-2 { left: 0; top: 0; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b06 .value-2 { left: 18px; top: 15px; width: 10px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b06 .subtitle-2 { left: 56px; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b06 .body-2 { left: 0; top: 156px; width: 309px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b06 .item-set-3 { left: 505px; top: 274px; width: 368px; height: 356px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b06 .col-3 { left: 29.5px; top: 27.5px; width: 309px; height: 301px; }
+.b06 .row-3 { left: 0; top: 0; width: 213px; height: 48px; }
+.b06 .chip-3 { left: 0; top: 0; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b06 .value-3 { left: 18px; top: 15px; width: 10px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b06 .subtitle-3 { left: 56px; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b06 .body-3 { left: 0; top: 156px; width: 309px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b06 .item-set-4 { left: 506px; top: 645px; width: 368px; height: 385px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b06 .col-4 { left: 29.5px; top: 27.5px; width: 309px; height: 330px; }
+.b06 .row-4 { left: 0; top: 0; width: 230px; height: 48px; }
+.b06 .chip-4 { left: 0; top: 0; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b06 .value-4 { left: 18px; top: 15px; width: 10px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b06 .subtitle-4 { left: 56px; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b06 .body-4 { left: 0; top: 156px; width: 309px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b06 .section-title { left: 118px; top: 120px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 600; font-size: 36px; line-height: normal; color: #090909; }
+.b06 .sticker-bear { left: 1674px; top: 36px; width: 225.1px; height: 211.52px; }
+.b06 .sticker-rabbit { left: 874px; top: 570px; width: 164.02px; height: 206.57px; }
+.b06 .sticker-cat { left: 1710px; top: 793px; width: 189.47px; height: 207.53px; }
+.b06 { background: #fdf3e8; }
+.b07 .background { left: 0; top: 645px; width: 1920px; height: 435px; }
+.b07 .section-header { left: 280.5px; top: 90px; width: 1359px; height: 195.22px; }
+.b07 .title { left: 553px; top: 0; width: 253px; height: 40.22px; }
+.b07 .circle { left: 0.02px; top: 5.9px; width: 252.86px; height: 28.75px; }
+.b07 .subtitle { left: 43.55px; top: 7.18px; width: 167.79px; height: 23.36px; }
+.b07 .title-01 { left: 148px; top: 54.22px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 36px; line-height: normal; color: #1f1f1f; }
+.b07 .subtitle-2 { left: 0; top: 111.22px; white-space: pre; width: 1359px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #1f1f1f; text-align: center; }
+.b07 .goal-cards { left: 256px; top: 357px; width: 1408px; height: 539px; }
+.b07 .goal-card-brand-story { left: 0; top: 0; width: 340px; height: 539px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b07 .col { left: 1.5px; top: 25.5px; width: 337px; height: 488px; }
+.b07 .col-01 { left: 0; top: 0; width: 337px; height: 290px; }
+.b07 .text-wrap { left: 16px; top: 0; width: 305px; height: 102px; background:#fcdb00;border-radius:16px; }
+.b07 .subtitle-3 { left: 66px; top: 20px; width: 173px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 26px; line-height: normal; color: #232529; text-align: center; }
+.b07 .col-2 { left: 0; top: 125px; width: 337px; height: 165px; }
+.b07 .subtitle-4 { left: 42.5px; top: 0; white-space: pre; width: 252px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: normal; color: #232529; text-align: center; }
+.b07 .col-3 { left: 0; top: 66px; width: 337px; height: 99px; }
+.b07 .chip { left: 60.5px; top: 0; width: 216px; height: 45px; background:#fff08e;border-radius:8px; }
+.b07 .body { left: 26px; top: 12px; white-space: pre; width: 164px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: normal; color: #232529; text-align: center; }
+.b07 .body-2 { left: 79px; top: 61px; white-space: pre; width: 179px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 16px; line-height: normal; color: #232529; text-align: center; }
+.b07 .path { left: 162.98px; top: 314px; width: 11.05px; height: 38.75px; }
+.b07 .col-02 { left: 63.5px; top: 376px; width: 210px; height: 112px; }
+.b07 .body-01 { left: 0; top: 0; white-space: pre; width: 210px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 16px; line-height: normal; color: #232529; text-align: center; }
+.b07 .body-02 { left: 17.5px; top: 54px; white-space: pre; width: 175px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #232529; text-align: center; }
+.b07 .goal-card-guided-finding { left: 356px; top: 0; width: 340px; height: 539px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b07 .col-4 { left: 1.5px; top: 25.5px; width: 337px; height: 488px; }
+.b07 .col-01-2 { left: 0; top: 0; width: 337px; height: 290px; }
+.b07 .text-wrap-2 { left: 16px; top: 0; width: 305px; height: 102px; background:#fcdb00;border-radius:16px; }
+.b07 .subtitle-5 { left: 66px; top: 20px; width: 173px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 26px; line-height: normal; color: #232529; text-align: center; }
+.b07 .col-5 { left: 0; top: 125px; width: 337px; height: 165px; }
+.b07 .subtitle-6 { left: 52.5px; top: 0; white-space: pre; width: 232px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: normal; color: #232529; text-align: center; }
+.b07 .col-6 { left: 0; top: 66px; width: 337px; height: 99px; }
+.b07 .chip-2 { left: 64.5px; top: 0; width: 208px; height: 45px; background:#fff08e;border-radius:8px; }
+.b07 .body-3 { left: 26px; top: 12px; white-space: pre; width: 156px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: normal; color: #232529; text-align: center; }
+.b07 .body-4 { left: 79.5px; top: 61px; white-space: pre; width: 178px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 16px; line-height: normal; color: #232529; text-align: center; }
+.b07 .path-2 { left: 162.98px; top: 314px; width: 11.05px; height: 38.75px; }
+.b07 .col-02-2 { left: 95px; top: 376px; width: 147px; height: 112px; }
+.b07 .body-01-2 { left: 5px; top: 0; white-space: pre; width: 137px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 16px; line-height: normal; color: #232529; text-align: center; }
+.b07 .body-02-2 { left: 0; top: 54px; white-space: pre; width: 147px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #232529; text-align: center; }
+.b07 .goal-card-design-system { left: 712px; top: 0; width: 340px; height: 539px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b07 .col-7 { left: 1.5px; top: 25.5px; width: 337px; height: 488px; }
+.b07 .col-01-3 { left: 0; top: 0; width: 337px; height: 290px; }
+.b07 .text-wrap-3 { left: 16px; top: 0; width: 305px; height: 102px; background:#fcdb00;border-radius:16px; }
+.b07 .subtitle-7 { left: 66px; top: 20px; width: 173px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 26px; line-height: normal; color: #232529; text-align: center; }
+.b07 .col-8 { left: 0; top: 125px; width: 337px; height: 165px; }
+.b07 .subtitle-8 { left: 70.5px; top: 0; white-space: pre; width: 196px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: normal; color: #232529; text-align: center; }
+.b07 .col-9 { left: 0; top: 66px; width: 337px; height: 99px; }
+.b07 .chip-3 { left: 68px; top: 0; width: 201px; height: 45px; background:#fff08e;border-radius:8px; }
+.b07 .body-5 { left: 26px; top: 12px; white-space: pre; width: 149px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: normal; color: #232529; text-align: center; }
+.b07 .body-6 { left: 77.5px; top: 61px; white-space: pre; width: 182px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 16px; line-height: normal; color: #232529; text-align: center; }
+.b07 .path-3 { left: 162.98px; top: 314px; width: 11.05px; height: 38.75px; }
+.b07 .col-02-3 { left: 90.5px; top: 376px; width: 156px; height: 112px; }
+.b07 .body-01-3 { left: 0; top: 0; white-space: pre; width: 156px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 16px; line-height: normal; color: #232529; text-align: center; }
+.b07 .body-02-3 { left: 9px; top: 54px; white-space: pre; width: 138px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #232529; text-align: center; }
+.b07 .goal-card-ia-flow { left: 1068px; top: 0; width: 340px; height: 539px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b07 .col-10 { left: 1.5px; top: 25.5px; width: 337px; height: 488px; }
+.b07 .col-01-4 { left: 0; top: 0; width: 337px; height: 290px; }
+.b07 .text-wrap-4 { left: 16px; top: 0; width: 305px; height: 102px; background:#fcdb00;border-radius:16px; }
+.b07 .subtitle-9 { left: 66px; top: 20px; width: 173px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 26px; line-height: normal; color: #232529; text-align: center; }
+.b07 .col-11 { left: 0; top: 125px; width: 337px; height: 165px; }
+.b07 .subtitle-10 { left: 66px; top: 0; white-space: pre; width: 205px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: normal; color: #232529; text-align: center; }
+.b07 .col-12 { left: 0; top: 66px; width: 337px; height: 99px; }
+.b07 .chip-4 { left: 45px; top: 0; width: 247px; height: 45px; background:#fff08e;border-radius:8px; }
+.b07 .body-7 { left: 26px; top: 12px; white-space: pre; width: 195px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: normal; color: #232529; text-align: center; }
+.b07 .body-8 { left: 84.5px; top: 61px; white-space: pre; width: 168px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 16px; line-height: normal; color: #232529; text-align: center; }
+.b07 .path-4 { left: 162.98px; top: 314px; width: 11.05px; height: 38.75px; }
+.b07 .col-02-4 { left: 69px; top: 376px; width: 199px; height: 112px; }
+.b07 .body-01-4 { left: 0; top: 0; white-space: pre; width: 199px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 16px; line-height: normal; color: #232529; text-align: center; }
+.b07 .body-02-4 { left: 43.5px; top: 54px; white-space: pre; width: 112px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #232529; text-align: center; }
+.b07 .deco-rabbit { left: 1587px; top: 812px; width: 190px; height: 168px; }
+.b07 { background: #fdf3e8; }
+.b08 .background { left: 0; top: 0; width: 1920px; height: 190px; }
+.b08 .section-header { left: 413px; top: 104px; width: 1094px; height: 167.22px; }
+.b08 .title { left: 420.5px; top: 0; width: 253px; height: 40.22px; }
+.b08 .circle { left: 0.02px; top: 5.9px; width: 252.86px; height: 28.75px; }
+.b08 .subtitle { left: 39.74px; top: 7.16px; width: 175.02px; height: 23.38px; }
+.b08 .title-01 { left: 241.5px; top: 54.22px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 36px; line-height: normal; color: #1f1f1f; }
+.b08 .subtitle-2 { left: 0; top: 111.22px; white-space: pre; width: 1094px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #1f1f1f; text-align: center; }
+.b08 .content-wrapper { left: 86px; top: 373px; width: 1748.46px; height: 587.39px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b08 .column-left { left: 41.5px; top: 73.5px; width: 831.46px; height: 440.39px; }
+.b08 .feature-item { left: 0; top: 0; width: 831.46px; height: 440.39px; }
+.b08 .badge-num { left: 0; top: 0; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b08 .badge-num-text { left: 18px; top: 15px; width: 10px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b08 .feature-item-body { left: 64px; top: 0; width: 767.46px; height: 440.39px; }
+.b08 .feature-item-header { left: 0; top: 0; width: 406px; height: 48px; }
+.b08 .card-title { left: 0; top: 0; width: 406px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b08 .character-illustration-row { left: 0; top: 78px; width: 683.99px; height: 141.39px; }
+.b08 .tag-group { left: 0; top: 249.39px; width: 763px; height: 74px; }
+.b08 .tag-chip-1 { left: 0; top: 0; width: 208px; height: 74px; background:#ffe5e5;border-radius:15px; }
+.b08 .subtitle-3 { left: 24px; top: 18px; width: 160px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 24px; line-height: 38.4px; letter-spacing: -0.96px; color: #131313; }
+.b08 .value-01 { left: 233px; top: 21px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 20px; line-height: 32px; letter-spacing: -0.8px; color: #000000; }
+.b08 .tag-chip-2 { left: 271px; top: 0; width: 232px; height: 74px; background:#ffe5e5;border-radius:15px; }
+.b08 .subtitle-4 { left: 24px; top: 18px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 24px; line-height: 38.4px; letter-spacing: -0.96px; color: #131313; }
+.b08 .value-02 { left: 528px; top: 21px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 20px; line-height: 32px; letter-spacing: -0.8px; color: #000000; }
+.b08 .tag-chip-3 { left: 566px; top: 0; width: 197px; height: 74px; background:#ffe5e5;border-radius:15px; }
+.b08 .subtitle-5 { left: 24px; top: 18px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 24px; line-height: 38.4px; letter-spacing: -0.96px; color: #131313; }
+.b08 .card-desc { left: 0; top: 353.39px; width: 769px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b08 .divider { left: 896.96px; top: 73.5px; width: 1px; height: 428px; }
+.b08 .column-right { left: 920.96px; top: 73.5px; width: 786px; height: 435px; }
+.b08 .badge-num-2 { left: 0; top: 0; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b08 .badge-num-text-2 { left: 18px; top: 15px; width: 10px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b08 .column-right-body { left: 64px; top: 0; width: 722px; height: 435px; }
+.b08 .column-right-header { left: 0; top: 0; width: 406px; height: 83px; }
+.b08 .card-title-2 { left: 0; top: 0; width: 406px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b08 .card-desc-2 { left: 0; top: 54px; width: 406px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b08 .chart-section { left: 0; top: 110px; width: 722px; height: 325px; background:#f9f3ea;border-radius:6px 6px 0 0;box-shadow:inset 0 2px 0 0 #ff9500, inset 2px 0 0 0 #ff9500, inset -2px 0 0 0 #ff9500; }
+.b08 .chart-bar-group { left: 5px; top: 0; width: 712px; height: 325px; }
+.b08 .item-set-01 { left: 0; top: 0; width: 52px; height: 325px; }
+.b08 .item-set-02 { left: 60px; top: 0; width: 52px; height: 325px; }
+.b08 .item-set-03 { left: 120px; top: 0; width: 52px; height: 325px; }
+.b08 .item-set-04 { left: 180px; top: 0; width: 52px; height: 325px; }
+.b08 .item-set-05 { left: 240px; top: 0; width: 52px; height: 325px; }
+.b08 .item-set-06 { left: 300px; top: 0; width: 52px; height: 325px; }
+.b08 .item-set-07 { left: 360px; top: 0; width: 52px; height: 325px; }
+.b08 .item-set-08 { left: 420px; top: 0; width: 52px; height: 325px; }
+.b08 .item-set-09 { left: 480px; top: 0; width: 52px; height: 325px; }
+.b08 .item-set-10 { left: 540px; top: 0; width: 52px; height: 325px; }
+.b08 .item-set-11 { left: 600px; top: 0; width: 52px; height: 325px; }
+.b08 .item-set-12 { left: 660px; top: 0; width: 52px; height: 325px; }
+.b08 .card-desc-3 { left: 305.04px; top: 130.5px; white-space: pre; width: 101px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 20px; line-height: 32px; letter-spacing: -0.8px; color: #232529; text-align: center; }
+.b08 .shape { left: -26.96px; top: 124.5px; width: 758px; height: 201px; background:linear-gradient(180deg, rgba(249,243,234,0) 0%, #f9f3ea 100%); }
+.b08 { background: #65ad49; }
+.b09 .bush-so { left: 0; top: 9px; width: 343px; height: 151px; }
+.b09 .bush-so-2 { left: 0; top: 85px; width: 235px; height: 151px; }
+.b09 .flower-so { left: 94px; top: 61px; width: 109px; height: 152px; }
+.b09 .flower-so-2 { left: 226px; top: 29px; width: 127px; height: 177px; }
+.b09 .bush-so-3 { left: 0; top: 151px; width: 389px; height: 151px; }
+.b09 .detail-panel { left: 94px; top: 244px; width: 1022px; height: 627px; background:#f9f3ea;border-radius:16px;outline:1px solid #232529;outline-offset:-1px; }
+.b09 .panel-header { left: 67px; top: 59px; width: 170px; height: 48px; }
+.b09 .badge-num { left: 0; top: 0; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b09 .badge-num-text { left: 18px; top: 15px; width: 10px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #5c5c5c; text-box: trim-both cap alphabetic; }
+.b09 .card-title { left: 64px; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b09 .detail-list-inner { left: 67px; top: 145px; width: 886px; height: 298px; }
+.b09 .row-01 { left: 0; top: 0; width: 886px; height: 75px; }
+.b09 .card-title-2 { left: 2.21px; top: -0.09px; width: 260.12px; height: 32.61px; }
+.b09 .col { left: 290px; top: 0; width: 596px; height: 75px; }
+.b09 .card-desc { left: 1.71px; top: 7.75px; width: 24.44px; height: 14.08px; }
+.b09 .item-set { left: 0; top: 49px; width: 596px; height: 26px; }
+.b09 .card-desc-2 { left: 0; top: 0; width: 70px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-3 { left: 88px; top: 0; width: 68px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-4 { left: 174px; top: 0; width: 34px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-5 { left: 226px; top: 0; width: 40px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-6 { left: 284px; top: 0; width: 312px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .row-02 { left: 0; top: 115px; width: 886px; height: 183px; }
+.b09 .card-title-3 { left: 1.68px; top: -0.92px; width: 223.55px; height: 34.9px; }
+.b09 .col-2 { left: 290px; top: 0; width: 596px; height: 183px; }
+.b09 .card-desc-7 { left: 1.71px; top: 7.75px; width: 23.51px; height: 14.08px; }
+.b09 .col-3 { left: 0; top: 49px; width: 596px; height: 134px; }
+.b09 .item-set-2 { left: 0; top: 0; width: 596px; height: 26px; }
+.b09 .card-desc-8 { left: 0; top: 0; width: 70px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-9 { left: 88px; top: 0; width: 68px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-10 { left: 174px; top: 0; width: 34px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-11 { left: 226px; top: 0; width: 40px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-12 { left: 284px; top: 0; width: 312px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .item-set-3 { left: 0; top: 36px; width: 596px; height: 26px; }
+.b09 .card-desc-13 { left: 0; top: 0; width: 70px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-14 { left: 88px; top: 0; width: 68px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-15 { left: 174px; top: 0; width: 34px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-16 { left: 226px; top: 0; width: 40px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-17 { left: 284px; top: 0; width: 312px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .item-set-01 { left: 0; top: 72px; width: 596px; height: 26px; }
+.b09 .card-desc-18 { left: 0; top: 0; width: 70px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-19 { left: 88px; top: 0; width: 68px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-20 { left: 174px; top: 0; width: 34px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-21 { left: 226px; top: 0; width: 40px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-22 { left: 284px; top: 0; width: 312px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .item-set-4 { left: 0; top: 108px; width: 596px; height: 26px; }
+.b09 .card-desc-23 { left: 0; top: 0; width: 70px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-24 { left: 88px; top: 0; width: 68px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-25 { left: 174px; top: 0; width: 34px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-26 { left: 226px; top: 0; width: 40px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-27 { left: 284px; top: 0; width: 312px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #756e64; }
+.b09 .card-desc-28 { left: 67px; top: 481px; width: 888px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b09 .color-palette { left: 1162px; top: 244px; width: 624px; height: 895px; }
+.b09 .color-swatch-apricot-base { left: 0; top: 0; width: 624px; height: 318px; background:#fdf3e8;border-radius:25px; }
+.b09 .subtitle { left: 38px; top: 38px; white-space: pre; width: 135px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 24px; line-height: 38.4px; letter-spacing: -0.96px; color: #131313; text-align: center; }
+.b09 .body { left: 525px; top: 38px; white-space: pre; width: 61px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #131313; text-align: center; }
+.b09 .color-swatch-point-yellow { left: 0; top: 152px; width: 624px; height: 317px; background:#fcdb00;border-radius:25px; }
+.b09 .subtitle-2 { left: 38px; top: 38px; white-space: pre; width: 127px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 24px; line-height: 38.4px; letter-spacing: -0.96px; color: #131313; text-align: center; }
+.b09 .body-2 { left: 521px; top: 38px; white-space: pre; width: 65px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #131313; text-align: center; }
+.b09 .color-swatch-consistency-red { left: 0; top: 303px; width: 624px; height: 341px; background:#f22202;border-radius:25px; }
+.b09 .subtitle-3 { left: 38px; top: 38px; white-space: pre; width: 100px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 24px; line-height: 38.4px; letter-spacing: -0.96px; color: #131313; text-align: center; }
+.b09 .body-3 { left: 520px; top: 38px; white-space: pre; width: 66px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #131313; text-align: center; }
+.b09 .color-swatch-consistency-cream { left: 0; top: 478px; width: 624px; height: 417px; background:#73bb72;border-radius:25px; }
+.b09 .subtitle-4 { left: 38px; top: 38px; white-space: pre; width: 100px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 24px; line-height: 38.4px; letter-spacing: -0.96px; color: #131313; text-align: center; }
+.b09 .body-4 { left: 517px; top: 38px; white-space: pre; width: 69px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #131313; text-align: center; }
+.b09 .tree-img { left: 0; top: 660px; width: 78px; height: 225px; }
+.b09 .tree-img-2 { left: 0; top: 461px; width: 78px; height: 143px; }
+.b09 .tree-img-3 { left: 0; top: 768px; width: 173px; height: 290px; }
+.b09 .tree-img-4 { left: 1790px; top: 486px; width: 130px; height: 207px; }
+.b09 .tree-img-5 { left: 1825px; top: 673px; width: 95px; height: 252px; }
+.b09 .tree-img-6 { left: 1705px; top: 767px; width: 201px; height: 290px; }
+.b09 { background: #65ad49; }
+.b10 .hero-deco-cloud-m-10-01 { left: 1468px; top: 370px; width: 238px; height: 83px; }
+.b10 .hero-deco-cloud-m-10-02 { left: 1752px; top: 570px; width: 168px; height: 83px; }
+.b10 .hero-deco-cloud-m-8 { left: 60px; top: 349px; width: 238px; height: 83px; }
+.b10 .mountain-footer-1 { left: 0; top: 323px; width: 1920px; height: 757px; }
+.b10 .hero-deco-cloud-m-9 { left: 0; top: 622px; width: 190px; height: 83px; }
+.b10 .img-01 { left: 466px; top: 1002px; width: 1045px; height: 78px; }
+.b10 .img-02 { left: 461px; top: 295px; width: 1057px; height: 728px; }
+.b10 .section-header { left: 543px; top: 100px; width: 835px; height: 167.22px; }
+.b10 .title { left: 291px; top: 0; width: 253px; height: 40.22px; }
+.b10 .circle { left: 0.02px; top: 5.9px; width: 252.86px; height: 28.75px; }
+.b10 .subtitle { left: 26.4px; top: 7.19px; width: 201.52px; height: 23.35px; }
+.b10 .title-01 { left: 233.5px; top: 54.22px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 36px; line-height: normal; color: #1f1f1f; }
+.b10 .subtitle-2 { left: 0; top: 111.22px; white-space: pre; width: 835px; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #1f1f1f; text-align: center; }
+.b10 .top-btn-01 { left: 66px; top: 121px; width: 159.14px; height: 158px; }
+.b10 .top-btn-02 { left: 1687px; top: 730px; width: 167.46px; height: 166.25px; }
+.b10 { background: #65ad49; }
+.b11 .background-shape-2 { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b11 .background-shape-1 { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b11 .deco-cloud-2 { left: 1696px; top: 68px; width: 224px; height: 81px; }
+.b11 .deco-cloud-3 { left: 350px; top: 578px; width: 331px; height: 115px; }
+.b11 .mainpage-reference-strip { left: 1772px; top: 404px; width: 82px; height: 637px; }
+.b11 .reference-screenshot-1 { left: 638px; top: 0; width: 536px; height: 1080px; }
+.b11 .reference-screenshot-2 { left: 1199px; top: 0; width: 536px; height: 1080px; }
+.b11 .device-frame-top { left: 1771px; top: 404px; width: 83px; height: 57px; background:rgba(0,0,0,0.48); }
+.b11 .device-frame-bottom { left: 1771px; top: 798px; width: 83px; height: 243px; background:rgba(0,0,0,0.48); }
+.b11 .reference-screenshot-detail { left: 569px; top: 265px; width: 673px; height: 381px; }
+.b11 .card-body { left: 224px; top: 298px; width: 311px; height: 152px; }
+.b11 .row { left: 0; top: 0; width: 311px; height: 48px; }
+.b11 .card-title { left: 0; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 48px; letter-spacing: -0.72px; color: #fcdb00; }
+.b11 .path { left: 118px; top: 18.67px; width: 198.33px; height: 10.67px; }
+.b11 .card-desc { left: 0; top: 48px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #9cc5c6; }
+.b11 .deco-cloud-1 { left: 0; top: 115px; width: 206px; height: 81px; }
+.b11 { background: #1c5253; }
+.b12 .background-shape-2 { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b12 .deco-cloud-3 { left: 555px; top: 806px; width: 331px; height: 115px; }
+.b12 .deco-cloud-4 { left: 924px; top: 289px; width: 331px; height: 115px; }
+.b12 .deco-cloud-5 { left: 1565px; top: 838px; width: 355px; height: 131px; }
+.b12 .mainpage-reference-strip { left: 1772px; top: 404px; width: 82px; height: 637px; }
+.b12 .device-frame-overlay { left: 1771px; top: 404px; width: 83px; height: 500px; background:rgba(0,0,0,0.48); }
+.b12 .reference-screenshot-2 { left: 1199px; top: 0; width: 536px; height: 888px; }
+.b12 .reference-screenshot-home { left: 177px; top: 267px; width: 420px; height: 813px; }
+.b12 .card-body { left: 840px; top: 224px; width: 321px; height: 152px; }
+.b12 .row { left: 0; top: 0; width: 321px; height: 48px; }
+.b12 .card-title { left: 0; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 48px; letter-spacing: -0.72px; color: #fcdb00; }
+.b12 .path { left: 128px; top: 18.67px; width: 198.33px; height: 10.67px; }
+.b12 .card-desc { left: 0; top: 48px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #d1d1d1; }
+.b12 .col { left: 813px; top: 511px; width: 348px; height: 351px; }
+.b12 .card-body-2 { left: 0; top: 0; width: 348px; height: 152px; }
+.b12 .row-2 { left: 0; top: 0; width: 336px; height: 48px; }
+.b12 .card-title-2 { left: 0; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 48px; letter-spacing: -0.72px; color: #fcdb00; }
+.b12 .path-2 { left: 143px; top: 18.67px; width: 198.33px; height: 10.67px; }
+.b12 .card-desc-2 { left: 0; top: 48px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #9cc5c6; }
+.b12 .img-wrap { left: 0; top: 172px; width: 294px; height: 179px; }
+.b12 { background: #1c5253; }
+.b13 .background-shape-2 { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b13 .deco-cloud-2 { left: 1621px; top: 662px; width: 233px; height: 81px; }
+.b13 .deco-cloud-1 { left: 1066px; top: 37px; width: 233px; height: 81px; }
+.b13 .deco-cloud-3 { left: 0; top: 441px; width: 243px; height: 115px; }
+.b13 .reference-screenshot-3 { left: 769px; top: 193px; width: 459px; height: 887px; }
+.b13 .reference-screenshot-wide { left: 1245px; top: 0; width: 459px; height: 1080px; }
+.b13 .reference-screenshot-narrow { left: 1721px; top: 0; width: 199px; height: 683px; }
+.b13 .reference-screenshot-about { left: 101px; top: 429px; width: 420px; height: 651px; }
+.b13 .insight-callout { left: 66px; top: 75px; width: 603px; height: 201px; }
+.b13 .chip { left: 0; top: 0; width: 176px; height: 44px; background:#5b360f;border-radius:12px; }
+.b13 .section-title { left: 13.38px; top: 12.13px; width: 150.17px; height: 20.19px; }
+.b13 .section-title-2 { left: 0; top: 59px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 36px; line-height: normal; color: #fcdb00; }
+.b13 .subtitle { left: 0; top: 117px; width: 603px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #9cc5c6; }
+.b13 { background: #1c5253; }
+.b14 .deco-cloud-3 { left: 0; top: 403px; width: 254px; height: 115px; }
+.b14 .deco-cloud-3-2 { left: 849px; top: 585px; width: 221px; height: 77px; }
+.b14 .deco-cloud-3-3 { left: 1676px; top: 940px; width: 221px; height: 77px; }
+.b14 .background-shape-2 { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b14 .reference-screenshot-category { left: 89px; top: 475px; width: 420px; height: 605px; }
+.b14 .reference-screenshot-full { left: 1035px; top: 52px; width: 697px; height: 1028px; }
+.b14 .insight-callout { left: 66px; top: 75px; width: 603px; height: 201px; }
+.b14 .chip { left: 0; top: 0; width: 233px; height: 44px; background:#5b360f;border-radius:12px; }
+.b14 .section-title { left: 12.91px; top: 11.89px; width: 207.18px; height: 24.26px; }
+.b14 .section-title-2 { left: 0; top: 59px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 36px; line-height: normal; color: #fcdb00; }
+.b14 .subtitle { left: 0; top: 117px; width: 603px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #9cc5c6; }
+.b14 .col { left: 577px; top: 340px; width: 420px; height: 258.76px; }
+.b14 .card-body { left: 0; top: 0; width: 420px; height: 100px; }
+.b14 .row { left: 0; top: 0; width: 420px; height: 48px; }
+.b14 .card-title { left: 0; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 48px; letter-spacing: -0.72px; color: #fcdb00; }
+.b14 .path { left: 227px; top: 18.67px; width: 198.33px; height: 10.67px; }
+.b14 .card-desc { left: 0; top: 48px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #9cc5c6; }
+.b14 .row-2 { left: 0; top: 120px; width: 225.97px; height: 138.76px; }
+.b14 .state-swatch-basic { left: 0; top: 0; width: 104.99px; height: 138.76px; }
+.b14 .state-icon-basic { left: 0; top: 0; width: 104.99px; height: 104.76px; }
+.b14 .basic { left: 0; top: 110.76px; width: 104.99px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #9cc5c6; }
+.b14 .state-swatch-hover { left: 120.99px; top: 0; width: 104.99px; height: 138.76px; }
+.b14 .state-icon-hover { left: 0; top: 0; width: 104.99px; height: 104.76px; }
+.b14 .hover { left: 0; top: 110.76px; width: 104.99px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #9cc5c6; }
+.b14 { background: #1c5253; }
+.b15 .background-shape-2 { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b15 .deco-cloud-3 { left: 424px; top: 342px; width: 331px; height: 115px; }
+.b15 .deco-cloud-3-2 { left: 215px; top: 951px; width: 331px; height: 115px; }
+.b15 .deco-cloud-3-3 { left: 1476px; top: 830px; width: 331px; height: 115px; }
+.b15 .deco-cloud-3-4 { left: 0; top: 40px; width: 292px; height: 115px; }
+.b15 .reference-screenshot-footer { left: 786px; top: 871px; width: 785px; height: 209px; }
+.b15 .reference-photo-block { left: 1628px; top: 229px; width: 292px; height: 327px; }
+.b15 .reference-screenshot-product-detail { left: 0; top: 651px; width: 381px; height: 358px; }
+.b15 .reference-screenshot-full { left: 693px; top: 155px; width: 970px; height: 716px; }
+.b15 .screenshot-highlight-overlay { left: 786px; top: 871px; width: 785px; height: 209px; background:#000000;opacity:0.42; }
+.b15 .card-body { left: 286px; top: 265px; width: 369px; height: 126px; }
+.b15 .row { left: 0; top: 0; width: 369px; height: 48px; }
+.b15 .card-title { left: 0; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 48px; letter-spacing: -0.72px; color: #fcdb00; }
+.b15 .path { left: 176px; top: 18.67px; width: 198.33px; height: 10.67px; }
+.b15 .card-desc { left: 0; top: 48px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #9cc5c6; }
+.b15 { background: #1c5253; }
+.b16 .background-shape-2 { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b16 .reference-screenshot-1 { left: 0; top: 108px; width: 189px; height: 972px; }
+.b16 .reference-screenshot-2 { left: 210px; top: 0; width: 409px; height: 1080px; }
+.b16 .reference-screenshot-3 { left: 640px; top: 0; width: 409px; height: 985px; }
+.b16 .connector-line-1 { left: 1073.67px; top: 236.17px; width: 151.33px; height: 10.67px; }
+.b16 .connector-bracket { left: 1079px; top: 422.41px; width: 134.33px; height: 269.69px; }
+.b16 .feature-card-1 { left: 1248px; top: 151px; width: 366px; height: 319px; }
+.b16 .feature-card-image-1 { left: 0; top: 0; width: 366px; height: 181px; }
+.b16 .feature-card-1-body { left: 0; top: 193px; width: 324px; height: 126px; }
+.b16 .card-title { left: 0; top: 0; width: 324px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 48px; letter-spacing: -0.72px; color: #fcdb00; }
+.b16 .card-desc { left: 0; top: 48px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #9cc5c6; }
+.b16 .feature-card-2 { left: 1248px; top: 594px; width: 331px; height: 301.52px; }
+.b16 .feature-card-image-2 { left: 0; top: 0; width: 331px; height: 163.52px; }
+.b16 .feature-card-2-body { left: 0; top: 175.52px; width: 331px; height: 126px; }
+.b16 .card-title-2 { left: 0; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 48px; letter-spacing: -0.72px; color: #fcdb00; }
+.b16 .card-desc-2 { left: 0; top: 48px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #9cc5c6; }
+.b16 { background: #1c5253; }
+.b17 .background-shape-2 { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b17 .lookbook-preview-1 { left: 185px; top: 356px; width: 513px; height: 687px; }
+.b17 .lookbook-reference-1 { left: 0; top: 0; width: 513px; height: 630px; }
+.b17 .view-toggle-nav-1 { left: 115px; top: 650px; width: 283px; height: 37px; }
+.b17 .label-01 { left: 1.35px; top: 12.09px; width: 62.47px; height: 12.81px; }
+.b17 .nav-vtn { left: 95px; top: 0; width: 69px; height: 37px; }
+.b17 .label-02 { left: 195.8px; top: 12.27px; width: 86.82px; height: 12.63px; }
+.b17 .lookbook-preview-2 { left: 1187px; top: 68px; width: 557px; height: 975px; }
+.b17 .lookbook-reference-2 { left: 0; top: 0; width: 557px; height: 918px; }
+.b17 .view-toggle-nav-2 { left: 137px; top: 938px; width: 283px; height: 37px; }
+.b17 .label-01-2 { left: 1.35px; top: 12.09px; width: 62.47px; height: 12.81px; }
+.b17 .nav-vtn-2 { left: 95px; top: 0; width: 69px; height: 37px; }
+.b17 .label-02-2 { left: 195.8px; top: 12.27px; width: 86.82px; height: 12.63px; }
+.b17 .insight-callout { left: 66px; top: 75px; width: 700px; height: 173px; }
+.b17 .chip { left: 0; top: 0; width: 141px; height: 44px; background:#5b360f;border-radius:12px; }
+.b17 .section-title { left: 13.32px; top: 12.13px; width: 115.49px; height: 20.19px; }
+.b17 .section-title-2 { left: 0; top: 59px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 36px; line-height: normal; color: #fcdb00; }
+.b17 .subtitle { left: 0; top: 117px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #9cc5c6; }
+.b17 .card-body { left: 746px; top: 451px; width: 387px; height: 152px; }
+.b17 .row { left: 0; top: 0; width: 387px; height: 48px; }
+.b17 .card-title { left: 0; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 18px; line-height: 48px; letter-spacing: -0.72px; color: #fcdb00; }
+.b17 .path { left: 194px; top: 18.67px; width: 198.33px; height: 10.67px; }
+.b17 .card-desc { left: 0; top: 48px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 25.6px; letter-spacing: -0.64px; color: #9cc5c6; }
+.b17 { background: #1c5253; }
+.b18 .section-9 { left: 0; top: 0; width: 1920px; height: 1080px; }
+.b18 .mountain-footer-1 { left: 0; top: 0; width: 1920px; height: 756px; }
+.b18 .hero-deco-cloud-m-8 { left: 444px; top: 83px; width: 238px; height: 83px; }
+.b18 .hero-deco-cloud-m-10 { left: 1665px; top: 147px; width: 238px; height: 83px; }
+.b18 .hero-deco-cloud-m-9 { left: 960px; top: 251px; width: 240px; height: 83px; }
+.b18 .card-01 { left: 276px; top: 230px; width: 1367px; height: 283px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b18 .col { left: 29.5px; top: 27.5px; width: 1308px; height: 228px; }
+.b18 .row { left: 0; top: 0; width: 654px; height: 48px; }
+.b18 .chip { left: 0; top: 0; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b18 .value { left: 18px; top: 15px; width: 10px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b18 .subtitle { left: 60px; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b18 .body { left: 472px; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 48px; letter-spacing: -0.64px; color: #000000; }
+.b18 .body-2 { left: 0; top: 68px; width: 1308px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b18 .text-wrap { left: 0; top: 175px; width: 460px; height: 53px; background:#f1e3cf;border-radius:30px; }
+.b18 .body-3 { left: 25px; top: 12px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b18 .card-02 { left: 276px; top: 557px; width: 1367px; height: 283px; background:#f9f3ea;border-radius:16px;outline:1.5px solid #232529;outline-offset:-1.5px; }
+.b18 .col-2 { left: 29.5px; top: 27.5px; width: 1308px; height: 228px; }
+.b18 .row-2 { left: 0; top: 0; width: 743px; height: 48px; }
+.b18 .chip-2 { left: 0; top: 0; width: 46px; height: 44px; background:#fcdb00;border-radius:99999px; }
+.b18 .value-2 { left: 18px; top: 15px; width: 10px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; text-box: trim-both cap alphabetic; }
+.b18 .subtitle-2 { left: 60px; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 700; font-size: 20px; line-height: 48px; letter-spacing: -0.8px; color: #000000; }
+.b18 .body-4 { left: 449px; top: 0; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 16px; line-height: 48px; letter-spacing: -0.64px; color: #000000; }
+.b18 .body-5 { left: 0; top: 68px; width: 1308px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b18 .text-wrap-2 { left: 0; top: 175px; width: 726px; height: 53px; background:#f1e3cf;border-radius:30px; }
+.b18 .body-6 { left: 25px; top: 12px; white-space: pre; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 500; font-size: 18px; line-height: 28.8px; letter-spacing: -0.72px; color: #000000; }
+.b18 .col-3 { left: 1721px; top: 833px; width: 133px; height: 173px; }
+.b18 .figma { left: 0; top: 0; width: 133px; white-space: pre-wrap; font-family: "Pretendard", "Pretendard Variable", sans-serif; font-weight: 400; font-size: 20px; line-height: 28px; color: #9cc5c6; text-align: center; }
+.b18 .reference-image-1 { left: 0; top: 41px; width: 133px; height: 132px; }
+.b18 { background: #1c5253; }

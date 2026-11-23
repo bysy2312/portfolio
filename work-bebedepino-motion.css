@@ -1,0 +1,63 @@
+/* ===== 베베드피노 상세 — 움직이는 장식 =====
+   피그마에선 멈춰 있던 장식에 숨을 불어넣음 (레퍼런스: 메지로대 MEJINAVI2026)
+   수치는 모두 피그마 1920 좌표계 px (화면에 맞춰 zoom으로 같이 줄어듦)
+   '동작 줄이기' 설정을 켠 사람에게는 전부 멈춤 (JS도 실행 안 함) */
+@media (prefers-reduced-motion: no-preference) {
+
+  /* 01 구름 · cy_1_3 구름: 제자리에서 둥실둥실 (구름마다 속도·방향 다르게 — JS가 --dur/--delay/--dx 지정) */
+  .b01 [class^="background-cloud"],
+  .b11 [class^="deco-cloud"], .b12 [class^="deco-cloud"], .b13 [class^="deco-cloud"],
+  .b14 [class^="deco-cloud"], .b15 [class^="deco-cloud"] {
+    animation: bdp-float var(--dur, 7s) ease-in-out var(--delay, 0s) infinite alternate;
+    will-change: transform;
+  }
+  @keyframes bdp-float {
+    0%   { transform: translate(0, 0); }
+    50%  { transform: translate(var(--dx, 10px), -7px); }
+    100% { transform: translate(calc(var(--dx, 10px) * -0.6), 5px); }
+  }
+
+  /* 06 스티커: 가운데를 축으로 좌우로 까딱까딱 */
+  .b06 [class^="sticker-"] {
+    transform-origin: 50% 50%;
+    animation: bdp-rock 2.4s ease-in-out infinite;
+  }
+  .b06 .sticker-rabbit { animation-delay: -0.8s; animation-duration: 2.1s; }
+  .b06 .sticker-cat    { animation-delay: -1.5s; animation-duration: 2.7s; }
+  @keyframes bdp-rock {
+    0%, 100% { transform: rotate(-7deg); }
+    50%      { transform: rotate(7deg); }
+  }
+
+  /* 07 토끼: 처음엔 오른쪽 화면 밖 → 화면이 보이면 깡충깡충 두 번 뛰어 들어와 '뿅' 하고 착지 */
+  .bdp-motion .b07 .deco-rabbit {
+    transform: translateX(560px);
+    transform-origin: 50% 100%;
+  }
+  .bdp-motion .b07 .deco-rabbit.is-in { animation: bdp-hop 1.25s cubic-bezier(.3, .6, .4, 1) forwards; }
+  @keyframes bdp-hop {
+    0%   { transform: translate(560px, 0) rotate(0); }
+    18%  { transform: translate(430px, -110px) rotate(-10deg); }
+    34%  { transform: translate(300px, 0) rotate(0) scale(1.06, .9); }
+    52%  { transform: translate(160px, -85px) rotate(-8deg); }
+    68%  { transform: translate(0, 0) rotate(0) scale(1.14, .82); }   /* 착지: 납작 */
+    80%  { transform: translate(0, -22px) scale(.94, 1.08); }        /* 뿅! */
+    90%  { transform: translate(0, 0) scale(1.04, .96); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+
+  /* 07(메인 화면) 오리: 피그마 원본 날개 레이어로 파닥이며 제자리에서 빙글 날기
+     날개 축 = 몸통에 붙는 자리 (뒷날개는 아래쪽, 앞날개는 위쪽 끝) */
+  .b10 .bdp-duck { left: 1687px; top: 752.9px; width: 167.46px; height: 141.19px; animation: bdp-fly 5.5s ease-in-out infinite; }
+  .bdp-duck__wing { animation: bdp-flap-back .38s ease-in-out infinite alternate; }
+  .bdp-duck__wing--back  { transform-origin: 40% 88%; }
+  .bdp-duck__wing--front { transform-origin: 34% 10%; animation-name: bdp-flap-front; }
+  @keyframes bdp-flap-back  { from { transform: rotate(-6deg); } to { transform: rotate(32deg) scaleY(.85); } }
+  @keyframes bdp-flap-front { from { transform: rotate(4deg); }  to { transform: rotate(-26deg) scaleY(.85); } }
+  @keyframes bdp-fly {
+    0%, 100% { transform: translate(0, 0) rotate(0); }
+    25%      { transform: translate(-46px, -34px) rotate(-5deg); }
+    50%      { transform: translate(-14px, -58px) rotate(1deg); }
+    75%      { transform: translate(28px, -22px) rotate(4deg); }
+  }
+}

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UX/UI 디자이너 포트폴리오 — 열나요 · Piccha · 베베드피노</title>
+
+  <!-- 글꼴: Pretendard(본문) + Galmuri(픽셀 라벨/제목) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 픽셀 마우스 커서 (모양은 script.js에서 그림) -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <svg class="cursor__arrow" id="cursorArrow"></svg>
+    <span class="cursor__label" id="cursorLabel"></span>
+  </div>
+
+  <!-- GNB: 떠 있는 메뉴 바 (레퍼런스 two-step 방식: 가로로 넓어진 뒤 아래로 펼쳐짐) -->
+  <header class="gnb" id="gnb">
+    <div class="gnb__dim" id="gnbDim"></div><!-- 메뉴가 열리면 뒤 화면을 어둡게 -->
+
+    <div class="gnb__bar" id="gnbBar">
+      <div class="gnb__top">
+        <a href="#top" class="gnb__logo" data-gnb-link>
+          <svg class="mark mark--blue" viewBox="0 0 7 7" aria-hidden="true">
+            <rect x="3" y="0" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/>
+            <rect x="2" y="2" width="3" height="3"/><rect x="0" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/>
+            <rect x="1" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/>
+          </svg>
+          Read, Fix, Save.
+        </a>
+        <div class="gnb__actions">
+        <!-- 효과음 켜기/끄기 (sfx.js) -->
+        <button type="button" class="sfx-toggle" id="sfxToggle" aria-pressed="false" aria-label="효과음 켜기">
+          <svg viewBox="0 0 9 9" aria-hidden="true">
+            <rect x="1" y="3" width="2" height="3"/><rect x="3" y="2" width="1" height="5"/><rect x="4" y="1" width="1" height="7"/>
+            <g class="w"><rect x="6" y="3" width="1" height="3"/><rect x="7" y="1" width="1" height="1"/><rect x="8" y="2" width="1" height="5"/><rect x="7" y="7" width="1" height="1"/></g>
+            <g class="x"><rect x="6" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="7" y="4" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/></g>
+          </svg>
+        </button>
+        <button class="gnb__toggle" id="gnbToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="gnbPanel">
+          <span class="gnb__toggle-bar"></span>
+          <span class="gnb__toggle-bar"></span>
+        </button>
+        </div>
+        <span class="gnb__line" id="gnbLine"></span><!-- 열렸을 때 위·아래 구분선 -->
+      </div>
+
+      <div class="gnb__panel" id="gnbPanel">
+        <div class="gnb__panel-inner">
+          <div class="gnb__col">
+            <nav aria-label="주요 메뉴">
+              <ul class="gnb__menu">
+                <li><a href="#top" class="gnb__link" data-gnb-link>홈</a></li>
+                <li><a href="about.html" class="gnb__link">소개</a></li>
+                <li><a href="#works" class="gnb__link" data-gnb-link>작업</a></li>
+                <li><a href="#contact" class="gnb__link" data-gnb-link>연락하기</a></li>
+              </ul>
+            </nav>
+            <ul class="gnb__social">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">LinkedIn</a></li>
+              <li><a href="#">Behance</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. 히어로 (레퍼런스 odama.io)
+         스크롤하면: 문장은 아래로 사라지고, 양옆 단어가 바뀌고, 컴퓨터가 한 바퀴 돌며 모니터 화면이 꽉 차서 소개 섹션으로 이어짐 -->
+    <section class="hero" id="top">
+      <div class="hero__stage">
+        <!-- 3D 레트로 컴퓨터 (hero-pc.js): 마우스를 따라 기울고, 버튼을 누르면 화면이 바뀜 -->
+        <div class="hero__pc" id="heroPc">
+          <canvas id="heroPcCanvas" role="img" aria-label="레트로 컴퓨터와 작업 플로피디스크 3장. 디스크를 꽂으면 화면에 작업이 뜨고, OK로 상세페이지를 열 수 있어요."></canvas>
+          <div class="hero__pc-keys">
+            <button type="button" data-pc="prev">이전 화면</button>
+            <button type="button" data-pc="ok">선택</button>
+            <button type="button" data-pc="next">다음 화면</button>
+            <button type="button" data-pc="knob">화면 색 바꾸기</button>
+            <button type="button" data-pc="disk:yeolnayo">열나요 디스크 꽂기</button>
+            <button type="button" data-pc="disk:piccha">Piccha 디스크 꽂기</button>
+            <button type="button" data-pc="disk:bebedepino">베베드피노 디스크 꽂기</button>
+          </div>
+        </div>
+
+        <p class="hero__side hero__side--left" data-swap="About" aria-hidden="true">Research</p>
+        <p class="hero__side hero__side--right" data-swap="Me" aria-hidden="true">Interface</p>
+
+        <h1 class="hero__statement">
+          <span>Fever logs, gacha trades, kidswear carts</span>
+          <span>researched first, then made simple</span>
+        </h1>
+
+        <div class="hero__fill" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- 2. 파란 소개 섹션: 스크롤하면 흩어진 단어가 문장으로 모임 -->
+    <section class="intro" id="intro">
+      <div class="intro__pin">
+        <p class="intro__text" id="introText">
+          사용자의 작은 불편에서 출발해, 리서치와 인터뷰로 이유를 찾고,
+          그 이유를 화면 하나하나에 담아내는 디자이너예요. 열나요, Piccha처럼
+          실제 사람의 하루를 바꾸는 서비스를 만들어 왔고, 앞으로도
+          보기 좋은 것보다 쓰기 좋은 것을 먼저 고민하려고 해요.
+        </p>
+
+        <div class="intro__corner intro__corner--left">
+          <a class="intro__more" href="about.html">소개 더 보기 →</a>
+          <p class="mono">UX/UI DESIGNER</p>
+          <p class="small">Based in Seoul</p>
+        </div>
+        <div class="intro__corner intro__corner--right">
+          <div class="intro__meta">
+            <p class="mono">SINCE 2026</p>
+            <p class="small">Read, Fix, Save. ©</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 프로젝트 목록 (레퍼런스 studiobumps 인덱스 표 방식)
+         - 줄에 마우스를 올리면 data-preview 이미지가 마우스 옆에 떠오름
+         - href가 있는 줄은 상세 페이지로 이동, 없는 줄은 "준비 중" -->
+    <section class="works" id="works">
+      <h2 class="works__title">선택한 작업</h2>
+      <div class="works__index" role="table" aria-label="작업 목록">
+        <div class="works__head" role="row">
+          <span role="columnheader">Project</span>
+          <span role="columnheader">Type</span>
+          <span role="columnheader">Role</span>
+          <span role="columnheader">Year</span>
+        </div>
+        <a class="work" role="row" href="work-yeolnayo-v2.html" data-preview="images/work-thumb-yeolnayo.jpg">
+          <span class="work__title" role="cell"><i class="disk" style="--disk:var(--disk-yeolnayo)" aria-hidden="true"></i>열나요 — 아이 발열 기록 앱</span>
+          <span class="work__meta" role="cell">UX/UI · App</span>
+          <span class="work__meta" role="cell">Personal work</span>
+          <span class="work__meta work__year" role="cell">2026</span>
+        </a>
+        <a class="work" role="row" href="work-piccha.html" data-preview="images/work-thumb-piccha.jpg">
+          <span class="work__title" role="cell"><i class="disk" style="--disk:var(--disk-piccha)" aria-hidden="true"></i>Piccha — 가챠 플랫폼 앱</span>
+          <span class="work__meta" role="cell">UX/UI · App</span>
+          <span class="work__meta" role="cell">Personal work</span>
+          <span class="work__meta work__year" role="cell">2026</span>
+        </a>
+        <a class="work" role="row" href="work-bebedepino.html" data-preview="images/work-thumb-bebedepino.jpg">
+          <span class="work__title" role="cell"><i class="disk" style="--disk:var(--disk-bebedepino)" aria-hidden="true"></i>베베드피노 — 브랜드 웹사이트 리뉴얼</span>
+          <span class="work__meta" role="cell">UX/UI · Web</span>
+          <span class="work__meta" role="cell">Personal work</span>
+          <span class="work__meta work__year" role="cell">2026</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- 작업 미리보기 (마우스를 따라다니는 이미지) -->
+    <div class="work-peek" id="workPeek" aria-hidden="true"><img src="images/work-thumb-yeolnayo.jpg" alt="" width="880" height="495" /></div>
+
+    <div class="footer-wrap" id="contact"><!-- 푸터가 아래에서 드러나도록 감싸는 틀 -->
+    <footer class="footer">
+      <!-- 큰 제목 + 끌고 다닐 수 있는 스티커 (마우스를 올리면 선택 상자, 잡아서 옮기기) -->
+      <div class="footer__stage" id="footerStage">
+        <h2 class="footer__title" data-tilt>Shall we<br />work together?</h2>
+
+        <div class="sticker window" data-sticker style="top: 6%; left: 3%;">
+          <div class="window__bar"><span>SNS</span><span>[+]</span></div>
+          <ul class="window__list">
+            <li><a href="#">[인스타그램]</a></li>
+            <li><a href="#">[링크드인]</a></li>
+            <li><a href="#">[비핸스]</a></li>
+          </ul>
+        </div>
+
+        <div class="sticker window" data-sticker style="top: 60%; right: 4%;">
+          <div class="window__bar"><span>WEBSITE</span><span>[+]</span></div>
+          <ul class="window__list">
+            <li><a href="#top" data-gnb-link>[홈]</a></li>
+            <li><a href="#works" data-gnb-link>[작업]</a></li>
+            <li><a href="about.html">[소개]</a></li>
+            <li><a href="#contact" data-gnb-link>[연락하기]</a></li>
+          </ul>
+        </div>
+
+        <div class="sticker card card--lime" data-sticker style="bottom: 8%; left: 10%;">
+          <svg class="mark mark--dark" viewBox="0 0 7 7" aria-hidden="true">
+            <rect x="3" y="0" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/>
+            <rect x="2" y="2" width="3" height="3"/><rect x="0" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/>
+            <rect x="1" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/>
+          </svg>
+        </div>
+        <a class="footer__mail" href="mailto:bysy2312@gmail.com">bysy2312@gmail.com</a>
+      </div>
+      <div class="footer__bottom">
+        <ul class="footer__links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+        </ul>
+        <p>© 2026</p>
+      </div>
+    </footer>
+    </div>
+  </main>
+
+  <!-- 애니메이션 라이브러리 (무료, 설치 없이 불러오기) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.17/dist/lenis.min.js"></script>
+  <script src="sfx.js"></script>
+  <script src="script.js"></script>
+  <!-- 3D 라이브러리(Three.js): 설치 없이 CDN에서 불러옴 -->
+  <script type="importmap">
+    { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    } }
+  </script>
+  <script type="module" src="hero-pc.js"></script>
+</body>
+</html>

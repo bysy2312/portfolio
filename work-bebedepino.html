@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>베베드피노 — 아동복 브랜드 웹사이트 리뉴얼 · UX/UI 포트폴리오</title>
+
+  <!-- 글꼴: Pretendard(본문) + Galmuri(픽셀 라벨/제목) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="work.css" />
+  <link rel="stylesheet" href="work-fx.css" />
+  <link rel="stylesheet" href="work-bebedepino.css" />
+  <link rel="stylesheet" href="work-bebedepino-motion.css" />
+  <link rel="stylesheet" href="work-cover.css" />
+  <link rel="stylesheet" href="proto.css" />
+  <script src="work-fx.js"></script>
+</head>
+<body class="page-detail page-work">
+
+  <!-- 픽셀 마우스 커서 (모양은 script.js에서 그림) -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <svg class="cursor__arrow" id="cursorArrow"></svg>
+    <span class="cursor__label" id="cursorLabel"></span>
+  </div>
+
+  <!-- GNB: 떠 있는 메뉴 바 (레퍼런스 two-step 방식: 가로로 넓어진 뒤 아래로 펼쳐짐) -->
+  <header class="gnb" id="gnb">
+    <div class="gnb__dim" id="gnbDim"></div><!-- 메뉴가 열리면 뒤 화면을 어둡게 -->
+
+    <div class="gnb__bar" id="gnbBar">
+      <div class="gnb__top">
+        <a href="index.html#top" class="gnb__logo" data-gnb-link>
+          <svg class="mark mark--blue" viewBox="0 0 7 7" aria-hidden="true">
+            <rect x="3" y="0" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/>
+            <rect x="2" y="2" width="3" height="3"/><rect x="0" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/>
+            <rect x="1" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/>
+          </svg>
+          Read, Fix, Save.
+        </a>
+        <div class="gnb__actions">
+        <!-- 효과음 켜기/끄기 (sfx.js) -->
+        <button type="button" class="sfx-toggle" id="sfxToggle" aria-pressed="false" aria-label="효과음 켜기">
+          <svg viewBox="0 0 9 9" aria-hidden="true">
+            <rect x="1" y="3" width="2" height="3"/><rect x="3" y="2" width="1" height="5"/><rect x="4" y="1" width="1" height="7"/>
+            <g class="w"><rect x="6" y="3" width="1" height="3"/><rect x="7" y="1" width="1" height="1"/><rect x="8" y="2" width="1" height="5"/><rect x="7" y="7" width="1" height="1"/></g>
+            <g class="x"><rect x="6" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="7" y="4" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/></g>
+          </svg>
+        </button>
+        <button class="gnb__toggle" id="gnbToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="gnbPanel">
+          <span class="gnb__toggle-bar"></span>
+          <span class="gnb__toggle-bar"></span>
+        </button>
+        </div>
+        <span class="gnb__line" id="gnbLine"></span><!-- 열렸을 때 위·아래 구분선 -->
+      </div>
+
+      <div class="gnb__panel" id="gnbPanel">
+        <div class="gnb__panel-inner">
+          <div class="gnb__col">
+            <nav aria-label="주요 메뉴">
+              <ul class="gnb__menu">
+                <li><a href="index.html#top" class="gnb__link" data-gnb-link>홈</a></li>
+                <li><a href="about.html" class="gnb__link">소개</a></li>
+                <li><a href="index.html#works" class="gnb__link" data-gnb-link>작업</a></li>
+                <li><a href="index.html#contact" class="gnb__link" data-gnb-link>연락하기</a></li>
+              </ul>
+            </nav>
+            <ul class="gnb__social">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">LinkedIn</a></li>
+              <li><a href="#">Behance</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-page">
+    <div class="w-cover-wrap"><!-- 커버가 멈춰 있고 다음 섹션이 위로 덮으며 올라옴 -->
+    <!-- 상단 커버 (2026-11-22): 열나요·Piccha와 같은 구성. 웹사이트라 휴대폰 대신 브라우저 창 안에서 피그마 프로토타입을 써 볼 수 있음
+         (피그마 '사이트' › 베베드피노_최종작업물, proto.js + proto-bebedepino.js) -->
+    <header class="w-cover w-cover--web" id="top">
+      <div class="w-cover__bg" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="w-cover__dim" aria-hidden="true"></div>
+      <a class="w-back w-cover__back" href="index.html#works">← 작업 목록</a>
+      <div class="w-cover__stage">
+        <div class="w-cover__obj proto" id="coverObj" data-proto="bebedepino" role="region" aria-label="베베드피노 웹사이트 프로토타입: 스크롤하고 눌러 보세요"></div>
+        <h1 class="w-cover__title" id="coverTitle" aria-label="베베드피노">Bebedepino</h1>
+      </div>
+      <div class="w-cover__info">
+        <div class="w-cover__col w-cover__col--details">
+          <p class="w-cover__label">Details</p>
+          <p>베베드피노는 아동복 브랜드 웹사이트를 새로 설계한 리뉴얼 작업이에요.</p>
+          <p>브랜드 이야기와 상품, 룩북, 결제까지 이어지는 흐름을 정리하고, 아이 옷을 고르는 즐거움이 느껴지도록 움직임과 일러스트를 더했어요.</p>
+        </div>
+        <div class="w-cover__col">
+          <p class="w-cover__label">Role</p>
+          <ul><li>UX Research</li><li>UI Design</li><li>Interaction</li></ul>
+        </div>
+        <div class="w-cover__col">
+          <p class="w-cover__label">Credits</p>
+          <ul><li>Client: Personal work</li><li>Duration: 2026</li><li>Category: Web Renewal</li><li>Contribution: 100%</li></ul>
+        </div>
+      </div>
+    </header>
+
+
+    <!-- 본문: 피그마 프레임을 한 장씩 HTML/CSS로 구현 (글자·박스·선·그라데이션은 코드, 사진·일러스트·목업만 이미지) -->
+    <!-- 01 01_overview -->
+    <section class="fx b01" aria-label="베베드피노 01">
+      <div class="fx__in">
+        <div class="overview-hero">
+          <img class="background-cloud-03" src="images/bebedepino/parts/b01-1dbd76dbec.webp" alt="" loading="lazy" decoding="async" />
+          <img class="background-cloud-04" src="images/bebedepino/parts/b01-50dc6b44f2.webp" alt="" loading="lazy" decoding="async" />
+          <img class="background-cloud-02" src="images/bebedepino/parts/b01-733f890ed1.webp" alt="" loading="lazy" decoding="async" />
+          <img class="background-cloud-01" src="images/bebedepino/parts/b01-6309b13073.webp" alt="" loading="lazy" decoding="async" />
+          <img class="background-white-mountain" src="images/bebedepino/parts/b01-4d9173179b.webp" alt="" loading="lazy" decoding="async" />
+          <img class="background-movables" src="images/bebedepino/parts/b01-4c73ccb315.webp" alt="" loading="lazy" decoding="async" />
+          <img class="shape" src="images/bebedepino/parts/b01-23577c9d27.webp" alt="" loading="lazy" decoding="async" />
+          <div class="overview-intro">
+            <img class="logo-lockup" src="images/bebedepino/parts/b01-8f05742a74.webp" alt="" loading="lazy" decoding="async" />
+            <div class="intro-copy">
+              <img class="intro-tagline-en" src="images/bebedepino/parts/b01-209ab0cc13.webp" alt="" loading="lazy" decoding="async" />
+              <p class="intro-body-kr">2010년 시작된 베베드피노(BEBE DE PINO)는 동화적 상상력과 톡톡 튀는 컬러·패턴을 앞세워
+아동복을 &#x27;패션&#x27;의 영역으로 끌어올린 프리미엄 영유아동 브랜드입니다. 매출 1,000억 돌파와 강한 팬덤으로
+브랜드력은 이미 검증됐지만, 그 정체성과 사용성이 디지털 접점에서는 충분히 살아나지 못했습니다. 
+이에 브랜드 감성은 유지하면서 탐색·구매 경험을 개선해, &#x27;예쁜 브랜드&#x27;를 넘어 &#x27;믿고 사는 브랜드&#x27;로 이어지는
+경험을 설계했습니다.</p>
+            </div>
+            <img class="btn-scroll-down" src="images/bebedepino/parts/b01-fe05ac25e2.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <img class="illust-bear-duo" src="images/bebedepino/parts/b01-1f40276b31.webp" alt="" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </section>
+    </div>
+    <!-- 02 02_industry_trends -->
+    <section class="fx b02" aria-label="베베드피노 02">
+      <div class="fx__in">
+        <img class="02-industry-trends-bg" src="images/bebedepino/parts/b02-b50feacd84.webp" alt="" loading="lazy" decoding="async" />
+        <div class="trends-body">
+          <div class="trend-list">
+            <div class="trend-card-01">
+              <div class="badge-num">
+                <p class="badge-num-text">1</p>
+              </div>
+              <div class="card-body">
+                <p class="card-title">골드키즈 · VIB</p>
+                <p class="card-desc">한 명의 아이에게 소비를 집중하는 &#x27;골드키즈&#x27; 현상과 &#x27;VIB(매우 소중한 아이)&#x27; 소비가 프리미엄 수요로 이어지고 있습니다.
+한국의 1인당 연간 유아동복 소비액은 2023년 기준 332달러로 아시아·태평양 4위입니다.</p>
+              </div>
+            </div>
+            <div class="trend-card-02">
+              <div class="badge-num-2">
+                <p class="badge-num-text-2">2</p>
+              </div>
+              <div class="card-body-2">
+                <p class="card-title-2">에잇포켓 → 이모·고모</p>
+                <p class="card-desc-2">부모·조부모에 더해, 조카를 위해 소비하는 2040세대 &#x27;이모·고모&#x27; 고객층이 새로운 소비 주체로 부상했습니다.
+해당 소비자층은 아이의 정확한 사이즈나 취향을 모른채 구매하는 비정기 고객이기에, ‘실패없이 특별해 보이는 선택’에
+대한 니즈가 큽니다. 그 결과 ‘선물하기’ 서비스가 급부상하였습니다.</p>
+              </div>
+            </div>
+            <div class="trend-card-03">
+              <div class="badge-num-3">
+                <p class="badge-num-text-3">3</p>
+              </div>
+              <div class="card-body-3">
+                <p class="card-title-3">미니미 · 패밀리룩</p>
+                <p class="card-desc-3">MZ세대 부모의 &#x27;패밀리룩·시밀러룩&#x27; 선호에 맞춰 뉴발란스키즈 · MLB키즈 · 탑텐키즈 · 폴햄키즈 등 성인 브랜드가 
+&#x27;미니미&#x27; 라인을 선보였습니다. 성인 브랜드의 인지도와 자본력을 앞세워 빠르게 키즈 시장에 안착하고 있습니다. 부모와 아이가 함께 
+입는 수요가 커지면서, 형제자매·가족 단위로 매치되는 세트·시밀러 상품을 한 번에 탐색하고 구매하는 경험이 중요해졌습니다.</p>
+              </div>
+            </div>
+          </div>
+          <div class="market-card">
+            <div class="market-card-content">
+              <div class="market-card-header">
+                <div class="badge-num-4">
+                  <p class="badge-num-text-4">4</p>
+                </div>
+                <div class="card-body-4">
+                  <p class="card-title-4">출산율 줄어도 커지는 아동복 시장</p>
+                  <p class="card-desc-4">2025년 3월~2026년 2월 국내 유아동복 시장 규모는 약 2조323억 원으로
+전년 대비 9.1% 증가하였으나 같은 기간 0~14세 인구는 오히려 9.5% 줄었습니다</p>
+                </div>
+              </div>
+              <div class="market-chart">
+                <div class="chart-plot">
+                  <div class="chart-bars">
+                    <div class="bar-02"></div>
+                    <div class="bar-01"></div>
+                    <div class="bar-03-active"></div>
+                    <p class="chart-value">2조 323억원</p>
+                  </div>
+                  <img class="chart-trendline" src="images/bebedepino/parts/b02-7de081b79f.webp" alt="" loading="lazy" decoding="async" />
+                </div>
+                <div class="chart-stats">
+                  <div class="stat-market-size">
+                    <p class="stat-label">유아동복 시장규모</p>
+                    <p class="stat-value">+9.1%</p>
+                  </div>
+                  <div class="stat-population">
+                    <p class="stat-label-2">0~14세 인구</p>
+                    <p class="stat-value-2">-9.5%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section-header">
+          <div class="title">
+            <img class="circle" src="images/bebedepino/parts/b02-6c6e57ccd3.webp" alt="" loading="lazy" decoding="async" />
+            <img class="subtitle" src="images/bebedepino/parts/b02-3b37aa9e2d.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <h2 class="title-01">저출산 시대의 역설적 성장</h2>
+          <p class="subtitle-2">저출산으로 아이는 줄어드는데도, 유아동복은 패션 카테고리 중 거의 유일하게 &#x27;나홀로 성장&#x27;하는 시장입니다.
+성장의 동력은 아이의 &#x27;수&#x27;가 아니라,한 아이에게 소비를 집중하는 &#x27;방식&#x27;의 변화에 있습니다.</p>
+        </div>
+      </div>
+    </section>
+    <!-- 03 03_desk_research -->
+    <section class="fx b03" aria-label="베베드피노 03">
+      <div class="fx__in">
+        <img class="03-desk-research-bg" src="images/bebedepino/parts/b03-1dcf23104c.webp" alt="" loading="lazy" decoding="async" />
+        <div class="col">
+          <div class="row">
+            <div class="compare-card">
+              <div class="compare-table">
+                <img class="table-head" src="images/bebedepino/parts/b03-f1f545add7.webp" alt="" loading="lazy" decoding="async" />
+                <div class="table-body">
+                  <div class="row-labels">
+                    <p class="row-label-position">포지션</p>
+                    <p class="row-label-content-pro">콘텐츠 강점</p>
+                    <p class="row-label-content-con">콘텐츠 약점</p>
+                    <p class="row-label-design-pro">디자인 강점</p>
+                    <p class="row-label-design-con">디자인 약점</p>
+                  </div>
+                  <div class="col-ettoi">
+                    <div class="premium-baby-01">
+                      <p class="premium-baby">제품·시즌형,<span class="fx-ps" style="height:5.32px"></span>프리미엄 영유아</p>
+                    </div>
+                    <div class="premium-baby-02">
+                      <p class="premium-baby-2">시즌·컬렉션 메인 노출,<span class="fx-ps" style="height:5.32px"></span>AI 추천, Gift Shop 배너</p>
+                    </div>
+                    <div class="premium-baby-03">
+                      <p class="premium-baby-3">유럽 클래식 재해석 외<span class="fx-ps" style="height:5.32px"></span>개성 약함</p>
+                    </div>
+                    <div class="premium-baby-04">
+                      <p class="premium-baby-4">정돈미</p>
+                    </div>
+                    <div class="premium-baby-05">
+                      <p class="premium-baby-5">Hero 임팩트 부족,<span class="fx-ps" style="height:5.32px"></span>슬라이드 반복</p>
+                    </div>
+                  </div>
+                  <div class="col-apricot">
+                    <div class="premium-baby-01-2">
+                      <p class="premium-baby-6">스토리·감성형,<span class="fx-ps" style="height:5.32px"></span>절제된 미니멀</p>
+                    </div>
+                    <div class="premium-baby-02-2">
+                      <p class="premium-baby-7">브랜드 철학 전면,<span class="fx-ps" style="height:5.32px"></span>베스트 리뷰</p>
+                    </div>
+                    <div class="premium-baby-03-2">
+                      <p class="premium-baby-8">시즈널·프로모션 약함,<span class="fx-ps" style="height:5.32px"></span>상호작용 부족</p>
+                    </div>
+                    <div class="premium-baby-04-2">
+                      <p class="premium-baby-9">정돈큰 덩어리감·여백,<span class="fx-ps" style="height:5.32px"></span>친근한 카피미</p>
+                    </div>
+                    <div class="premium-baby-05-2">
+                      <p class="premium-baby-10">Hero 임팩트 부족,<span class="fx-ps" style="height:5.32px"></span>슬라이드 반리스트 정보 부족</p>
+                    </div>
+                  </div>
+                  <div class="col-agabang">
+                    <div class="premium-baby-01-3">
+                      <p class="premium-baby-11">인지도·선물형,<span class="fx-ps" style="height:5.32px"></span>대중적</p>
+                    </div>
+                    <div class="premium-baby-02-3">
+                      <p class="premium-baby-12">브랜드별 섹션 명확,<span class="fx-ps" style="height:5.32px"></span>선물세트 반복 노출</p>
+                    </div>
+                    <div class="premium-baby-03-3">
+                      <p class="premium-baby-13">시즈널·프스토리 부재,<span class="fx-ps" style="height:5.32px"></span>개인화 미흡, 단선 구조로모션 약함</p>
+                    </div>
+                    <div class="premium-baby-04-3">
+                      <p class="premium-baby-14">단순·가독성, 찜 기능,<span class="fx-ps" style="height:5.32px"></span>톤 일관</p>
+                    </div>
+                    <div class="premium-baby-05-3">
+                      <p class="premium-baby-15">비주얼 임팩트 약함,<span class="fx-ps" style="height:5.32px"></span>과한 애니메이션</p>
+                    </div>
+                  </div>
+                  <div class="col-looxlooe">
+                    <div class="premium-baby-01-4">
+                      <p class="premium-baby-16">멀티브랜드 편집숍,<span class="fx-ps" style="height:5.32px"></span>큐레이션</p>
+                    </div>
+                    <div class="premium-baby-02-4">
+                      <p class="premium-baby-17">키워드 중심 탐색,<span class="fx-ps" style="height:5.32px"></span>카피 우수</p>
+                    </div>
+                    <div class="premium-baby-03-4">
+                      <p class="premium-baby-18">구매 흐름 약함,<span class="fx-ps" style="height:5.32px"></span>나이대 탐색 난이</p>
+                    </div>
+                    <div class="premium-baby-04-4">
+                      <p class="premium-baby-19">정보량 풍부,<span class="fx-ps" style="height:5.32px"></span>쇼핑 중심 최적화</p>
+                    </div>
+                    <div class="premium-baby-05-4">
+                      <p class="premium-baby-20">카드 우선순위 불분명,<span class="fx-ps" style="height:5.32px"></span>gnb 부피 큼</p>
+                    </div>
+                  </div>
+                </div>
+                <img class="table-dividers" src="images/bebedepino/parts/b03-2805c3ae24.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div class="map-card">
+              <div class="positioning-map">
+                <img class="map-logo-looxlooe" src="images/bebedepino/parts/b03-5ecd4696d7.webp" alt="" loading="lazy" decoding="async" />
+                <img class="map-logo-agabang" src="images/bebedepino/parts/b03-ee95e56792.webp" alt="" loading="lazy" decoding="async" />
+                <img class="map-logo-apricot" src="images/bebedepino/parts/b03-0532d98ab2.webp" alt="" loading="lazy" decoding="async" />
+                <img class="map-logo-ettoi" src="images/bebedepino/parts/b03-7e22d41297.webp" alt="" loading="lazy" decoding="async" />
+                <div class="map-axis">
+                  <p class="axis-label-right">브랜드 몰입</p>
+                  <img class="axis-lines" src="images/bebedepino/parts/b03-c99533f64c.webp" alt="" loading="lazy" decoding="async" />
+                  <p class="axis-label-top">개성·아트무드</p>
+                  <p class="axis-label-bottom">대중·보편무드</p>
+                </div>
+                <img class="map-highlight" src="images/bebedepino/parts/b03-65d6a790ef.webp" alt="" loading="lazy" decoding="async" />
+                <img class="map-logo-bebedepino" src="images/bebedepino/parts/b03-94dbbc46ca.webp" alt="" loading="lazy" decoding="async" />
+              </div>
+              <p class="axis-label-left">커머스 중심</p>
+            </div>
+          </div>
+          <div class="insight-banner">
+            <p class="insight-text">경쟁사의 공통점은 목적형 쇼핑에 집중되어 있어서 정돈된 UX가 장점이지만 브랜드 서사와 감성 몰입이 약합니다.<span class="fx-ps" style="height:5.32px"></span>또한 탐색 이후 경험인 스타일 제안과 콘텐츠가 부족하다는 공통점을 가집니다. 시즌 연계와 개인화, 인터랙션이 미흡하기 때문에 재방문 동기를 만드는 장치가 필요합니다.</p>
+          </div>
+        </div>
+        <div class="section-header">
+          <div class="title">
+            <img class="circle" src="images/bebedepino/parts/b02-6c6e57ccd3.webp" alt="" loading="lazy" decoding="async" />
+            <img class="subtitle" src="images/bebedepino/parts/b03-c63cf3861a.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <h2 class="title-01">경쟁사 조사를 통해 인사이트 아웃의 서비스 방향과 기회 발견</h2>
+          <p class="subtitle-2">프리미엄부터 편집숍까지 주요 경쟁사 4곳을 콘텐츠·디자인 관점에서 분해했습니다.
+각 브랜드의 포지션과 강·약점을 같은 기준으로 비교하고, 포지셔닝 맵으로 시장의 빈틈을 짚었습니다.</p>
+        </div>
+      </div>
+    </section>
+    <!-- 04 04_desk_research -->
+    <section class="fx b04" aria-label="베베드피노 04">
+      <div class="fx__in">
+        <img class="04-desk-research-bg" src="images/bebedepino/parts/b03-1dcf23104c.webp" alt="" loading="lazy" decoding="async" />
+        <img class="background" src="images/bebedepino/parts/b04-93474924cc.webp" alt="" loading="lazy" decoding="async" />
+        <img class="diagram-capsule" src="images/bebedepino/parts/b04-1f5cc784a2.webp" alt="" loading="lazy" decoding="async" />
+        <img class="trust-ring" src="images/bebedepino/parts/b04-bfb6374453.webp" alt="" loading="lazy" decoding="async" />
+        <img class="trust-circle" src="images/bebedepino/parts/b04-c193f4703e.webp" alt="" loading="lazy" decoding="async" />
+        <p class="trust-label">Trust</p>
+        <div class="section-header">
+          <div class="title">
+            <img class="circle" src="images/bebedepino/parts/b02-6c6e57ccd3.webp" alt="" loading="lazy" decoding="async" />
+            <img class="subtitle" src="images/bebedepino/parts/b04-96bba488a2.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <h2 class="title-01">예쁜 브랜드에서, 믿고 사는 브랜드로</h2>
+          <p class="subtitle-2">이미 검증된 브랜드력을 홈페이지에서 온전히 전달할 수 있도록,
+브랜드 감성은 지키되 탐색·구매 경험을 개선하는 데 집중했습니다.</p>
+        </div>
+        <div class="ui-circles">
+          <div class="circle-identity">
+            <p class="subtitle-3">Identity</p>
+          </div>
+          <div class="circle-consistency">
+            <p class="subtitle-4">Consistency</p>
+          </div>
+        </div>
+        <div class="ux-circles">
+          <div class="circle-simple">
+            <p class="subtitle-5">Simple</p>
+          </div>
+          <div class="circle-guide">
+            <p class="subtitle-6">Guide</p>
+          </div>
+        </div>
+        <div class="ui-caption">
+          <div class="row">
+            <img class="graphic-01" src="images/bebedepino/parts/b04-7254e2e740.webp" alt="" loading="lazy" decoding="async" />
+            <p class="subtitle-7">UI</p>
+            <img class="graphic-02" src="images/bebedepino/parts/b04-223b5ef1cf.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <div class="col">
+            <p class="subtitle-8">브랜드를 어떻게 보이게 할 것인가</p>
+            <p class="body">패턴·컬러·캐릭터 기반 디자인 시스템으로
+브랜드 아이덴티티를 일관되게 전달</p>
+          </div>
+        </div>
+        <div class="ux-caption">
+          <div class="row-2">
+            <img class="graphic-01-2" src="images/bebedepino/parts/b04-7254e2e740.webp" alt="" loading="lazy" decoding="async" />
+            <p class="subtitle-9">UX</p>
+            <img class="graphic-02-2" src="images/bebedepino/parts/b04-223b5ef1cf.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <div class="col-2">
+            <p class="subtitle-10">어떻게 쉽게 찾고 사게 할 것인가</p>
+            <p class="body-2">연령×상황 기반으로 탐색을 단순화하고
+사이즈·선물 가이드로 구매 실패를 사전 차단</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 05 05_swot -->
+    <section class="fx b05" aria-label="베베드피노 05">
+      <div class="fx__in">
+        <div class="section-header">
+          <div class="title">
+            <img class="circle" src="images/bebedepino/parts/b02-6c6e57ccd3.webp" alt="" loading="lazy" decoding="async" />
+            <img class="subtitle" src="images/bebedepino/parts/b05-57e4cfee09.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <h2 class="title-01">지피지기 백전백승, 내·외부 진단으로 리뉴얼의 당위성을 확인</h2>
+          <p class="subtitle-2">베베드피노의 강점·약점과 시장의 기회·위협을 네 축으로 정리했습니다.
+검증된 브랜드력과 뚜렷한 기회에 비해, 이를 담아낼 홈페이지 경험은 약점에 머물러 있습니다.
+강점과 기회는 살리고 약점을 보완하는 지점을 찾고자 하였습니다.</p>
+        </div>
+        <div class="swot-card-strengths">
+          <div class="text-wrap-01">
+            <p class="subtitle-3">Strengths</p>
+          </div>
+          <div class="text-wrap-02">
+            <p class="body">동화적 상상력의 아트·키치 디자인의
+명확한 콘셉트 자산 보유</p>
+          </div>
+          <div class="text-wrap-03">
+            <p class="body-2">매출 1,000억 돌파·어워즈 2위의
+검증된 브랜드력</p>
+          </div>
+          <div class="text-wrap-04">
+            <p class="body-3">온라인 태생에서 백화점까지 안착한
+멀티채널</p>
+          </div>
+          <div class="text-wrap-05">
+            <p class="body-4">강한 팬덤(오픈런, 품절 제품 다수)</p>
+          </div>
+        </div>
+        <div class="swot-card-weaknesses">
+          <div class="text-wrap-01-2">
+            <p class="subtitle-4">Weaknesses</p>
+          </div>
+          <div class="text-wrap-02-2">
+            <p class="body-5">동화적 상상력의 아트·키치 디자인의
+명확한 콘셉트 자산 보유</p>
+          </div>
+          <div class="text-wrap-03-2">
+            <p class="body-6">매출 1,000억 돌파·어워즈 2위의
+검증된 브랜드력</p>
+          </div>
+          <div class="text-wrap-04-2">
+            <p class="body-7">온라인 태생에서 백화점까지 안착한
+멀티채널</p>
+          </div>
+          <div class="text-wrap-05-2">
+            <p class="body-8">강한 팬덤(오픈런, 품절 제품 다수)</p>
+          </div>
+        </div>
+        <div class="swot-card-opportunities">
+          <div class="text-wrap-01-3">
+            <p class="subtitle-5">Opportunities</p>
+          </div>
+          <div class="text-wrap-02-3">
+            <p class="body-9">동화적 상상력의 아트·키치 디자인의
+명확한 콘셉트 자산 보유</p>
+          </div>
+          <div class="text-wrap-03-3">
+            <p class="body-10">매출 1,000억 돌파·어워즈 2위의
+검증된 브랜드력</p>
+          </div>
+          <div class="text-wrap-04-3">
+            <p class="body-11">온라인 태생에서 백화점까지 안착한
+멀티채널</p>
+          </div>
+          <div class="text-wrap-05-3">
+            <p class="body-12">강한 팬덤(오픈런, 품절 제품 다수)</p>
+          </div>
+        </div>
+        <div class="swot-card-threats">
+          <div class="text-wrap-01-4">
+            <p class="subtitle-6">Threats</p>
+          </div>
+          <div class="text-wrap-02-4">
+            <p class="body-13">동화적 상상력의 아트·키치 디자인의
+명확한 콘셉트 자산 보유</p>
+          </div>
+          <div class="text-wrap-03-4">
+            <p class="body-14">매출 1,000억 돌파·어워즈 2위의
+검증된 브랜드력</p>
+          </div>
+          <div class="text-wrap-04-4">
+            <p class="body-15">온라인 태생에서 백화점까지 안착한
+멀티채널</p>
+          </div>
+          <div class="text-wrap-05-4">
+            <p class="body-16">강한 팬덤(오픈런, 품절 제품 다수)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 06 06_differentiating_factors -->
+    <section class="fx b06" aria-label="베베드피노 06">
+      <div class="fx__in">
+        <img class="hero-image-model" src="images/bebedepino/parts/b06-b6f2693511.webp" alt="" loading="lazy" decoding="async" />
+        <div class="item-set">
+          <div class="col">
+            <div class="row">
+              <div class="chip">
+                <p class="value">1</p>
+              </div>
+              <p class="subtitle">진정성 있는 브랜드 서사</p>
+            </div>
+            <p class="body">2010년 창업자 부부의 첫 아이 ‘솔’을 위해 만든
+옷에서 출발했고, 브랜드명 자체가 스페인어로
+‘아기 소나무(아이 이름에서 착안)’다.
+마케팅 카피가 아니라 실제 헤리티지다.
+</p>
+          </div>
+        </div>
+        <div class="item-set-2">
+          <div class="col-2">
+            <div class="row-2">
+              <div class="chip-2">
+                <p class="value-2">3</p>
+              </div>
+              <p class="subtitle-2">시그니처 패턴·컬러 자산</p>
+            </div>
+            <p class="body-2">노란 깅엄 위 빨간 사과, 체리 올오버, 한 눈에
+들어오는 독특한 로고 등 베베드피노만의 
+특별함을 각인시킵니다. &#x27;남들과 겹치지 않으면서도 정돈된 무드&#x27;를 원하는 층에 정확히 
+소구하며, 시즌마다 테마 컬렉션으로 이야기를 입혀 브랜드의 세계관을 넓혀 갑니다.</p>
+          </div>
+        </div>
+        <div class="item-set-3">
+          <div class="col-3">
+            <div class="row-3">
+              <div class="chip-3">
+                <p class="value-3">2</p>
+              </div>
+              <p class="subtitle-3">오리지널 키즈 디자인</p>
+            </div>
+            <p class="body-3">뉴발란스키즈·MLB키즈·마리떼키즈처럼 
+성인 브랜드를 축소한 &#x27;미니미&#x27;가 아닌 태생이 오리지널 키즈 브랜드로서 아이의 시선과 몸에 맞춰 디자인합니다. 성인 브랜드가 결코 흉내
+낼 수 없는 고유한 자산입니다.</p>
+          </div>
+        </div>
+        <div class="item-set-4">
+          <div class="col-4">
+            <div class="row-4">
+              <div class="chip-4">
+                <p class="value-4">4</p>
+              </div>
+              <p class="subtitle-4">검증된 브랜드력과 팬덤</p>
+            </div>
+            <p class="body-4">매출 1,000억 돌파와 패션비즈 어워즈 2위,
+신상 출시마다 오픈런과 조기 품절이 이어질
+만큼 탄탄한 팬덤을 보유하고 있습니다.
+이미 시장에서 검증된 브랜드로, 신생 브랜드가 단기간에 따라오기 어려운 신뢰를 프리미엄 
+포지셔닝의 기반으로 삼고 있습니다.</p>
+          </div>
+        </div>
+        <h2 class="section-title">베베드피노의 핵심 경쟁력</h2>
+        <img class="sticker-bear" src="images/bebedepino/parts/b06-e957a1ac38.webp" alt="" loading="lazy" decoding="async" />
+        <img class="sticker-rabbit" src="images/bebedepino/parts/b06-4174feabba.webp" alt="" loading="lazy" decoding="async" />
+        <img class="sticker-cat" src="images/bebedepino/parts/b06-d869ebd9a5.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 07 07_project_goal -->
+    <section class="fx b07" aria-label="베베드피노 07">
+      <div class="fx__in">
+        <img class="background" src="images/bebedepino/parts/b07-d0093113a2.webp" alt="" loading="lazy" decoding="async" />
+        <div class="section-header">
+          <div class="title">
+            <img class="circle" src="images/bebedepino/parts/b02-6c6e57ccd3.webp" alt="" loading="lazy" decoding="async" />
+            <img class="subtitle" src="images/bebedepino/parts/b07-f82b93ac7d.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <h2 class="title-01">검증된 브랜드력을 &#x27;믿고 사는 경험&#x27;을, 홈페이지에서 온전히 전달할 수 있도록</h2>
+          <p class="subtitle-2">베베드피노가 쌓아온 브랜드 감성과 오리지널 디자인 자산을 어필하되, 그동안 약했던 정보 전달과 탐색 경험을 UX/UI로 보완하는 것이 이번 프로젝트의 핵심 목표입니다.
+뒤섞여 있던 메뉴 구조를 &#x27;아이 나이 × 입히는 상황&#x27; 기준으로 재정비하고 사이즈 추천·선물 여정으로 구매 실패를 사전에 차단하며, 브랜드 무드를 담은 커스텀 디자인 시스템과
+시즌 룩북 스토리텔링을 중심으로 소비자가 베베드피노와 함께 &#x27;예쁜 브랜드&#x27;를 넘어 &#x27;믿고 사는 브랜드&#x27;를 경험할 수 있도록 제안합니다.</p>
+        </div>
+        <div class="goal-cards">
+          <div class="goal-card-brand-story">
+            <div class="col">
+              <div class="col-01">
+                <div class="text-wrap">
+                  <p class="subtitle-3">BRAND STORY</p>
+                </div>
+                <div class="col-2">
+                  <p class="subtitle-4">CONTENT ENHANCEMENT
+콘텐츠 강화</p>
+                  <div class="col-3">
+                    <div class="chip">
+                      <p class="body">브랜드 스토리섹션 신설</p>
+                    </div>
+                    <p class="body-2">아트·키치 디자인의 세계관과
+핵심 문장을 메인으로 노출</p>
+                  </div>
+                </div>
+              </div>
+              <img class="path" src="images/bebedepino/parts/b07-83d1bfce64.webp" alt="" loading="lazy" decoding="async" />
+              <div class="col-02">
+                <p class="body-01">브랜드 우선 헤더
+자매 브랜드는 푸터 영역으로 이동</p>
+                <p class="body-02">첫 화면은
+단일 브랜드 정체성에 집중</p>
+              </div>
+            </div>
+          </div>
+          <div class="goal-card-guided-finding">
+            <div class="col-4">
+              <div class="col-01-2">
+                <div class="text-wrap-2">
+                  <p class="subtitle-5">GUIDED FINDING</p>
+                </div>
+                <div class="col-5">
+                  <p class="subtitle-6">CONTENT EXPANSION
+콘텐츠 확장</p>
+                  <div class="col-6">
+                    <div class="chip-2">
+                      <p class="body-3">코디 제안·AI 맞춤추천</p>
+                    </div>
+                    <p class="body-4">&#x27;이 상품과 잘 어울려요&#x27;
+상세페이지 사이즈 추천 제공</p>
+                  </div>
+                </div>
+              </div>
+              <img class="path-2" src="images/bebedepino/parts/b07-83d1bfce64.webp" alt="" loading="lazy" decoding="async" />
+              <div class="col-02-2">
+                <p class="body-01-2">구매 망설임과
+교환·반품을 사전 방지</p>
+                <p class="body-02-2">정보 시각화
+소재·사이즈·컬러 안내</p>
+              </div>
+            </div>
+          </div>
+          <div class="goal-card-design-system">
+            <div class="col-7">
+              <div class="col-01-3">
+                <div class="text-wrap-3">
+                  <p class="subtitle-7">DESIGN SYSTEM
+</p>
+                </div>
+                <div class="col-8">
+                  <p class="subtitle-8">UI ENHANCEMENT
+UI 강화</p>
+                  <div class="col-9">
+                    <div class="chip-3">
+                      <p class="body-5">디자인 시스템 재정립</p>
+                    </div>
+                    <p class="body-6">컬러·타이포·그리드·여백 등
+아이콘 세트와 버튼 상태 정리</p>
+                  </div>
+                </div>
+              </div>
+              <img class="path-3" src="images/bebedepino/parts/b07-83d1bfce64.webp" alt="" loading="lazy" decoding="async" />
+              <div class="col-02-3">
+                <p class="body-01-3">PDP 타이포 위계 확립
+국영문 대비 정립</p>
+                <p class="body-02-3">브랜드 아이덴티티가
+보이는 화면</p>
+              </div>
+            </div>
+          </div>
+          <div class="goal-card-ia-flow">
+            <div class="col-10">
+              <div class="col-01-4">
+                <div class="text-wrap-4">
+                  <p class="subtitle-9">IA &amp;
+User Flow</p>
+                </div>
+                <div class="col-11">
+                  <p class="subtitle-10">UX ENHANCEMENT
+UX 강화</p>
+                  <div class="col-12">
+                    <div class="chip-4">
+                      <p class="body-7">그룹핑 원칙 통일, IA 재설계</p>
+                    </div>
+                    <p class="body-8">GNB를 3~4개 상위군으로
+축약하여 혼동 제거</p>
+                  </div>
+                </div>
+              </div>
+              <img class="path-4" src="images/bebedepino/parts/b07-83d1bfce64.webp" alt="" loading="lazy" decoding="async" />
+              <div class="col-02-4">
+                <p class="body-01-4">룩북·미디어 통합 정비
+&#x27;선물&#x27;은 상황 큐레이션으로 흡수</p>
+                <p class="body-02-4">메인 페이지
+서사 흐름 재구성</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img class="deco-rabbit" src="images/bebedepino/parts/b07-1af91590b7.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 08 07_project_goal -->
+    <section class="fx b08" aria-label="베베드피노 08">
+      <div class="fx__in">
+        <img class="background" src="images/bebedepino/parts/b08-c1e889ea77.webp" alt="" loading="lazy" decoding="async" />
+        <div class="section-header">
+          <div class="title">
+            <img class="circle" src="images/bebedepino/parts/b02-6c6e57ccd3.webp" alt="" loading="lazy" decoding="async" />
+            <img class="subtitle" src="images/bebedepino/parts/b08-6d0ba9d55b.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <h2 class="title-01">브랜드다움을 위한 기본 뼈대, 디자인 시스템</h2>
+          <p class="subtitle-2">베베드피노의 동화적 상상력과 아트·키치 감성을 화면 전반에서 일관되게 전달하기 위해, 컬러·타이포·캐릭터를 하나의 규칙으로 정의했습니다.
+이 시스템은 UI를 넘어 사용자와 만나는 모든 접점에서 브랜드다움을 유지하는 기준이 됩니다.</p>
+        </div>
+        <div class="content-wrapper">
+          <div class="column-left">
+            <div class="feature-item">
+              <div class="badge-num">
+                <p class="badge-num-text">2</p>
+              </div>
+              <div class="feature-item-body">
+                <div class="feature-item-header">
+                  <p class="card-title">Design Keyword</p>
+                </div>
+                <img class="character-illustration-row" src="images/bebedepino/parts/b08-25bb20c510.webp" alt="" loading="lazy" decoding="async" />
+                <div class="tag-group">
+                  <div class="tag-chip-1">
+                    <p class="subtitle-3">동화적·플레이풀</p>
+                  </div>
+                  <p class="value-01">+</p>
+                  <div class="tag-chip-2">
+                    <p class="subtitle-4">핸드드로잉 일러스트</p>
+                  </div>
+                  <p class="value-02">+</p>
+                  <div class="tag-chip-3">
+                    <p class="subtitle-5">코믹 아웃라인 팝</p>
+                  </div>
+                </div>
+                <p class="card-desc">숲·나무·동물을 핸드드로잉 톤으로 그려 동화 같은 세계관을 구축하고, 블랙 아웃라인 + 드롭섀도우로 스티커처럼 팝한 인상을 더했습니다. 이 캐릭터들은 히어로·안내·로딩 등 곳곳에 등장해, 탐색 경험에 위트와 재미를 입히는 브랜드의
+시각적 시그니처입니다.</p>
+              </div>
+            </div>
+          </div>
+          <img class="divider" src="images/bebedepino/parts/b08-77ff5aaa3c.webp" alt="" loading="lazy" decoding="async" />
+          <div class="column-right">
+            <div class="badge-num-2">
+              <p class="badge-num-text-2">3</p>
+            </div>
+            <div class="column-right-body">
+              <div class="column-right-header">
+                <p class="card-title-2">Grid System</p>
+                <p class="card-desc-2">1920px grid / 12 Columns / 120px Margin / 12px Gutter</p>
+              </div>
+              <div class="chart-section">
+                <div class="chart-bar-group">
+                  <img class="item-set-01" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <img class="item-set-02" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <img class="item-set-03" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <img class="item-set-04" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <img class="item-set-05" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <img class="item-set-06" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <img class="item-set-07" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <img class="item-set-08" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <img class="item-set-09" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <img class="item-set-10" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <img class="item-set-11" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <img class="item-set-12" src="images/bebedepino/parts/b08-063cea234e.webp" alt="" loading="lazy" decoding="async" />
+                  <p class="card-desc-3">Desktop
+1920px grid</p>
+                  <div class="shape"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 09 07_project_goal -->
+    <section class="fx b09" aria-label="베베드피노 09">
+      <div class="fx__in">
+        <img class="bush-so" src="images/bebedepino/parts/b09-30690c4b0c.webp" alt="" loading="lazy" decoding="async" />
+        <img class="bush-so-2" src="images/bebedepino/parts/b09-80bdf1cb01.webp" alt="" loading="lazy" decoding="async" />
+        <img class="flower-so" src="images/bebedepino/parts/b09-3313fcbde8.webp" alt="" loading="lazy" decoding="async" />
+        <img class="flower-so-2" src="images/bebedepino/parts/b09-46349b3b39.webp" alt="" loading="lazy" decoding="async" />
+        <img class="bush-so-3" src="images/bebedepino/parts/b09-f26202e754.webp" alt="" loading="lazy" decoding="async" />
+        <div class="detail-panel">
+          <div class="panel-header">
+            <div class="badge-num">
+              <p class="badge-num-text">4</p>
+            </div>
+            <p class="card-title">Typography</p>
+          </div>
+          <div class="detail-list-inner">
+            <div class="row-01">
+              <img class="card-title-2" src="images/bebedepino/parts/b09-2a7fa910c8.webp" alt="" loading="lazy" decoding="async" />
+              <div class="col">
+                <img class="card-desc" src="images/bebedepino/parts/b09-b39bd75725.webp" alt="" loading="lazy" decoding="async" />
+                <div class="item-set">
+                  <p class="card-desc-2">Headline</p>
+                  <p class="card-desc-3">Bold</p>
+                  <p class="card-desc-4">80pt</p>
+                  <p class="card-desc-5">-1.2%</p>
+                  <p class="card-desc-6">브랜드 톤앤매너를 살리는 타이틀입니다.</p>
+                </div>
+              </div>
+            </div>
+            <div class="row-02">
+              <img class="card-title-3" src="images/bebedepino/parts/b09-4c34275159.webp" alt="" loading="lazy" decoding="async" />
+              <div class="col-2">
+                <img class="card-desc-7" src="images/bebedepino/parts/b09-bd91bf56ae.webp" alt="" loading="lazy" decoding="async" />
+                <div class="col-3">
+                  <div class="item-set-2">
+                    <p class="card-desc-8">subtitle</p>
+                    <p class="card-desc-9">Med</p>
+                    <p class="card-desc-10">24pt</p>
+                    <p class="card-desc-11">-0%</p>
+                    <p class="card-desc-12">타이틀을 보조 설명하는 서브 타이틀입니다.</p>
+                  </div>
+                  <div class="item-set-3">
+                    <p class="card-desc-13">Body</p>
+                    <p class="card-desc-14">Med</p>
+                    <p class="card-desc-15">22pt</p>
+                    <p class="card-desc-16">-1.2%</p>
+                    <p class="card-desc-17">본문 내용에 사용합니다.</p>
+                  </div>
+                  <div class="item-set-01">
+                    <p class="card-desc-18">caption 1</p>
+                    <p class="card-desc-19">Med</p>
+                    <p class="card-desc-20">18pt</p>
+                    <p class="card-desc-21">-1.2%</p>
+                    <p class="card-desc-22">Caption 및 footer에 사용합니다.</p>
+                  </div>
+                  <div class="item-set-4">
+                    <p class="card-desc-23">caption 2</p>
+                    <p class="card-desc-24">Med</p>
+                    <p class="card-desc-25">12pt</p>
+                    <p class="card-desc-26">-1.2%</p>
+                    <p class="card-desc-27">footer에 사용합니다.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="card-desc-28">동화적 감성과 정보 가독성을 동시에 잡기 위해 국·영문 서체를 구분해 사용했습니다. 헤드라인의 영문에는 기하학적이면서
+위트 있는 디스플레이 서체 Futura Passata로 브랜드 특유의 팝한 인상을 더하고, 본문의 한글에는 또렷한 자모 구조의
+OA Gothic을 Medium·ExtraBold로 운용해 가독성과 위계를 확보했습니다.</p>
+        </div>
+        <div class="color-palette">
+          <div class="color-swatch-apricot-base">
+            <p class="subtitle">Apricot Base</p>
+            <p class="body">#fdf3e8</p>
+          </div>
+          <div class="color-swatch-point-yellow">
+            <p class="subtitle-2">Point Yellow</p>
+            <p class="body-2">#fcdb00</p>
+          </div>
+          <div class="color-swatch-consistency-red">
+            <p class="subtitle-3">Point Red</p>
+            <p class="body-3">#f22202</p>
+          </div>
+          <div class="color-swatch-consistency-cream">
+            <p class="subtitle-4">Point Red</p>
+            <p class="body-4">#73bb72</p>
+          </div>
+        </div>
+        <img class="tree-img" src="images/bebedepino/parts/b09-ebc29c7e54.webp" alt="" loading="lazy" decoding="async" />
+        <img class="tree-img-2" src="images/bebedepino/parts/b09-120646708d.webp" alt="" loading="lazy" decoding="async" />
+        <img class="tree-img-3" src="images/bebedepino/parts/b09-55be2bed6a.webp" alt="" loading="lazy" decoding="async" />
+        <img class="tree-img-4" src="images/bebedepino/parts/b09-5af0dc2b1c.webp" alt="" loading="lazy" decoding="async" />
+        <img class="tree-img-5" src="images/bebedepino/parts/b09-3a29e3c022.webp" alt="" loading="lazy" decoding="async" />
+        <img class="tree-img-6" src="images/bebedepino/parts/b09-96fb05419a.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 10 07_project_goal -->
+    <section class="fx b10" aria-label="베베드피노 10">
+      <div class="fx__in">
+        <img class="hero-deco-cloud-m-10-01" src="images/bebedepino/parts/b10-451c142a8a.webp" alt="" loading="lazy" decoding="async" />
+        <img class="hero-deco-cloud-m-10-02" src="images/bebedepino/parts/b10-a864ac1314.webp" alt="" loading="lazy" decoding="async" />
+        <img class="hero-deco-cloud-m-8" src="images/bebedepino/parts/b10-451c142a8a.webp" alt="" loading="lazy" decoding="async" />
+        <img class="mountain-footer-1" src="images/bebedepino/parts/b10-08b0cc2a3a.webp" alt="" loading="lazy" decoding="async" />
+        <img class="hero-deco-cloud-m-9" src="images/bebedepino/parts/b10-5dd991aa33.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-01" src="images/bebedepino/parts/b10-3593e49f4b.webp" alt="" loading="lazy" decoding="async" />
+        <img class="img-02" src="images/bebedepino/parts/b10-751b4d26cb.webp" alt="" loading="lazy" decoding="async" />
+        <div class="section-header">
+          <div class="title">
+            <img class="circle" src="images/bebedepino/parts/b02-6c6e57ccd3.webp" alt="" loading="lazy" decoding="async" />
+            <img class="subtitle" src="images/bebedepino/parts/b10-942f741986.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <h2 class="title-01">저출산 시대의 역설적 성장</h2>
+          <p class="subtitle-2">저출산으로 아이는 줄어드는데도, 유아동복은 패션 카테고리 중 거의 유일하게 &#x27;나홀로 성장&#x27;하는 시장입니다.
+성장의 동력은 아이의 &#x27;수&#x27;가 아니라,한 아이에게 소비를 집중하는 &#x27;방식&#x27;의 변화에 있습니다.</p>
+        </div>
+        <img class="top-btn-01" src="images/bebedepino/parts/b10-64a78ac495.webp" alt="" loading="lazy" decoding="async" />
+        <img class="top-btn-02" src="images/bebedepino/parts/b10-5b9881ffa8.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 11 cy_1_3 -->
+    <section class="fx b11" aria-label="베베드피노 11">
+      <div class="fx__in">
+        <img class="background-shape-2" src="images/bebedepino/parts/b11-76732d23a5.webp" alt="" loading="lazy" decoding="async" />
+        <div class="background-shape-1"></div>
+        <img class="deco-cloud-2" src="images/bebedepino/parts/b11-1fab8070e4.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-3" src="images/bebedepino/parts/b11-d2202d09aa.webp" alt="" loading="lazy" decoding="async" />
+        <img class="mainpage-reference-strip" src="images/bebedepino/parts/b11-f08e9b28c4.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-1" src="images/bebedepino/parts/b11-a05c55f9e3.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-2" src="images/bebedepino/parts/b11-8ffe54efc4.webp" alt="" loading="lazy" decoding="async" />
+        <div class="device-frame-top"></div>
+        <div class="device-frame-bottom"></div>
+        <img class="reference-screenshot-detail" src="images/bebedepino/parts/b11-65d63d9127.webp" alt="" loading="lazy" decoding="async" />
+        <div class="card-body">
+          <div class="row">
+            <p class="card-title">AI 맞춤 추천</p>
+            <img class="path" src="images/bebedepino/parts/b11-8002868a1a.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <p class="card-desc">계절·상황을 묻는 간단한 질문으로 취향에 맞는
+상품을 큐레이션합니다. 15개가 넘는 카테고리를
+헤매던 탐색을, 몇 번의 선택으로 좁혀 구매 결정을
+돕습니다.</p>
+        </div>
+        <img class="deco-cloud-1" src="images/bebedepino/parts/b11-4d8b2de111.webp" alt="" loading="lazy" decoding="async" />
+      </div>
+    </section>
+    <!-- 12 cy_1_3 -->
+    <section class="fx b12" aria-label="베베드피노 12">
+      <div class="fx__in">
+        <img class="background-shape-2" src="images/bebedepino/parts/b11-76732d23a5.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-3" src="images/bebedepino/parts/b11-d2202d09aa.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-4" src="images/bebedepino/parts/b11-d2202d09aa.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-5" src="images/bebedepino/parts/b12-3544043033.webp" alt="" loading="lazy" decoding="async" />
+        <img class="mainpage-reference-strip" src="images/bebedepino/parts/b11-f08e9b28c4.webp" alt="" loading="lazy" decoding="async" />
+        <div class="device-frame-overlay"></div>
+        <img class="reference-screenshot-2" src="images/bebedepino/parts/b12-dbf0b8dd24.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-home" src="images/bebedepino/parts/b12-12fedb0d79.webp" alt="" loading="lazy" decoding="async" />
+        <div class="card-body">
+          <div class="row">
+            <p class="card-title">LOOKBOOK</p>
+            <img class="path" src="images/bebedepino/parts/b12-08b2bb0dfc.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <p class="card-desc">키워드를 선택하면 그에 맞는 제품 누끼와
+착용 컷이 함께 나타나고, 상품 상세로 바로
+이동합니다. 감상에 그치던 룩북을, 발견에서
+구매까지 이어지는 동선으로 바꿨습니다.</p>
+        </div>
+        <div class="col">
+          <div class="card-body-2">
+            <div class="row-2">
+              <p class="card-title-2">인스타그램 연동</p>
+              <img class="path-2" src="images/bebedepino/parts/b12-08b2bb0dfc.webp" alt="" loading="lazy" decoding="async" />
+            </div>
+            <p class="card-desc-2">가장 최근 게시물이 왼쪽에 노출되고,
+호버하면 좋아요·댓글 수와 게시글 문장이
+노출됩니다. SNS와 사이트를 연동하여,
+끊겨 있던 콘텐츠를 연결했습니다.</p>
+          </div>
+          <img class="img-wrap" src="images/bebedepino/parts/b12-d54090797f.webp" alt="" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </section>
+    <!-- 13 cy_1_3 -->
+    <section class="fx b13" aria-label="베베드피노 13">
+      <div class="fx__in">
+        <img class="background-shape-2" src="images/bebedepino/parts/b13-64308d6728.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-2" src="images/bebedepino/parts/b13-a124fb9219.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-1" src="images/bebedepino/parts/b13-a124fb9219.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-3" src="images/bebedepino/parts/b13-7356e18f7c.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-3" src="images/bebedepino/parts/b13-2ee99625d1.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-wide" src="images/bebedepino/parts/b13-064dbd750c.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-narrow" src="images/bebedepino/parts/b13-cfd6fa82ed.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-about" src="images/bebedepino/parts/b13-13c0a5a880.webp" alt="" loading="lazy" decoding="async" />
+        <div class="insight-callout">
+          <div class="chip">
+            <img class="section-title" src="images/bebedepino/parts/b13-2294d708fb.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <h2 class="section-title-2">스크롤을 따라 펼쳐지는 브랜드의 여정</h2>
+          <p class="subtitle">기존 홈페이지는 브랜드 서사와 회사 정보만 나열되어 있었습니다. 개선안은
+브랜드의 지항점부터 연도별 히스토리, 세계관을 담은 어필, 제품으로 이어지는 영상까지 재미있는 여정처럼 개선하였습니다. </p>
+        </div>
+      </div>
+    </section>
+    <!-- 14 cy_1_3 -->
+    <section class="fx b14" aria-label="베베드피노 14">
+      <div class="fx__in">
+        <img class="deco-cloud-3" src="images/bebedepino/parts/b14-d773266489.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-3-2" src="images/bebedepino/parts/b14-b20cc3ce3c.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-3-3" src="images/bebedepino/parts/b14-b20cc3ce3c.webp" alt="" loading="lazy" decoding="async" />
+        <img class="background-shape-2" src="images/bebedepino/parts/b11-76732d23a5.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-category" src="images/bebedepino/parts/b14-cb84aaa9a4.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-full" src="images/bebedepino/parts/b14-37bee276d3.webp" alt="" loading="lazy" decoding="async" />
+        <div class="insight-callout">
+          <div class="chip">
+            <img class="section-title" src="images/bebedepino/parts/b14-9f50581dda.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <h2 class="section-title-2">찾기 쉽고, 사기 쉬운 커머스 플로우</h2>
+          <p class="subtitle">기존에는 좌측과 상단에 GNB가 이중으로 흩어져 탐색 동선이 복잡했습니다. 이를 중앙 정렬 GNB 하나로 통합하고, 대분류를 누르면 해당 하위 카테고리가 펼쳐지는 구조로 정리해 길찾기 흐름을 단순하게 만들었습니다.</p>
+        </div>
+        <div class="col">
+          <div class="card-body">
+            <div class="row">
+              <p class="card-title">상품 호버 시 착용컷 미리보기</p>
+              <img class="path" src="images/bebedepino/parts/b12-08b2bb0dfc.webp" alt="" loading="lazy" decoding="async" />
+            </div>
+            <p class="card-desc"> 마우스를 올리면 제품 단독 컷이 실제 착용 컷으로 바뀌어,
+상세 진입 전에도 핏과 스타일을 가늠할 수 있습니다.</p>
+          </div>
+          <div class="row-2">
+            <div class="state-swatch-basic">
+              <img class="state-icon-basic" src="images/bebedepino/parts/b14-448439f81f.webp" alt="" loading="lazy" decoding="async" />
+              <p class="basic">basic</p>
+            </div>
+            <div class="state-swatch-hover">
+              <img class="state-icon-hover" src="images/bebedepino/parts/b14-5e9762284c.webp" alt="" loading="lazy" decoding="async" />
+              <p class="hover">hover</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 15 cy_1_3 -->
+    <section class="fx b15" aria-label="베베드피노 15">
+      <div class="fx__in">
+        <img class="background-shape-2" src="images/bebedepino/parts/b11-76732d23a5.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-3" src="images/bebedepino/parts/b11-d2202d09aa.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-3-2" src="images/bebedepino/parts/b11-d2202d09aa.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-3-3" src="images/bebedepino/parts/b11-d2202d09aa.webp" alt="" loading="lazy" decoding="async" />
+        <img class="deco-cloud-3-4" src="images/bebedepino/parts/b15-23ca0972d1.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-footer" src="images/bebedepino/parts/b15-f5bb8e2f19.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-photo-block" src="images/bebedepino/parts/b15-ee826e86b4.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-product-detail" src="images/bebedepino/parts/b15-1bc91a44f0.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-full" src="images/bebedepino/parts/b15-9517066108.webp" alt="" loading="lazy" decoding="async" />
+        <div class="screenshot-highlight-overlay"></div>
+        <div class="card-body">
+          <div class="row">
+            <p class="card-title">구매까지 이끄는 상세</p>
+            <img class="path" src="images/bebedepino/parts/b12-08b2bb0dfc.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <p class="card-desc">기존 PDP는 좌측 GNB와 팝업·배너가 뒤섞여
+산만했습니다. 정보와 CTA의 위계를 정리하고
+사이즈 추천을 더해, 구매 망설임을 줄였습니다.</p>
+        </div>
+      </div>
+    </section>
+    <!-- 16 cy_1_7 -->
+    <section class="fx b16" aria-label="베베드피노 16">
+      <div class="fx__in">
+        <img class="background-shape-2" src="images/bebedepino/parts/b11-76732d23a5.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-1" src="images/bebedepino/parts/b16-a5f98a4497.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-2" src="images/bebedepino/parts/b16-f71375ae96.webp" alt="" loading="lazy" decoding="async" />
+        <img class="reference-screenshot-3" src="images/bebedepino/parts/b16-bc97ef655a.webp" alt="" loading="lazy" decoding="async" />
+        <img class="connector-line-1" src="images/bebedepino/parts/b16-aeefa77f80.webp" alt="" loading="lazy" decoding="async" />
+        <img class="connector-bracket" src="images/bebedepino/parts/b16-26a5b3637d.webp" alt="" loading="lazy" decoding="async" />
+        <div class="feature-card-1">
+          <img class="feature-card-image-1" src="images/bebedepino/parts/b16-205f6e61d1.webp" alt="" loading="lazy" decoding="async" />
+          <div class="feature-card-1-body">
+            <p class="card-title">연관 상품 추천</p>
+            <p class="card-desc">보고 있는 상품과 어울리는 아이템을 함께 제안해, 
+&#x27;함께 본 상품&#x27;이 없던 기존의 단선 구조를 보완하고
+탐색을 자연스럽게 이어갑니다.</p>
+          </div>
+        </div>
+        <div class="feature-card-2">
+          <img class="feature-card-image-2" src="images/bebedepino/parts/b16-03d9e72056.webp" alt="" loading="lazy" decoding="async" />
+          <div class="feature-card-2-body">
+            <p class="card-title-2">AI 리뷰 요약</p>
+            <p class="card-desc-2">AI가 리뷰의 핵심을 요약하고 사이즈·소재 등 평가 항목을
+시각화해, 긴 후기를 다 읽지 않아도 구매에 필요한
+신뢰 정보를 빠르게 파악할 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 17 cy_1_3 -->
+    <section class="fx b17" aria-label="베베드피노 17">
+      <div class="fx__in">
+        <img class="background-shape-2" src="images/bebedepino/parts/b11-76732d23a5.webp" alt="" loading="lazy" decoding="async" />
+        <div class="lookbook-preview-1">
+          <img class="lookbook-reference-1" src="images/bebedepino/parts/b17-ffa41eb934.webp" alt="" loading="lazy" decoding="async" />
+          <div class="view-toggle-nav-1">
+            <img class="label-01" src="images/bebedepino/parts/b17-a448df1cd2.webp" alt="" loading="lazy" decoding="async" />
+            <img class="nav-vtn" src="images/bebedepino/parts/b17-4262b7d8d7.webp" alt="" loading="lazy" decoding="async" />
+            <img class="label-02" src="images/bebedepino/parts/b17-8d0bf957f9.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <div class="lookbook-preview-2">
+          <img class="lookbook-reference-2" src="images/bebedepino/parts/b17-29795b4453.webp" alt="" loading="lazy" decoding="async" />
+          <div class="view-toggle-nav-2">
+            <img class="label-01-2" src="images/bebedepino/parts/b17-d2bff050f4.webp" alt="" loading="lazy" decoding="async" />
+            <img class="nav-vtn-2" src="images/bebedepino/parts/b17-cbfcd0d439.webp" alt="" loading="lazy" decoding="async" />
+            <img class="label-02-2" src="images/bebedepino/parts/b17-accc364132.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <div class="insight-callout">
+          <div class="chip">
+            <img class="section-title" src="images/bebedepino/parts/b17-ee99f09caf.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <h2 class="section-title-2">보는 목적대로 재구성되는 룩북</h2>
+          <p class="subtitle">시즌·컬렉션별 룩북을 사용자가 원하는 방식으로 탐색할 수 있게 설계했습니다.
+하나의 룩북을 두 가지 레이아웃으로 전환해, 훑어보기와 몰입해서 보기를 모두 지원합니다.</p>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <p class="card-title">보는 방식을 고르는 룩북</p>
+            <img class="path" src="images/bebedepino/parts/b12-08b2bb0dfc.webp" alt="" loading="lazy" decoding="async" />
+          </div>
+          <p class="card-desc">시즌·컬렉션별 룩북을 사용자가 원하는  방식으로
+탐색할 수 있게 설계했습니다. 하나의 룩북을 
+두 가지 레이아웃으로 전환해, 훑어보기와
+몰입해서 보기를 모두 지원합니다.</p>
+        </div>
+      </div>
+    </section>
+    <!-- 18 text_1 -->
+    <section class="fx b18" aria-label="베베드피노 18">
+      <div class="fx__in">
+        <div class="section-9">
+          <img class="mountain-footer-1" src="images/bebedepino/parts/b18-67d710b71a.webp" alt="" loading="lazy" decoding="async" />
+          <img class="hero-deco-cloud-m-8" src="images/bebedepino/parts/b10-451c142a8a.webp" alt="" loading="lazy" decoding="async" />
+          <img class="hero-deco-cloud-m-10" src="images/bebedepino/parts/b10-451c142a8a.webp" alt="" loading="lazy" decoding="async" />
+          <img class="hero-deco-cloud-m-9" src="images/bebedepino/parts/b18-4996a0876b.webp" alt="" loading="lazy" decoding="async" />
+          <div class="card-01">
+            <div class="col">
+              <div class="row">
+                <div class="chip">
+                  <p class="value">1</p>
+                </div>
+                <p class="subtitle">뒤로 가기 한 번도 아까운 육아맘에게, 딱 필요한 편리함 </p>
+                <p class="body">30대 · 첫째 육아 중 · 기존 고객</p>
+              </div>
+              <p class="body-2">기존 룩북은 마음에 드는 룩을 하나하나 찾아 들어가야 하는 번거로움이 있었습니다. 개선된 홈페이지는 룩북이 한곳에 모여 있어 올해 신상을 한눈에 볼 수 있었고, 
+무엇보다 마우스를 올리기만 해도 착용 컷을 볼 수 있는 점이 좋았습니다. 육아를 하다 보면 뒤로 가기 버튼 하나 누르는 짧은 시간도 부족한데, 클릭 없이 바로 확인되니 그 수고가 확 줄었습니다.
+About 페이지에서 제품의 뒷모습까지 볼 수 있는 것도 만족스러웠습니다. 매장에 가지 않아도 전반적인 착용 모습을 확인할 수 있어 구매 결정이 훨씬 편해졌습니다.</p>
+              <div class="text-wrap">
+                <p class="body-3">검증된 개선점: 인터랙티브 룩북 · 호버 착용 컷 · 탐색 시간 단축</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-02">
+            <div class="col-2">
+              <div class="row-2">
+                <div class="chip-2">
+                  <p class="value-2">2</p>
+                </div>
+                <p class="subtitle-2">&quot;옷을 잘 모르는 아빠도, 믿고 고르게 되는 홈페이지&quot;</p>
+                <p class="body-4">30대 · 아이 아빠 · 옷 구매에 익숙하지 않은 사용자</p>
+              </div>
+              <p class="body-5">옷을 잘 모르는 아빠 입장에서 쇼핑몰은 처음엔 무겁게 느껴지는데, 이 홈페이지는 영상과 이미지가 귀여워서 자연스럽게 눌러보게 됐습니다. 
+눌러보니 AI가 세트로 분석해주고 코디를 조합해주는(MD 추천) 기능이 기존보다 훨씬 편리해서, 옷을 고르고 살 수 있는 조건이 잘 갖춰져 있었습니다.
+About 페이지에서 연도별 수상 이력이 정리된 것을 보고 &#x27;이 브랜드 대단하구나&#x27; 싶어 신뢰가 높아졌습니다. 이렇게 편리함이 더해지니, 소비자 입장에서 구매 욕구가 확실히 커지는 것 같습니다.</p>
+              <div class="text-wrap-2">
+                <p class="body-6">검증된 개선점: 감성적 히어로(영상·이미지) · AI 세트 분석/MD 추천 코디 · 연도별 히스토리로 신뢰 형성</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-3">
+          <p class="figma">figma</p>
+          <img class="reference-image-1" src="images/bebedepino/parts/b18-267cd6cf0e.webp" alt="" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    </section>
+
+    <nav class="w-end" aria-label="다음 이동">
+      <a href="index.html#works">← 작업 목록으로</a>
+      <a href="#top" data-gnb-link>맨 위로 ↑</a>
+    </nav>
+    <div class="footer-wrap" id="contact"><!-- 푸터가 아래에서 드러나도록 감싸는 틀 -->
+    <footer class="footer">
+      <!-- 큰 제목 + 끌고 다닐 수 있는 스티커 (마우스를 올리면 선택 상자, 잡아서 옮기기) -->
+      <div class="footer__stage" id="footerStage">
+        <h2 class="footer__title" data-tilt>Shall we<br />work together?</h2>
+
+        <div class="sticker window" data-sticker style="top: 6%; left: 3%;">
+          <div class="window__bar"><span>SNS</span><span>[+]</span></div>
+          <ul class="window__list">
+            <li><a href="#">[인스타그램]</a></li>
+            <li><a href="#">[링크드인]</a></li>
+            <li><a href="#">[비핸스]</a></li>
+          </ul>
+        </div>
+
+        <div class="sticker window" data-sticker style="top: 60%; right: 4%;">
+          <div class="window__bar"><span>WEBSITE</span><span>[+]</span></div>
+          <ul class="window__list">
+            <li><a href="index.html">[홈]</a></li>
+            <li><a href="index.html#works">[작업]</a></li>
+            <li><a href="about.html">[소개]</a></li>
+            <li><a href="#contact" data-gnb-link>[연락하기]</a></li>
+          </ul>
+        </div>
+
+        <div class="sticker card card--lime" data-sticker style="bottom: 8%; left: 10%;">
+          <svg class="mark mark--dark" viewBox="0 0 7 7" aria-hidden="true">
+            <rect x="3" y="0" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/>
+            <rect x="2" y="2" width="3" height="3"/><rect x="0" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/>
+            <rect x="1" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/>
+          </svg>
+        </div>
+        <a class="footer__mail" href="mailto:bysy2312@gmail.com">bysy2312@gmail.com</a>
+      </div>
+      <div class="footer__bottom">
+        <ul class="footer__links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+        </ul>
+        <p>© 2026</p>
+      </div>
+    </footer>
+    </div>
+  </main>
+
+  <!-- 애니메이션 라이브러리 (무료, 설치 없이 불러오기) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.17/dist/lenis.min.js"></script>
+  <script src="sfx.js"></script>
+  <script src="script.js"></script>
+  <script src="work-bebedepino-motion.js"></script>
+  <script src="proto-bebedepino.js"></script>
+  <script src="proto.js"></script>
+  <script src="work-cover.js"></script>
+</body>
+</html>

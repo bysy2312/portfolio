@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>열나요 — 아이 발열 기록 앱 · UX/UI 포트폴리오</title>
+
+  <!-- 글꼴: Pretendard(본문) + Galmuri(픽셀 라벨/제목) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="work.css" />
+  <link rel="stylesheet" href="work-cover.css" />
+  <link rel="stylesheet" href="proto.css" />
+</head>
+<body class="page-detail page-work">
+
+  <!-- 픽셀 마우스 커서 (모양은 script.js에서 그림) -->
+  <div class="cursor" id="cursor" aria-hidden="true">
+    <svg class="cursor__arrow" id="cursorArrow"></svg>
+    <span class="cursor__label" id="cursorLabel"></span>
+  </div>
+
+  <!-- GNB: 떠 있는 메뉴 바 (레퍼런스 two-step 방식: 가로로 넓어진 뒤 아래로 펼쳐짐) -->
+  <header class="gnb" id="gnb">
+    <div class="gnb__dim" id="gnbDim"></div><!-- 메뉴가 열리면 뒤 화면을 어둡게 -->
+
+    <div class="gnb__bar" id="gnbBar">
+      <div class="gnb__top">
+        <a href="index.html#top" class="gnb__logo" data-gnb-link>
+          <svg class="mark mark--blue" viewBox="0 0 7 7" aria-hidden="true">
+            <rect x="3" y="0" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/>
+            <rect x="2" y="2" width="3" height="3"/><rect x="0" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/>
+            <rect x="1" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/>
+          </svg>
+          Read, Fix, Save.
+        </a>
+        <div class="gnb__actions">
+        <!-- 효과음 켜기/끄기 (sfx.js) -->
+        <button type="button" class="sfx-toggle" id="sfxToggle" aria-pressed="false" aria-label="효과음 켜기">
+          <svg viewBox="0 0 9 9" aria-hidden="true">
+            <rect x="1" y="3" width="2" height="3"/><rect x="3" y="2" width="1" height="5"/><rect x="4" y="1" width="1" height="7"/>
+            <g class="w"><rect x="6" y="3" width="1" height="3"/><rect x="7" y="1" width="1" height="1"/><rect x="8" y="2" width="1" height="5"/><rect x="7" y="7" width="1" height="1"/></g>
+            <g class="x"><rect x="6" y="3" width="1" height="1"/><rect x="8" y="3" width="1" height="1"/><rect x="7" y="4" width="1" height="1"/><rect x="6" y="5" width="1" height="1"/><rect x="8" y="5" width="1" height="1"/></g>
+          </svg>
+        </button>
+        <button class="gnb__toggle" id="gnbToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="gnbPanel">
+          <span class="gnb__toggle-bar"></span>
+          <span class="gnb__toggle-bar"></span>
+        </button>
+        </div>
+        <span class="gnb__line" id="gnbLine"></span><!-- 열렸을 때 위·아래 구분선 -->
+      </div>
+
+      <div class="gnb__panel" id="gnbPanel">
+        <div class="gnb__panel-inner">
+          <div class="gnb__col">
+            <nav aria-label="주요 메뉴">
+              <ul class="gnb__menu">
+                <li><a href="index.html#top" class="gnb__link" data-gnb-link>홈</a></li>
+                <li><a href="about.html" class="gnb__link">소개</a></li>
+                <li><a href="index.html#works" class="gnb__link" data-gnb-link>작업</a></li>
+                <li><a href="index.html#contact" class="gnb__link" data-gnb-link>연락하기</a></li>
+              </ul>
+            </nav>
+            <ul class="gnb__social">
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">LinkedIn</a></li>
+              <li><a href="#">Behance</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-page">
+    <!-- 머리말 -->
+    <div class="w-cover-wrap"><!-- 커버가 멈춰 있고 다음 섹션(히어로)이 위로 덮으며 올라옴 -->
+    <!-- 상단 커버 (2026-11-22, 레퍼런스 goodgrowth.com/#/rally 상단 연출):
+         구름처럼 번지는 파란 배경 + 망점 / 화면 폭을 채우는 넓은 제목 / 제목과 겹치는 픽셀 망점 휴대폰(겹친 곳은 색 반전) / Details·Role·Credits 세 칸 -->
+    <header class="w-cover" id="top">
+      <div class="w-cover__bg" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="w-cover__dim" aria-hidden="true"></div>
+      <a class="w-back w-cover__back" href="index.html#works">← 작업 목록</a>
+      <div class="w-cover__stage">
+        <!-- 피그마 APP2 › 본 작업_ 프로토타입을 그대로 눌러 볼 수 있는 휴대폰 (proto.js + proto-yeolnayo.js) -->
+        <div class="w-cover__obj proto" id="coverObj" data-proto="yeolnayo" role="region" aria-label="열나요 앱 프로토타입: 화면을 눌러 직접 써 보세요"></div>
+        <h1 class="w-cover__title" id="coverTitle" aria-label="열나요">Yeolnayo</h1>
+      </div>
+      <div class="w-cover__info">
+        <div class="w-cover__col w-cover__col--details">
+          <p class="w-cover__label">Details</p>
+          <p>열나요는 아이가 열이 날 때 체온과 해열제 복용을 기록하는 앱이에요. 밤새 아이를 돌보는 보호자가 급한 순간에도 헤매지 않도록, 기록 흐름과 화면을 다시 설계했어요.</p>
+          <p>Google Play 리뷰 9,901건을 읽으며 문제를 세 가지로 좁혔고, 찾은 이유를 화면 구조·문구·디자인 시스템까지 이어서 설계했어요.</p>
+        </div>
+        <div class="w-cover__col">
+          <p class="w-cover__label">Role</p>
+          <ul><li>UX Research</li><li>UI Design</li><li>Design System</li></ul>
+        </div>
+        <div class="w-cover__col">
+          <p class="w-cover__label">Credits</p>
+          <ul><li>Client: Personal work</li><li>Duration: 2026</li><li>Category: Mobile App</li><li>Contribution: 100%</li></ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- 01 히어로 (피그마 page_01) -->
+    <section class="w-hero" aria-label="프로젝트 소개">
+      <!-- 피그마 배경: 흐리게 깔린 앱 화면 3장 -->
+      <img class="w-hero__bg w-hero__bg--home" src="images/yeolnayo/parts/hero-bg-home.png" alt="" aria-hidden="true" />
+      <img class="w-hero__bg w-hero__bg--graph" src="images/yeolnayo/parts/hero-bg-graph.png" alt="" aria-hidden="true" />
+      <img class="w-hero__bg w-hero__bg--calendar" src="images/yeolnayo/parts/hero-bg-calendar.png" alt="" aria-hidden="true" />
+      <span class="w-hero__chip">UX/UI Redesign</span>
+      <p class="w-hero__title" data-reveal>
+        <span class="sans">Gentle</span>
+        <span class="serif">care guiding</span>
+        <span class="sans">every feverish night</span>
+      </p>
+      <!-- 휴대폰은 하단 메뉴바가 1/3만 살짝 보이도록 아래를 잘라 둠 (높이의 88%) -->
+      <div class="w-hero__phones" data-reveal>
+        <img src="images/yeolnayo/parts/phone-home.png" width="706" height="1440" alt="열나요 홈 화면: 마지막 잰 체온 38.7°C와 체온 기록, 복용 기록 버튼" />
+        <img src="images/yeolnayo/parts/phone-store.png" width="706" height="1440" alt="열나요 케어TIP 화면: 발열 관련 콘텐츠 목록" loading="lazy" />
+      </div>
+      <!-- 진행 단계: 바닥에서 띄워 휴대폰 위에 겹쳐 둠 (피그마와 같은 배치) -->
+      <ol class="w-steps" aria-label="진행 단계">
+        <li class="w-step is-active">Research &amp; Discovery</li>
+        <li class="w-step">Product Strategy</li>
+        <li class="w-step">UX Architecture</li>
+      </ol>
+    </section>
+    </div>
+
+    <!-- 02 접근 방식 (피그마 page_02) -->
+    <section class="w-section" aria-labelledby="sec-approach">
+      <div class="w-container" data-reveal>
+        <p class="w-display" aria-hidden="true"><span class="thin">Up-close</span><span class="medium">Approach</span></p>
+        <h2 class="w-h2" id="sec-approach">곁에서 지켜본 경험에서 출발해, <em>다섯 단계</em>를 오가며 다듬었어요</h2>
+        <p class="w-body">조카를 언니와 함께 돌보며 열나는 밤을 직접 겪었기에, 책상 위 분석보다 유저 곁에서 출발하였습니다. 가까이에서 관찰한 장면으로 문제를 정의하고, 테스트 피드백에 따라 앞 단계를 다시 오가는 &lsquo;밀착형 5단계 프로세스&rsquo;로 진행했어요.</p>
+        <ol class="w-cards">
+          <li class="w-card"><p class="w-card__step">01 Empathize</p><p class="w-card__title">공감하기</p><p class="w-card__desc">스토어 리뷰와 기존 앱 진단, 참여 관찰, 네트노그래피, 심층 인터뷰로 부모가 겪는 발열 케어 상황을 이해해요.</p></li>
+          <li class="w-card"><p class="w-card__step">02 Define</p><p class="w-card__title">문제 정의</p><p class="w-card__desc">데스크 리서치와 고객 여정지도의 페인 포인트를 겹쳐 TOP3 문제를 고르고, HMW 질문과 프로젝트 목표를 세워요.</p></li>
+          <li class="w-card"><p class="w-card__step">03 Ideate</p><p class="w-card__title">아이디어</p><p class="w-card__desc">HMW마다 아이디어를 모아 우선순위를 매기고, 긴급도 순 로드맵과 유저플로우, 순화 워딩을 정해요.</p></li>
+          <li class="w-card"><p class="w-card__step">04 Prototype</p><p class="w-card__title">프로토타입</p><p class="w-card__desc">와이어프레임 시안을 비교한 뒤 핵심 화면과 인터랙션, 디자인 시스템을 만들어요.</p></li>
+          <li class="w-card"><p class="w-card__step">05 Test → Loop</p><p class="w-card__title">테스트와 개선</p><p class="w-card__desc">AI 가상 인터뷰로 사용성을 점검하고, 드러난 실패를 정의 단계로 되돌려 문제와 화면을 다시 고쳐요.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 03 핵심 인사이트 (피그마 page_03) -->
+    <section class="w-section" aria-labelledby="sec-insight">
+      <div class="w-container" data-reveal>
+        <span class="w-pill">Key Insight</span>
+        <h2 class="w-h2" id="sec-insight">아이가 열이 나면 가장 먼저 여는 앱,<br />그런데 왜 별점은 <em>3.9점</em>일까요?</h2>
+        <p class="w-body">누적 다운로드 200만+, 아이가 열이 나면 많은 부모가 가장 먼저 여는 앱이지만 Google Play 평점은 3.9점에 그쳐요. 유저가 계속 쓰고 있다는 건 여전히 필요하다는 뜻이고, 낮은 평점은 그만큼 채워지지 않은 기대가 남아 있다는 신호예요. 부모들이 등을 돌린 건 앱이 필요 없어져서가 아니라, 리뉴얼로 바뀐 사용 방식 때문이었어요.</p>
+
+        <div class="w-insight">
+          <div>
+            <p class="w-label">Rating <span class="w-note">(평점 변화 · 그룹마다 단위가 달라요: 별점 / 비율)</span></p>
+            <div class="w-chart" style="margin-top: 32px;">
+              <figure class="w-chart__group">
+                <div class="w-chart__bars">
+                  <div class="w-bar" style="height: 224px;">리뉴얼 전<br />4.65</div>
+                  <div class="w-bar is-coral" style="height: 100px;">리뉴얼 후<br />2.09</div>
+                </div>
+                <figcaption class="w-chart__caption">App Store 평균 별점</figcaption>
+              </figure>
+              <figure class="w-chart__group">
+                <div class="w-chart__bars">
+                  <div><p class="w-bar__out">베이비타임<br />0.5%</p><div class="w-bar" style="height: 5px; padding: 0;"></div></div>
+                  <div class="w-bar is-coral" style="height: 240px;">열나요<br />21.8%</div>
+                </div>
+                <figcaption class="w-chart__caption"><b>1점 리뷰 비율</b> · 비슷한 규모 앱 대비</figcaption>
+              </figure>
+              <div class="w-growth">
+                <div><p class="w-label">리뉴얼 후 평균 별점</p><p class="w-growth__value">−55%</p></div>
+                <div><p class="w-label">1점 리뷰, 비교 앱 대비</p><p class="w-growth__value">40배+</p></div>
+              </div>
+            </div>
+
+            <!-- 리뷰 수: 피그마처럼 그래프 바로 아래 -->
+            <div class="w-reviews">
+              <div>
+                <p class="w-label">Reviews <span class="w-note">(Google Play)</span></p>
+                <p class="w-note">2026년 10월 기준<br />비슷한 규모의 육아 기록 앱과 비교</p>
+              </div>
+              <div class="w-reviews__item"><span class="w-note">전체 리뷰</span><strong>9,901건</strong></div>
+              <div class="w-reviews__item"><span class="w-note">1점 리뷰</span><strong>2,161건</strong></div>
+            </div>
+            <p class="w-note" style="text-align: right;">* 1점 리뷰는 전체 리뷰의 21.8%</p>
+          </div>
+
+          <aside class="w-glass" aria-label="주요 수치">
+            <div class="w-glass__inner">
+              <p class="w-glass__title">다운로드는 200만+, 평점은 3.9</p>
+              <div class="w-stat"><span>누적 다운로드</span><strong>200만+</strong></div>
+              <div class="w-stat"><span>Google Play 평점</span><strong class="is-coral">3.9</strong></div>
+              <div class="w-stat"><span>1점 리뷰 비율</span><strong>22%</strong></div>
+              <div class="w-stat"><span>리뉴얼 후 1~2점 리뷰</span><strong>72%</strong></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 데스크 리서치 마인드맵 (피그마 page_04) -->
+    <section class="w-section" aria-labelledby="sec-desk">
+      <div class="w-container" data-reveal>
+        <span class="w-pill">01 Empathize · Desk Research</span>
+        <h2 class="w-h2" id="sec-desk">리뷰를 읽어 보니,<br />유저는 크고 작은 불편을 겪고 있었어요</h2>
+        <p class="w-body">리뉴얼 이후 스토어 리뷰와 앱 커뮤니티, 기존 앱 화면을 함께 살펴보며, 유저가 겪는 문제를 UX 8가지와 UI 3가지로 나눴어요. 같은 입력을 매번 반복해야 하는 흐름과, 급할 때 한눈에 보이지 않는 화면이 불편의 중심이었어요.</p>
+
+        <!-- 피그마 img_p (마인드맵 전체)를 이미지로 그대로 삽입 -->
+        <figure class="w-figure">
+          <img src="images/yeolnayo/parts/mindmap.png" width="1763" height="668" loading="lazy"
+               alt="마인드맵. 반복 작업으로 피로감을 주는 UX: 기록 구조와 입력(주사·수액 치료 기록이 불명확함, 병원 기록에 처방약·진단서 등록 불가, 업데이트 후 가시성 저하, 드럼롤 방식의 날짜·시간 입력), 반복과 공유(매번 반복되는 약 이름·용량 입력, 날짜를 하나씩 눌러야 하는 타임라인, 보호자 간 기록 공유 불가, 아이콘 8개 중 매번 찾아야 하는 핵심 기능)와 실제 리뷰 2건. 한 눈에 안 보이는 UI: 시각 정보와 조작(체온 상태가 한 눈에 구분되지 않음, 다음 복약 가능 시간이 홈에 없음, 한 손으로 누르기 어려운 버튼 위치), 리뷰에서 가장 많이 언급된 불편(가독성 15건, 알림 9건, 저장 버튼 위치 8건, 날짜·시간 입력 7건, 타임라인 7건)." />
+        </figure>
+      </div>
+    </section>
+
+    <!-- 05 AS-IS 전후 비교 (피그마 page_05) -->
+    <section class="w-section" aria-labelledby="sec-asis">
+      <div class="w-container" data-reveal>
+        <span class="w-pill">01 Empathize · AS-IS</span>
+        <h2 class="w-h2" id="sec-asis">리뉴얼 이후, 급한 순간의 동작이 오히려 멀어졌어요</h2>
+        <p class="w-body">아이가 열이 날 때 거치는 단계 가운데, 리뉴얼 이후 리뷰에서 불편이 많이 언급된 지점을 업데이트 전후 화면으로 비교했어요. 앱 커뮤니티에는 &lsquo;원래 있던 거 보려고 결제한 고객이 있을 수 있는데 왜 있는걸 없애죠&rsquo;처럼, 리뉴얼로 사라진 기능을 아쉬워하는 글도 남아 있었어요.</p>
+
+        <div class="w-asis">
+          <article class="w-asis__card">
+            <p class="w-card__step">Step 1 · 체온 확인</p>
+            <h3 class="w-asis__title">광고와 메뉴 아래로 밀려난 체온</h3>
+            <div class="w-shots">
+              <figure><div class="w-shot"><div class="w-cap" style="height: 311px;"><img src="images/yeolnayo/parts/asis-step1-before.png" alt="리뉴얼 전 홈 화면: 가운데에 큰 체온 숫자" loading="lazy" style="height: 94.49%;" /></div></div><figcaption>리뉴얼 전 · 2022</figcaption></figure>
+              <figure><div class="w-shot"><div class="w-cap" style="height: 262.694px;"><img src="images/yeolnayo/parts/asis-step1-after-a.png" alt="리뉴얼 후 홈 화면: 광고 배너와 아이콘 아래로 밀린 체온" loading="lazy" style="height: 123.89%; width: 100.2%;" /></div><div class="w-cap" style="height: 177.979px;"><img src="images/yeolnayo/parts/asis-step1-after-b.png" alt="" loading="lazy" style="height: 182.86%; top: -35.81%; width: 100.2%;" /></div></div><figcaption>리뉴얼 후 · 2026</figcaption></figure>
+            </div>
+            <blockquote class="w-bubble"><p>리뉴얼 이후 가시성이 떨어지고, 급한데 정보 확인 하려면 스크롤 한참 내려야 하는 게 불편하네요.</p><cite>App Store 리뷰 · 2024년 2월</cite></blockquote>
+            <dl class="w-ba">
+              <div><dt>before</dt><dd>홈 첫 화면 한가운데, 큰 숫자로 바로 보이는 체온</dd></div>
+              <div><dt class="is-after">after</dt><dd>광고 배너와 아이콘이 생기면서, 주 기능인 체온 기록과 해열제 기록이 <em>하단으로 밀려남</em>.</dd></div>
+            </dl>
+          </article>
+
+          <article class="w-asis__card">
+            <p class="w-card__step">Step 2 · 체온 입력·저장</p>
+            <h3 class="w-asis__title">화면 밖으로 밀려난 저장 버튼</h3>
+            <div class="w-shots">
+              <figure><div class="w-shot"><div class="w-cap" style="height: 310.345px;"><img class="is-cover" src="images/yeolnayo/parts/asis-step2-before.png" alt="리뉴얼 전 체온 입력 화면: 입력 완료 버튼까지 한 화면" loading="lazy" /></div></div><figcaption>리뉴얼 전 · 2022</figcaption></figure>
+              <figure><div class="w-shot"><div class="w-cap" style="height: 262.433px;"><img src="images/yeolnayo/parts/asis-step2-after-a.png" alt="리뉴얼 후 체온 입력 화면: 드럼롤 방식 입력" loading="lazy" style="height: 123.65%; width: 99.91%;" /></div><div class="w-cap" style="height: 131.083px;"><img src="images/yeolnayo/parts/asis-step2-after-b.png" alt="" loading="lazy" style="height: 247.56%; top: -147.56%; width: 99.91%;" /></div></div><figcaption>리뉴얼 후 · 2026</figcaption></figure>
+            </div>
+            <blockquote class="w-bubble"><p>업데이트 전에는 작성 후 하단 버튼을 바로 누를 수 있었는데, 지금은 &lsquo;저장하기&rsquo; 버튼이 한페이지에 없어서 번거롭네요.</p><cite>Google Play 리뷰 · 2024년 7월</cite></blockquote>
+            <dl class="w-ba">
+              <div><dt>before</dt><dd>입력부터 입력 완료 버튼까지 한 화면에서 확인 가능</dd></div>
+              <div><dt class="is-after">after</dt><dd>키패드 방식에서 드럼롤 방식으로 변한 체온 기록, 광고로 인해 하단으로 밀려 <em>스크롤을 내려야만 나오는 &lsquo;입력완료&rsquo; 버튼</em>.</dd></div>
+            </dl>
+          </article>
+
+          <article class="w-asis__card">
+            <p class="w-card__step">Step 4 · 경과 확인</p>
+            <h3 class="w-asis__title">끊어져 버린 체온과 복약 흐름</h3>
+            <div class="w-shots">
+              <figure><div class="w-shot"><div class="w-cap" style="height: 254.787px;"><img class="is-cover" src="images/yeolnayo/parts/asis-step4-before.png" alt="리뉴얼 전 기록 화면: 체온과 복약이 한 목록에 시간순" loading="lazy" /></div></div><figcaption>리뉴얼 전 · 2022</figcaption></figure>
+              <figure><div class="w-shot"><div class="w-cap" style="height: 324.8px;"><img class="is-cover" src="images/yeolnayo/parts/asis-step4-after.png" alt="리뉴얼 후 타임라인 화면: 날짜별로 따로 확인" loading="lazy" /></div></div><figcaption>리뉴얼 후 · 2026</figcaption></figure>
+            </div>
+            <blockquote class="w-bubble"><p>이전 기록을 보고싶은데 입력이 안된 날도 같이 떠서 날짜를 하나하나 눌러서 확인 해야 한다는 게 불편하네요</p><cite>Google Play 리뷰 · 2024년 3월</cite></blockquote>
+            <dl class="w-ba">
+              <div><dt>before</dt><dd>체온과 복약이 한 목록에 시간순으로 이어지는 기록</dd></div>
+              <div><dt class="is-after">after</dt><dd><em>입력이 되지 않은 날도 함께 떠</em>서 원하는 일자(열이 난 일자)를 찾으려면 일자를 직접 눌러 확인해야 함.</dd></div>
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 사용자 목소리가 모인 곳 (피그마 page_06) -->
+    <section class="w-section w-section--bleed" aria-labelledby="sec-voices">
+      <div class="w-container" data-reveal>
+        <span class="w-pill">01 Empathize · Netnography</span>
+        <h2 class="w-h2" id="sec-voices">엄마들은 육아 커뮤니티에서<br /><em>정보와 함께 정서적 지지</em>까지 얻고 있었어요</h2>
+        <p class="w-body">육아 커뮤니티, 열나요 공식 카페, 앱 리뷰, 심층 인터뷰를 함께 살펴봤어요.</p>
+      </div>
+      <!-- 화면 너비를 꽉 채우는 이미지 (레퍼런스 teamevople 연출) -->
+      <div class="w-bleed" data-reveal>
+        <ul class="w-sources">
+          <li><b>육아 커뮤니티</b><span>발열 게시글 14건</span></li>
+          <li><b>열나요 공식 카페</b><span>게시글 3,498건 · 공식 콘텐츠 3건</span></li>
+          <li><b>앱 리뷰</b><span>구글 플레이 리뷰 본문 5,699건 수집</span></li>
+          <li><b>심층 인터뷰</b><span>A 28세 · B 35세 · C 30대 엄마 · 13개월~4살 아이</span></li>
+        </ul>
+        <figure class="w-silhouettes">
+          <img src="images/yeolnayo/parts/profiles-background.jpg" width="1920" height="641" alt="아이를 돌보는 엄마들의 실루엣 네 컷" loading="lazy" />
+          <figcaption class="w-silhouettes__caption">실제로 육아 커뮤니티에는 우리 아이 상황에 맞춘 답, 먼저 겪은 엄마의 경험, 앱이 못 미더운 자리를 메우는 요령이 오가고 있었어요. 엄마들은 그곳에서 <em>육아 정보와 함께, 육아 선배들에게 정서적 지지</em>까지 얻고 있었어요. 공식 채널이 &lsquo;공통된 정보&rsquo;에 머무는 동안, 육아 커뮤니티는 &lsquo;우리 아이 이야기&rsquo;와 공감으로 답하고 있었어요.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- 07 페르소나 여정 (피그마 page_07) -->
+    <section class="w-section" aria-labelledby="sec-journey">
+      <div class="w-container" data-reveal>
+        <span class="w-pill">01 Empathize · Persona Journey</span>
+        <h2 class="w-h2" id="sec-journey">열이 내리지 않던 나흘,<br />두 양육자는 무엇이 힘들었을까요?</h2>
+        <p class="w-body">돌 무렵 아기에게 흔한 돌발진으로 조카의 열이 나흘간 이어졌고, 그 시간을 함께 돌보며 참여 관찰을 진행했어요. 교대로 아이를 돌보는 두 양육자의 페르소나와 고객 여정 지도를 구성하고, 감정 곡선을 따라 앱 사용 맥락의 페인 포인트를 도출했어요.</p>
+
+        <div class="w-journey">
+          <div class="w-journey__wedge"><img src="images/yeolnayo/parts/journey-wedge.svg" alt="" aria-hidden="true" /><span>4-day fever care timeline</span></div>
+          <ol class="w-journey__stages">
+            <li style="--drop: 0;"><p class="w-journey__phase">1일차 밤</p><div class="w-journey__block"><span>1일차 밤 | 엄마</span><b>놓쳐 버린 복용 시간</b></div>
+              <dl><dt>해열제 먹이기</dt><dd>열이 올라 첫 해열제를 먹였어요.</dd><dt>두 시간 버티며 체온 지켜보기</dt><dd>깜빡 잠들어 복용 시간을 놓쳤어요.</dd></dl><p class="w-pain"><b>Pain</b>놓치는 복용 시간</p></li>
+            <li style="--drop: 1;"><p class="w-journey__phase">2일차 · 교대와 첫 진료</p><div class="w-journey__block"><span>2일차 새벽 6시 | 교대</span><b>캡처로 넘겨받은 기록</b></div>
+              <dl><dt>교대자 기록 캡처로 받기</dt><dd>연동이 안 돼 사진으로 받아 다시 적었어요.</dd></dl><p class="w-pain"><b>Pain</b>두 계정으로 쪼개진 기록</p></li>
+            <li style="--drop: 1;"><p class="w-journey__phase">&nbsp;</p><div class="w-journey__block"><span>2일차 아침 | 이모</span><b>아이를 안은 채 한 손 기록</b></div>
+              <dl><dt>한 손으로 기록하기</dt><dd>안은 채 스크롤하다 폰을 떨어뜨렸어요.</dd></dl><p class="w-pain"><b>Pain</b>화면 밖 저장 버튼</p></li>
+            <li style="--drop: 1;"><p class="w-journey__phase">&nbsp;</p><div class="w-journey__block"><span>2일차 오전 | 소아과</span><b>놓친 질문이 마음에 남은 진료</b></div>
+              <dl><dt>소아과 진료 받기</dt><dd>열이 이어져 오전에 진료를 받았어요.</dd><dt>물어볼 질문 되짚어 보기</dt><dd>놓친 질문이 없는지 마음에 걸렸어요.</dd></dl><p class="w-pain"><b>Pain</b>놓치기 쉬운 진료 질문</p></li>
+            <li style="--drop: 2;"><p class="w-journey__phase">3~4일차 · 집</p><div class="w-journey__block"><span>3~4일차 | 집</span><b>책에서 찾는 돌봄 방법</b></div>
+              <dl><dt>육아책에서 돌봄 방법 찾기</dt><dd>어떤 물을 얼마나 줘야 할지 앱엔 없었어요.</dd></dl><p class="w-pain"><b>Pain</b>얕은 돌봄 안내</p></li>
+            <li style="--drop: 3;"><p class="w-journey__phase">5일차 이후 · 회복</p><div class="w-journey__block"><span>5일차 이후 | 회복</span><b>끝나고 나서야 알게 된 원인</b></div>
+              <dl><dt>회복 후 원인 확인하기</dt><dd>끝나고 나서야 돌발진인 걸 알았어요.</dd><dt>재방문 여부 고민하기</dt><dd>원인을 몰라 열이 오를수록 무서웠어요.</dd></dl><p class="w-pain"><b>Pain</b>병원 재방문에 대한 불안</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 세 조사를 하나로 (피그마 page_08) -->
+    <section class="w-section w-synth" aria-labelledby="sec-synth">
+      <div class="w-synth__wall" aria-hidden="true"></div>
+      <div class="w-container" data-reveal>
+        <span class="w-pill">01 Empathize · Synthesis</span>
+        <h2 class="w-h2" id="sec-synth">흩어진 목소리의 공통점을 찾기 위해,<br />세 조사를 하나로 이었어요</h2>
+        <p class="w-body">네트노그래피, 페르소나 저니, 교차 검증에서 모은 의견을 나란히 놓고 겹치는 고민을 묶었어요. 서로 다른 곳에서 나온 말이었지만, 네 가지 고민으로 이어졌어요.</p>
+
+      </div>
+      <!-- 피그마 08 흐름도 (박스 위치가 불규칙한 원래 배치 그대로). 아래 09 흐름도와 선이 이어짐 -->
+      <figure class="w-flowimg">
+        <img src="images/yeolnayo/parts/synthesis-flow.png" width="1920" height="780" loading="lazy"
+             alt="세 조사에서 모은 목소리를 네 갈래로 묶은 흐름도. 복용 시간: 앱 알림 대신 따로 맞춘 알람, 깜빡 잠들어 놓친 복용 시간, 두 시간 알람을 맞추고 같이 자요 → 밤새 약 시간을 직접 지켜요. 기록 공유: 수첩에 적어 남편과 공유해요, 캡처로 넘겨받아 다시 옮겨 적어요, 카톡으로 체온·약 시간을 주고받아요 → 기록이 사람 사이에서 끊겨요. 판단 기준: 비슷한 아이의 경우를 견줘 봐요, 무엇을 더 물을지 몰라 나온 진료실, 집에서 지켜봐도 되는지 다시 물어요 → 우리 아이 기준의 답을 못 찾아요. 재방문 기준: 먼저 겪은 엄마의 경과를 들어요, 끝나고 나서야 알게 된 원인, 4일째 열에 다른 병원에서 폐렴 확인 → 언제 다시 병원에 갈지 불안해요." />
+      </figure>
+    </section>
+
+    <!-- 09 앱 밖에서 만든 판단 기준 (피그마 page_09) — 08과 여백 없이 이어짐 -->
+    <section class="w-section w-gap" aria-labelledby="sec-gap">
+      <figure class="w-flowimg">
+        <img src="images/yeolnayo/parts/insight-flow.png" width="1920" height="756" loading="lazy"
+             alt="부모들이 직접 만든 방법 9가지(따로 맞춘 알람, 수첩과 카톡으로 전달, 커뮤니티에 다시 묻기, 먼저 겪은 이야기 듣기, 밥 시간으로 약 시간을 기억해요, 종이에 먼저 적고 앱에 옮겨요, 유튜브와 인스타에서 찾아봐요, 열이 오르는 텀으로 가늠해요, 진료 뒤 한 번 더 찾아가요)가 하나로 모여 &lsquo;앱 밖에서 직접 만든 판단 기준&rsquo;이라는 공통점으로 이어지는 흐름도" />
+      </figure>
+      <div class="w-container" data-reveal>
+        <div class="w-banner">
+          <p class="w-banner__en" lang="en">The app left a gap. Parents filled it.</p>
+          <h2 class="w-banner__ko" id="sec-gap">부모들은 <em>앱이 알려 주지 않는 판단 기준</em>을<br />저마다의 방법으로 직접 만들고 있었어요.</h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 TOP 3 페인 포인트 (피그마 page_10) -->
+    <section class="w-section w-pains" aria-labelledby="sec-pains">
+      <img class="w-pains__glow" src="images/yeolnayo/parts/pain-bg-glow.svg" alt="" aria-hidden="true" />
+      <div class="w-container" data-reveal>
+        <div class="w-center">
+          <span class="w-pill">02 Define · Pain Points</span>
+          <h2 class="w-h2" id="sec-pains">가장 먼저, 급하게 해결해야 할 문제는 세 가지였어요</h2>
+          <p class="w-body">데스크 리서치로 찾은 열한 가지 불편과 고객 여정 지도의 여섯 가지 페인 포인트를 겹쳐 보고, 열이 나는 순간 얼마나 자주, 얼마나 급하게 부딪히는지를 기준으로 우선순위를 정했어요. 세 번째 문제는 처음엔 기록 불편에 가려져 있다가, 테스트 뒤 네트노그래피와 심층 인터뷰를 다시 보며 또렷해졌어요.</p>
+        </div>
+        <div class="w-pain-cards">
+          <article class="w-glass-card">
+            <p class="w-card__step">TOP 1</p>
+            <h3 class="w-glass-card__title">핵심 버튼은 화면 밖,<br />손이 많이 가는 드럼롤 시간 입력</h3>
+            <p class="w-glass-card__desc">핵심 버튼인 &lsquo;저장&rsquo;은 화면 밖에 있고, 드럼롤 방식의 입력 버튼으로 인해서 사용하는 유저의 피로도를 올리고 있어요.</p>
+            <img class="w-glass-card__visual" src="images/yeolnayo/parts/pain-top1-visual.png" width="406" height="344" loading="lazy" alt="체온·복용 시간 드럼롤·약 이름 입력 칸 아래, 스크롤해야 나오는 저장 버튼" />
+            <blockquote class="w-glass-card__quote">&ldquo;애가 아파서 마음이 급한데, 뭘 해야할게 많으니까 답답하고 안 쓰고 싶어져요.&rdquo;<cite>Google Play 리뷰 · 2024.05</cite></blockquote>
+          </article>
+          <article class="w-glass-card">
+            <p class="w-card__step">TOP 2</p>
+            <h3 class="w-glass-card__title">보호자마다 따로 쓰는 기록,<br />교대할 때마다 두 번 일해요</h3>
+            <p class="w-glass-card__desc">기록을 함께 볼 수 없어 캡처나 카톡으로 보내고, 받은 사람이 다시 옮겨 적어요. 이 과정에서 정보가 빠지면 같은 약을 또 먹이는 실수로 이어져요.</p>
+            <img class="w-glass-card__visual" src="images/yeolnayo/parts/pain-top2-visual.png" width="429" height="350" loading="lazy" alt="내 앱의 체온·해열제 기록을 캡처해 카톡으로 전송하고, 교대한 보호자가 자기 앱에 다시 입력하는 모습" />
+            <blockquote class="w-glass-card__quote">&ldquo;계정 연동이 안 되니까, 교대자의 기록을 캡처로 받아서 제 앱에 다시 입력했어요.&rdquo;<cite>참여 관찰 · 2일차 새벽 · 교대</cite></blockquote>
+          </article>
+          <article class="w-glass-card">
+            <p class="w-card__step">TOP 3</p>
+            <h3 class="w-glass-card__title">설명이 모자란 안내,<br />남는 건 부모의 고민</h3>
+            <p class="w-glass-card__desc">체온을 기록하면 안내가 나오지만, 무엇을 더 해야 할지, 언제 병원에 가야 할지 상세하게 알려 주지 않아 부모는 유튜브와 커뮤니티에서 답을 찾아요.</p>
+            <img class="w-glass-card__visual" src="images/yeolnayo/parts/pain-top3-visual.png" width="459" height="307" loading="lazy" alt="앱 안내 '탈수방지를 위해 물을 자주 먹여주세요' 뒤로 이어지는 부모의 질문: 물만 먹이면 되나요? 몇 도까지 오르면 병원에 가야 해요? 또 해 줄 수 있는 건 없나요?" />
+            <blockquote class="w-glass-card__quote">&ldquo;약을 먹여 열이 떨어져도 두 시간 뒤면 다시 올라요. 그 텀이 계속 똑같으면 병원에 또 가 봐야겠다 싶어요. 이런 건 앱보다 유튜브나 인스타에서 찾아봐요&rdquo;<cite>심층 인터뷰 C · 30대 엄마 · 4살 아이</cite></blockquote>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 아이디에이션 (피그마 dt_12) — 코랄 배경, 교차선과 빛 장식은 피그마 SVG -->
+    <section class="w-section w-ideas" aria-labelledby="sec-ideas">
+      <div class="w-ideas__deco" aria-hidden="true">
+        <img class="w-ideas__line w-ideas__line--2" src="images/yeolnayo/parts/ideation-line-2.svg" alt="" />
+        <img class="w-ideas__line w-ideas__line--1" src="images/yeolnayo/parts/ideation-line-1.svg" alt="" />
+        <img class="w-ideas__bloom" src="images/yeolnayo/parts/ideation-glow-bloom.svg" alt="" />
+        <img class="w-ideas__disc" src="images/yeolnayo/parts/ideation-glow-disc.svg" alt="" />
+      </div>
+      <div class="w-container" data-reveal>
+        <div class="w-center">
+          <p class="w-ideas__label">03 Ideate · Ideation</p>
+          <h2 class="w-h2 w-ideas__h2" id="sec-ideas">아이가 아픈 순간에 꼭 필요한 기능부터 만들 수 있도록,<br />HMW별 아이디어에 우선순위를 매겼어요</h2>
+          <p class="w-body w-ideas__body">리뷰 속 요청과 직접 관찰한 장면에서 아이디어를 펼친 뒤, 어떤 HMW에 답하는지에 따라 세 갈래로 묶었어요. 그리고 &lsquo;열이 나는 그 순간에 꼭 필요한가&rsquo;를 기준으로, MVP에 넣을 것과 다음 단계로 넘길 것을 나눴어요.</p>
+          <p class="w-ideas__motto" lang="en">Only What the Moment Needs</p>
+        </div>
+        <div class="w-ideas__zones">
+          <div class="w-zone" style="grid-area: a;">
+            <p class="w-zone__pill"><span lang="en">HMW 1 · Quick Record</span><b>짧은 틈에 끝나는 기록</b></p>
+            <ul class="w-zone__list">
+              <li><b>한 화면 체온 입력</b><i class="is-mvp">MVP</i><span>숫자를 바로 입력하고, 측정 부위와 시간도 같은 화면에서 골라요.</span></li>
+              <li><b>하단 가운데 퀵 버튼</b><i class="is-mvp">MVP</i><span>어느 화면에서든 엄지가 닿는 자리에서 체온 재기·약 먹이기를 시작해요.</span></li>
+              <li><b>이전 약 불러오기</b><i class="is-mvp">MVP</i><span>지난번에 먹인 약을 그대로 불러와 시간만 확인하고 저장해요.</span></li>
+              <li><b>사진으로 남기는 처방전</b><i>다음 단계</i><span>약 이름을 타이핑하는 대신 처방전과 진단서를 찍어 둬요.</span></li>
+            </ul>
+          </div>
+          <div class="w-zone" style="grid-area: b;">
+            <p class="w-zone__pill"><span lang="en">HMW 2 · Shared Care</span><b>보호자가 바뀌어도 이어지는 기록</b></p>
+            <ul class="w-zone__list">
+              <li><b>다음 복용 카운트다운</b><i class="is-mvp">MVP</i><span>다음 복용까지 남은 시간을 큰 숫자로 바로 보여 줘요.</span></li>
+              <li><b>확인할 때까지 울리는 알림</b><i>다음 단계</i><span>새벽에도 놓치지 않게 하되, 알림을 받지 않을 시간대도 함께 정해요.</span></li>
+              <li><b>가족 초대와 기록 내보내기</b><i>다음 단계</i><span>초대 링크로 기록을 함께 보고, 기간별로 내보내 건네요.</span></li>
+              <li><b>중복 복약 알림</b><i>다음 단계</i><span>다른 보호자가 먼저 기록했다면 바로 알려 줘요.</span></li>
+            </ul>
+          </div>
+          <div class="w-zone" style="grid-area: c;">
+            <p class="w-zone__pill"><span lang="en">HMW 3 · Guided Decision</span><b>판단을 덜어 주는 안내</b></p>
+            <ul class="w-zone__list">
+              <li><b>체온 6단계 안내</b><i class="is-mvp">MVP</i><span>상태마다 지금 할 수 있는 돌봄과 병원에 가야 할 신호를 함께 알려 줘요.</span></li>
+              <li><b>야간 응급 체크</b><i class="is-mvp">MVP</i><span>증상 체크리스트로 119·응급실이 필요한 신호를 먼저 걸러요.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 MVP 유저플로우 (피그마 dt_14) -->
+    <section class="w-section" aria-labelledby="sec-flow">
+      <div class="w-container" data-reveal>
+        <span class="w-pill">03 Ideate · User Flow</span>
+        <h2 class="w-h2" id="sec-flow">홈에서 두 번의 탭이면 기록이 시작되도록,<br />입력 흐름을 두 갈래로 줄였어요</h2>
+        <p class="w-body">아이가 아플 때 가장 자주 쓰는 체온 기록과 복약 기록을 중심으로 MVP 유저플로우를 다시 짰어요. 기록을 시작하는 길, 입력하는 방법, 기록을 다시 보는 화면을 차례로 줄였어요.</p>
+        <div class="w-userflow">
+          <div class="w-userflow__box"><img class="w-userflow__diagram" src="images/yeolnayo/parts/userflow-diagram.png" width="692" height="784" loading="lazy"
+               alt="MVP 유저플로우: 홈 Quick Action → 어떤 기록을 할까요? → 체온 입력(숫자 입력+부위 선택)→시각 입력('지금 시각' 기본값) / 복약 기록(제형·성분·용량 선택)→이전 약과 동일?(예→자동 불러오기) → 저장 완료(다음 복약 가능 시간 알림) → 체온 그래프(색상 코딩 상태 표시)→복약 시점 마커 / 캘린더 타임라인(기록 있는 날 점 표시)→일일 상세 보기" /></div>
+          <div class="w-decisions">
+            <article class="w-decision">
+              <img src="images/yeolnayo/parts/userflow-screen-quick.png" width="288" height="420" loading="lazy" alt="홈 하단 가운데 버튼을 눌러 체온 재기·약 먹이기를 고르는 화면" />
+              <p class="w-decision__head"><b>01</b>홈에서 바로 두 갈래로</p>
+              <p class="w-decision__desc">홈 하단 가운데 버튼을 누르면 체온 재기와 약 먹이기 중 하나를 고르게 했어요. 어느 화면에 있든 두 번의 탭이면 기록을 시작해요.</p>
+              <p class="w-note">해결한 불편</p>
+              <ul class="w-chips"><li>아이콘 8개 중 핵심 기능을 매번 찾아야 함</li><li>업데이트 후 기록이 한눈에 안 보임</li></ul>
+            </article>
+            <article class="w-decision">
+              <img src="images/yeolnayo/parts/userflow-screen-default.png" width="288" height="420" loading="lazy" alt="시간은 '지금', 약은 '이전과 동일'이 미리 선택된 약 먹이기 화면" />
+              <p class="w-decision__head"><b>02</b>묻는 대신 기본값으로</p>
+              <p class="w-decision__desc">시간은 &lsquo;지금&rsquo;, 약은 &lsquo;이전과 동일&rsquo;이 먼저 선택돼 있어요. 바꿀 때만 손대면 되니 입력 단계가 줄어요.</p>
+              <p class="w-note">해결한 불편</p>
+              <ul class="w-chips"><li>드럼롤로 날짜·시간 입력</li><li>약 이름·용량을 매번 반복 입력</li></ul>
+            </article>
+            <article class="w-decision">
+              <img src="images/yeolnayo/parts/userflow-screen-views.png" width="288" height="420" loading="lazy" alt="체온 그래프 화면과 캘린더 타임라인 화면" />
+              <p class="w-decision__head"><b>03</b>보는 화면은 두 가지로</p>
+              <p class="w-decision__desc">지금의 열 흐름은 그래프로, 지난 기록은 캘린더로 나눴어요. &lsquo;언제 열이 났는지&rsquo;를 날짜마다 눌러 보지 않아도 돼요.</p>
+              <p class="w-note">해결한 불편</p>
+              <ul class="w-chips"><li>날짜를 하나씩 눌러야 하는 타임라인</li></ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 13 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame" aria-label="열나요 13">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-13-closing-solution.jpg" width="1920" height="1080" loading="lazy" alt="Read at a Glance — 열이 오른 새벽에도 한눈에 읽히도록, 화면의 기준을 다시 세웠어요. 손에 든 휴대폰 속 열나요 홈 화면과 'Clear when it matters most'" />
+      </figure>
+    </section>
+    <!-- 14 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame" aria-label="열나요 14">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-14-ai-collaboration.jpg" width="1920" height="1080" loading="lazy" alt="AI Collaboration — 기획의 앞뒤가 어긋나지 않도록, AI와 함께 전체 흐름을 다시 점검했어요. Claude에 보낸 프롬프트(역할 및 목표, 검토 기준, 출력 형식)와 정합성 검토 결과" />
+      </figure>
+    </section>
+    <!-- 15 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame" aria-label="열나요 15">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-15-design-system-cover.jpg" width="1920" height="1080" loading="lazy" alt="DESIGN SYSTEM — Color, Typography, Grid, Components 구성" />
+      </figure>
+    </section>
+    <!-- 16 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame" aria-label="열나요 16">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-16-design-system-color-type.jpg" width="1920" height="1080" loading="lazy" alt="04 Prototype · Design System — 급한 순간에도 읽히도록, 디자인 시스템에 기준을 세웠어요. Pretendard 타이포그래피, 컬러와 체온 단계 색, 그리드" />
+      </figure>
+    </section>
+    <!-- 17 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame" aria-label="열나요 17">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-17-design-system-components.jpg" width="1920" height="1080" loading="lazy" alt="04 Prototype · Design System — Components. 체온 결과 카드, 버튼, 기록 상세, 상태 카드, 배지, 하단 내비게이션" />
+      </figure>
+    </section>
+    <!-- 18 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame w-frame--split" aria-label="열나요 18">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-18-inclusive-wording.jpg" width="1920" height="1080" loading="lazy" alt="03 Ideate · Inclusive Design — 당황한 순간에도 바로 알 수 있도록, 체온을 여섯 단계로 나눠 안내했어요" />
+      </figure>
+    </section>
+    <!-- 19 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame w-frame--pink" aria-label="열나요 19">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-19-wireframe-quick-button.jpg" width="1920" height="1080" loading="lazy" alt="04 Prototype · Wireframe &amp; Iteration — 짧은 틈에도 바로 누르도록, 기록 버튼을 크게 나눠 시안을 좁혔어요" />
+      </figure>
+    </section>
+    <!-- 20 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame w-frame--pink" aria-label="열나요 20">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-20-wireframe-chart.jpg" width="1920" height="1080" loading="lazy" alt="체온 그래프 와이어프레임 최종 화면과 기록 목록 시안" />
+      </figure>
+    </section>
+    <!-- 21 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame w-frame--pink" aria-label="열나요 21">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-21-onboarding.jpg" width="1920" height="1080" loading="lazy" alt="04 Prototype · Onboarding — 우리 아이에게 맞춘 안내라고 느낄 수 있도록, 첫 화면에서 아이 정보를 꼼꼼히 물었어요" />
+      </figure>
+    </section>
+    <!-- 22 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame w-frame--pink" aria-label="열나요 22">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-22-home-temperature.jpg" width="1920" height="1080" loading="lazy" alt="04 Prototype · Home &amp; Temperature — 숫자를 읽기 전에, 지금 상태가 먼저 보이도록 했어요" />
+      </figure>
+    </section>
+    <!-- 23 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame w-frame--pink" aria-label="열나요 23">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-23-medication.jpg" width="1920" height="1080" loading="lazy" alt="04 Prototype · Medication — 같은 약을 다시 먹일 땐, 시간만 확인하면 돼요" />
+      </figure>
+    </section>
+    <!-- 24 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame w-frame--pink" aria-label="열나요 24">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-24-timeline-report.jpg" width="1920" height="1080" loading="lazy" alt="04 Prototype · Timeline &amp; Report — 열이 어떻게 변해 왔는지 한눈에 보고, 진료실까지 가져가요" />
+      </figure>
+    </section>
+    <!-- 25 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame w-frame--pink" aria-label="열나요 25">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-25-emergency-care.jpg" width="1920" height="1080" loading="lazy" alt="04 Prototype · Emergency Care — 아이 상태에서 출발해, 병원과 약국을 찾아요" />
+      </figure>
+    </section>
+    <!-- 26 피그마 페이지 이미지 그대로 -->
+    <section class="w-frame w-frame--pink" aria-label="열나요 26">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/yeolnayo-26-usability-test.jpg" width="1920" height="1080" loading="lazy" alt="05 Test · Finding 03 — 열이 날 때 부모가 먼저 찾은 건, 지금의 체온 흐름이었어요" />
+      </figure>
+    </section>
+
+    <!-- 27 (피그마 원본 순서) -->
+    <section class="w-frame" aria-label="열나요 27">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/parts/rest-27-closing.jpg" width="1920" height="1080" loading="lazy" alt="Record. Read. Show — 기록하고, 읽고, 보여 주는 열나요의 주요 화면 모음" />
+      </figure>
+    </section>
+
+    <!-- 28 (피그마 원본 순서) -->
+    <section class="w-frame w-frame--cool" aria-label="열나요 28">
+      <figure class="w-frame__fig" data-reveal>
+        <img src="images/yeolnayo/parts/rest-28-retrospective.jpg" width="1920" height="1080" loading="lazy" alt="회고: 잘못 짚었던 가정에서, 더 많이 배웠어요. 네 가지 실패를 실제 → 바꾼 것 → 배운 점 순서로 정리한 카드" />
+      </figure>
+    </section>
+
+    <nav class="w-end" aria-label="다음 이동">
+      <a href="index.html#works">← 작업 목록으로</a>
+      <a href="#top" data-gnb-link>맨 위로 ↑</a>
+    </nav>
+    <div class="footer-wrap" id="contact"><!-- 푸터가 아래에서 드러나도록 감싸는 틀 -->
+    <footer class="footer">
+      <!-- 큰 제목 + 끌고 다닐 수 있는 스티커 (마우스를 올리면 선택 상자, 잡아서 옮기기) -->
+      <div class="footer__stage" id="footerStage">
+        <h2 class="footer__title" data-tilt>Shall we<br />work together?</h2>
+
+        <div class="sticker window" data-sticker style="top: 6%; left: 3%;">
+          <div class="window__bar"><span>SNS</span><span>[+]</span></div>
+          <ul class="window__list">
+            <li><a href="#">[인스타그램]</a></li>
+            <li><a href="#">[링크드인]</a></li>
+            <li><a href="#">[비핸스]</a></li>
+          </ul>
+        </div>
+
+        <div class="sticker window" data-sticker style="top: 60%; right: 4%;">
+          <div class="window__bar"><span>WEBSITE</span><span>[+]</span></div>
+          <ul class="window__list">
+            <li><a href="index.html">[홈]</a></li>
+            <li><a href="index.html#works">[작업]</a></li>
+            <li><a href="about.html">[소개]</a></li>
+            <li><a href="#contact" data-gnb-link>[연락하기]</a></li>
+          </ul>
+        </div>
+
+        <div class="sticker card card--lime" data-sticker style="bottom: 8%; left: 10%;">
+          <svg class="mark mark--dark" viewBox="0 0 7 7" aria-hidden="true">
+            <rect x="3" y="0" width="1" height="1"/><rect x="1" y="1" width="1" height="1"/><rect x="5" y="1" width="1" height="1"/>
+            <rect x="2" y="2" width="3" height="3"/><rect x="0" y="3" width="1" height="1"/><rect x="6" y="3" width="1" height="1"/>
+            <rect x="1" y="5" width="1" height="1"/><rect x="5" y="5" width="1" height="1"/><rect x="3" y="6" width="1" height="1"/>
+          </svg>
+        </div>
+        <a class="footer__mail" href="mailto:bysy2312@gmail.com">bysy2312@gmail.com</a>
+      </div>
+      <div class="footer__bottom">
+        <ul class="footer__links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+        </ul>
+        <p>© 2026</p>
+      </div>
+    </footer>
+    </div>
+  </main>
+
+  <!-- 애니메이션 라이브러리 (무료, 설치 없이 불러오기) -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Draggable.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/InertiaPlugin.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.17/dist/lenis.min.js"></script>
+  <script src="sfx.js"></script>
+  <script src="script.js"></script>
+  <script src="proto-yeolnayo.js"></script>
+  <script src="proto.js"></script>
+  <script src="work-cover.js"></script>
+</body>
+</html>

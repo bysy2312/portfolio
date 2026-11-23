@@ -1,0 +1,85 @@
+/* ===== 상세 페이지 상단 커버 (2026-11-22) =====
+   레퍼런스: goodgrowth.com/#/rally 상단
+   - 파란 바탕 위로 옅은 보랏빛 구름이 천천히 번지고, 그 위에 촘촘한 망점
+   - 화면 폭을 채우는 넓은 제목(BBH Bartle), 가운데 오브젝트와 겹친 곳은 색이 반전(mix-blend-mode: exclusion)
+   - 아래 Details(본문) · Role · Credits 세 칸 */
+.w-cover {
+  position: relative; overflow: hidden;
+  padding: 96px 20px 120px;
+  background: var(--blue); color: var(--on-blue);
+}
+.w-cover__bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.w-cover__bg i { /* 구름 3덩이 */
+  position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.55;
+  background: #8a5cff;
+  animation: w-cloud 18s ease-in-out infinite alternate;
+}
+.w-cover__bg i:nth-child(1) { width: 46vw; height: 36vw; left: -10vw; top: 10%; }
+.w-cover__bg i:nth-child(2) { width: 40vw; height: 30vw; right: -8vw; top: 35%; background: #6a3dff; animation-duration: 22s; animation-delay: -6s; }
+.w-cover__bg i:nth-child(3) { width: 36vw; height: 26vw; left: 30%; bottom: -14vw; background: #9a6bff; animation-duration: 26s; animation-delay: -12s; }
+@keyframes w-cloud { to { transform: translate(6vw, -3vw) scale(1.15); } }
+.w-cover__bg::after { /* 망점 */
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(rgba(255, 255, 255, 0.16) 0.8px, transparent 1.2px) 0 0 / 4px 4px;
+}
+.w-cover__bg::before { /* 가장자리를 살짝 보랏빛으로 */
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(120, 60, 220, 0.35) 100%);
+}
+
+.w-cover__back {
+  position: absolute; left: var(--page-x); top: 104px; z-index: 4;
+  font-family: var(--font-pixel); font-size: 12px; color: var(--on-blue); text-decoration: none;
+}
+.w-cover__back:hover { opacity: 0.8; color: var(--on-blue); }
+
+/* 제목 + 오브젝트 */
+/* isolation: 제목의 색 반전이 배경이 아닌 오브젝트하고만 섞이게 → 배경 위에선 흰색, 오브젝트 위에서만 반전 */
+.w-cover__stage { position: relative; z-index: 1; isolation: isolate; display: grid; place-items: center; min-height: clamp(300px, 30vw, 440px); }
+.w-cover__obj { position: relative; z-index: 4; will-change: transform; } /* 휴대폰(프로토타입)은 제목 위 — 눌러 쓸 수 있어야 하므로 */
+.w-cover__title {
+  position: absolute; left: 0; right: 0; top: 42%; z-index: 1;
+  margin: 0; transform: translateY(-50%);
+  font-family: var(--font-pixel); font-weight: 400; /* 2026-11-22 글꼴 통일: BBH Bartle → 사이트 픽셀 글꼴 */
+  font-size: 15.6vw; line-height: 0.9; letter-spacing: -0.02em; text-align: center; text-transform: uppercase;
+  color: #fff; white-space: nowrap; pointer-events: none; /* 휴대폰 뒤에 깔림 (2026-11-22, 프로토타입을 눌러 쓰도록) */
+}
+
+/* Details · Role · Credits */
+.w-cover__info {
+  position: relative; z-index: 4;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 2fr) minmax(0, 3fr); gap: 32px clamp(32px, 5vw, 80px);
+  max-width: 1000px; margin: 40px auto 0;
+}
+.w-cover__label { margin: 0 0 12px; font-family: var(--font-pixel); font-size: 12px; opacity: 0.8; }
+.w-cover__col p:not(.w-cover__label) { margin: 0; font-size: 16px; line-height: 1.65; word-break: keep-all; }
+.w-cover__col p + p:not(.w-cover__label) { margin-top: 16px; }
+.w-cover__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 16px; line-height: 1.5; }
+
+@media (max-width: 768px) {
+  .w-cover { padding: 96px 20px 80px; }
+  .w-cover__back { top: 84px; }
+  .w-cover__stage { min-height: 300px; }
+  .w-cover__title { font-size: 15.6vw; }
+  .w-cover__info { grid-template-columns: 1fr 1fr; }
+  .w-cover__col--details { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .w-cover__bg i { animation: none; }
+}
+
+/* ===== 커버 → 다음 섹션: 다음 섹션이 위로 올라오며 커버를 덮음 (2026-11-22) =====
+   커버는 아래 끝이 화면 바닥에 닿으면 그 자리에 멈추고(sticky, top = 화면높이 - 커버높이, work-cover.js),
+   히어로가 그 위를 덮으며 올라옴. 덮이는 동안 커버는 살짝 작아지고 어두워짐(work-cover.js) */
+.w-cover-wrap { position: relative; background: #0a0030; } /* 커버가 작아질 때 양옆에 보이는 바탕 */
+.w-cover { position: sticky; top: var(--cover-top, 0px); z-index: 0; transform-origin: 50% 100%; }
+.w-cover-wrap > :not(.w-cover) { position: relative; z-index: 1; box-shadow: 0 -24px 60px rgba(10, 0, 60, 0.35); } /* 커버를 덮으며 올라오는 첫 섹션 */
+.w-cover__dim { position: absolute; inset: 0; z-index: 5; background: #0a0030; opacity: 0; pointer-events: none; }
+
+/* 웹사이트 작업(베베드피노): 브라우저 창이 넓어 제목이 창 뒤에 깔리면 양 끝 글자만 삐져나와 깨져 보임
+   → 제목을 창 위에 온전히 보이게 올리고(창과 겹치지 않음), 창 폭에 맞춰 크기 조정 (2026-11-23) */
+.w-cover--web .w-cover__stage { display: flex; flex-direction: column; align-items: center; gap: clamp(16px, 2vw, 32px); }
+.w-cover--web .w-cover__title {
+  position: static; order: -1; transform: none;
+  font-size: clamp(40px, 6.4vw, 120px); line-height: 1;
+}
