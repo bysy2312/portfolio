@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Read, Fix, Save. — UX/UI 디자이너 포트폴리오</title>
+  <meta name="description" content="작은 불편을 읽어 내고, 쓰기 좋은 화면으로 저장하는 UX/UI 디자이너 포트폴리오 — 열나요 · Piccha · 베베드피노">
+  <meta name="theme-color" content="#1f3cff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500&family=JetBrains+Mono:wght@400&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="style.css?v=5">
+</head>
+<body>
+  <!-- 모든 그림(얼굴·글자·번짐·상단 바)은 이 캔버스 하나에 그려짐. 아래 글자들은 화면 읽기·클릭용 -->
+  <canvas id="gl" aria-hidden="true"></canvas>
+
+  <!-- 상단 바: 글자는 캔버스에 그려지고(XOR), 여기선 자리와 클릭만 맡음 -->
+  <header id="head">
+    <div><a href="#" id="brand" data-go="0">Read, Fix, Save.</a><span class="sep" id="sep"> / </span><button type="button" id="soundBtn" aria-pressed="false">Sound off</button></div>
+    <div id="tagline">UX/UI designer — Portfolio 2026</div>
+    <div id="route">Overview</div>
+  </header>
+
+  <!-- 오른쪽 장면 점 내비게이션 -->
+  <nav id="dots" aria-label="장면 이동"></nav>
+
+  <!-- 캔버스 위 글자에 겹쳐 두는 실제 링크 (작업 단어, 이메일·전화) -->
+  <div id="hits"></div>
+
+  <!-- 마지막 화면: 링크와 크레딧 (글자를 작게) -->
+  <section id="outro" aria-label="링크와 크레딧">
+    <div class="credit" id="credit">
+      <p>© 2026 Read, Fix, Save.</p>
+      <p><a href="https://bysy2312.github.io/portfolio/">bysy2312.github.io/portfolio ↗</a></p>
+    </div>
+    <h2>Links &amp; credits</h2>
+    <div class="cols">
+      <div>
+        <h3>Works</h3>
+        <ol>
+          <li><a href="https://bysy2312.github.io/portfolio/work-yeolnayo-v2.html">열나요 — 아이 발열 기록 앱, 2026</a></li>
+          <li><a href="https://bysy2312.github.io/portfolio/work-piccha.html">Piccha — 가챠 플랫폼 앱, 2026</a></li>
+          <li><a href="https://bysy2312.github.io/portfolio/work-bebedepino.html">베베드피노 — 브랜드 웹사이트 리뉴얼, 2026</a></li>
+          <li><a href="https://bysy2312.github.io/portfolio/about.html">소개와 이력 →</a></li>
+        </ol>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:bysy2312@gmail.com">bysy2312@gmail.com</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Behance</a></li>
+        </ul>
+        <h3>3D model &amp; type</h3>
+        <ul>
+          <li><a href="https://polyhaven.com/a/marble_bust_01" target="_blank" rel="noopener">Marble Bust 01 — Poly Haven, CC0</a></li>
+          <li>Inter Tight, JetBrains Mono, Pretendard — SIL Open Font License</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Method</h3>
+        <p>작은 불편을 읽고(Read), 리서치와 인터뷰로 이유를 고치고(Fix), 쓰기 좋은 화면으로 저장해요(Save). 모든 작업은 실제 사용자의 하루에서 출발했어요.</p>
+        <div class="acts">
+          <a class="btn" href="mailto:bysy2312@gmail.com">메일 보내기 ↗</a>
+          <button type="button" class="btn" data-go="0">Back to the start ↑</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 화면 읽기용 본문 -->
+  <main id="sr" class="sr">
+    <h1>Read, Fix, Save. — UX/UI 디자이너 포트폴리오</h1>
+    <p>Fever logs, gacha trades, kidswear carts — researched first, then made simple.</p>
+    <h2>About</h2>
+    <p>사용자의 작은 불편에서 출발해, 리서치와 인터뷰로 이유를 찾고, 그 이유를 화면 하나하나에 담아내는 디자이너예요.</p>
+    <h2>Works</h2>
+    <ul>
+      <li><a href="https://bysy2312.github.io/portfolio/work-yeolnayo-v2.html">열나요 — 아이 발열 기록 앱</a></li>
+      <li><a href="https://bysy2312.github.io/portfolio/work-piccha.html">Piccha — 가챠 플랫폼 앱</a></li>
+      <li><a href="https://bysy2312.github.io/portfolio/work-bebedepino.html">베베드피노 — 브랜드 웹사이트 리뉴얼</a></li>
+    </ul>
+    <h2>Contact</h2>
+    <p>bysy2312@gmail.com</p>
+  </main>
+  <!-- 스크롤 길이 (장면 길이의 합, script.js가 정함) -->
+  <div id="spacer" aria-hidden="true"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="script.js?v=24"></script>
+</body>
+</html>

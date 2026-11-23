@@ -1,0 +1,115 @@
+/* ─────────────────────────────────────────────
+   Read, Fix, Save. — plastichuman.org 레이아웃 가이드를 그대로 따름
+   색: #1f3cff + 흰색 두 가지. 상단 바 28px 여백·13px, 작은 글자 11/17.5/30, 모노 10–11px
+   대부분의 글자는 WebGL 캔버스에 그려지고, DOM은 자리·클릭·화면 읽기만 맡음
+   ───────────────────────────────────────────── */
+:root {
+  --blue: #1f3cff;
+  --fx: 0px;
+  --u: 1;
+  --gut: 28px;
+  --sans: "Inter Tight", "Pretendard Variable", Pretendard, system-ui, sans-serif;
+  --mono: "JetBrains Mono", "Pretendard Variable", monospace;
+}
+
+/* 커서도 파랑으로 통일: 기본은 파란 화살표, 누를 수 있는 곳은 파란 손 */
+html {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='24' viewBox='0 0 22 24'%3E%3Cpath d='M2 2 L2 18 L6.2 14.2 L9.2 21 L12 19.8 L9.1 13.2 L14.6 13.2 Z' fill='%231f3cff' stroke='%23fff' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") 2 2, auto;
+}
+a, button, [role="button"], label, summary, .hit {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='26' viewBox='0 0 24 26'%3E%3Cpath d='M8 2.6c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6V10h.4V8.6c0-.9.7-1.6 1.6-1.6s1.6.7 1.6 1.6v2h.3V9.7c0-.8.7-1.5 1.5-1.5s1.5.7 1.5 1.5v1.6h.2V11c0-.8.6-1.4 1.4-1.4s1.4.6 1.4 1.4v5.6c0 3.6-2.7 6.4-6.2 6.4h-1.6c-2 0-3.6-.9-4.8-2.5l-3.7-5.2c-.5-.7-.3-1.7.4-2.2.7-.4 1.5-.3 2 .3L8 15.8V2.6z' fill='%231f3cff' stroke='%23fff' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") 9 2, pointer;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #fff; color: var(--blue); font-family: var(--sans); }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+body {
+  overflow-x: hidden;
+  -webkit-user-select: none; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 1px solid var(--blue); outline-offset: 3px; }
+
+#gl { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; z-index: 0; }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+#spacer { width: 1px; pointer-events: none; }
+
+/* ── 상단 바 (글자는 캔버스가 그림: 투명) ─────────────── */
+#head {
+  position: fixed; z-index: 4;
+  top: calc(22px * var(--u)); left: calc(28px + var(--fx)); right: calc(28px + var(--fx));
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px;
+  font: 500 calc(13px * var(--u))/1.3 var(--sans); letter-spacing: -0.01em;
+  color: transparent;
+  pointer-events: none;
+}
+#head > :nth-child(2) { text-align: center; }
+#head > :last-child { text-align: right; }
+#head a, #head button { pointer-events: auto; color: transparent; text-decoration: none; }
+#head button { font: inherit; letter-spacing: inherit; background: none; border: 0; padding: 0; }
+#head .sep { white-space: pre; }
+
+/* ── 오른쪽 점 내비게이션 (점은 캔버스, 버튼은 투명) ─────────────── */
+#dots { position: fixed; z-index: 4; right: 0; top: 0; width: 44px; height: 0; }
+#dots button {
+  position: absolute; left: 0; width: 44px; height: 16px;
+  margin-top: -8px; background: none; border: 0; padding: 0; color: transparent; font-size: 1px;
+}
+
+/* ── 캔버스 글자 위 링크 ─────────────── */
+#hits { position: fixed; inset: 0; z-index: 3; pointer-events: none; }
+.hit {
+  position: absolute; left: 0; top: 0;
+  display: block; pointer-events: auto;
+  color: transparent; font-size: 1px; text-decoration: none;
+  will-change: transform;
+}
+.hit[hidden] { display: none; }
+
+/* ── 마지막 화면: 링크와 크레딧 (레퍼런스보다 글자를 작게) ─────────────── */
+#outro {
+  position: fixed; z-index: 5; inset: 0;
+  padding: calc(var(--human-h, 50vh) + 40px * var(--u)) calc(28px + var(--fx)) 22px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  color: var(--blue);
+  font: 400 calc(11px * var(--u))/1.45 var(--sans);
+  opacity: 0; visibility: hidden;
+  -webkit-user-select: text; user-select: text;
+}
+#outro h2 { font-weight: 500; font-size: calc(26px * var(--u)); letter-spacing: -0.05em; line-height: .9; margin: 0 0 calc(18px * var(--u)); }
+#outro h3 { font: 400 calc(9px * var(--u)) var(--mono); letter-spacing: .04em; text-transform: uppercase; margin: 0 0 8px; }
+#outro .cols { display: grid; grid-template-columns: 1fr 1fr 0.62fr; gap: calc(28px * var(--u)) calc(40px * var(--u)); }
+#outro .cols > div:last-child { padding-left: calc(40px * var(--u)); }
+#outro ol, #outro ul { list-style: none; margin: 0 0 18px; padding: 0; font-size: calc(11px * var(--u)); }
+#outro .cols > div > :last-child { margin-bottom: 0; }
+#outro li { padding: calc(4px * var(--u)) 0; border-top: 1px solid var(--blue); }
+#outro a { text-decoration: none; }
+#outro a:hover { text-decoration: underline; text-underline-offset: 2px; }
+#outro p { margin: 0 0 16px; max-width: 36ch; font-size: calc(11px * var(--u)); word-break: keep-all; }
+#outro .credit { position: absolute; margin: 0; font-size: calc(12px * var(--u)); }
+#outro .credit p { margin: 0; font-size: inherit; }
+#outro .acts { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+#outro .btn {
+  font: 500 calc(11.5px * var(--u)) var(--sans); color: var(--blue);
+  background: none; border: 1px solid var(--blue); border-radius: 999px;
+  padding: 8px 14px; text-decoration: none;
+  transition: background .25s, color .25s;
+}
+#outro .btn:hover { background: var(--blue); color: #fff; text-decoration: none; }
+@media (max-width: 1000px) {
+  #outro { justify-content: flex-start; padding-left: var(--gut); padding-right: var(--gut); }
+  #outro .cols { grid-template-columns: 1fr 1fr; }
+  #outro .cols > div:last-child { padding-left: 0; }
+  #outro .credit { position: static; margin-bottom: 18px; }
+}
+@media (max-width: 700px) {
+  #head { grid-template-columns: 1fr 1fr; left: 16px; right: 16px; font-size: 12px; }
+  #head > :nth-child(2) { display: none; }
+  #outro .cols { grid-template-columns: 1fr; gap: 18px; }
+  #outro .acts { align-items: stretch; }
+  #outro .btn { text-align: center; padding: 12px 14px; }
+}
